@@ -84,6 +84,9 @@ input[readonly]{background:#f3f4f8}
 .field.needs-entry>label{color:#b3261e}
 .field.needs-entry input,.field.needs-entry select,.field.needs-entry textarea{border-color:#d9534f!important;background:#fff7f5}
 /* landing */
+.kb-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:4px 0 16px}.kb-label{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.kb{display:flex;flex-wrap:wrap;gap:8px}
+
 .static-note{margin-top:10px;padding:8px 12px;border-radius:10px;background:#fff8e6;border:1px solid #f1d58a;color:#7a5a00;font-size:.84rem}
 .static-note svg{width:16px;height:16px;vertical-align:-3px}
 
@@ -110,7 +113,31 @@ input[readonly]{background:#f3f4f8}
 .tile.found{background:#f1faf5;border-color:#b7e4c7}.tile.found .tile-ico{background:#dcf3e6;color:#1a7f4b}.tile.found .tile-st{color:#14623b;font-weight:600}
 .tile.stopped{background:var(--danger-s);border-color:var(--danger-b)}.tile.stopped .tile-ico{background:#fde0da;color:var(--danger)}.tile.stopped .tile-st{color:#8f2414;font-weight:700}
 .tile.active{box-shadow:0 0 0 3px #7c5cf040;border-color:var(--ac)}
-.single>summary{pointer-events:none;list-style:none}.single>summary::-webkit-details-marker{display:none}
+.opts{display:grid;gap:8px;margin:6px 0 10px}
+.opt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:2px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;cursor:pointer;transition:transform .12s,box-shadow .12s,border-color .12s}
+.opt:hover{border-color:var(--ac-b)}
+.opt-l{display:flex;gap:10px;align-items:center;padding:11px 13px;font-weight:600}.opt-l input{width:20px;height:20px;flex:none;accent-color:var(--ac)}
+.opt-r{display:flex;flex-direction:column;gap:3px;padding:10px 13px;background:#f6f6f9;border-left:2px dashed var(--line);color:var(--muted);font-size:.82rem;line-height:1.35}
+.opt-lv{display:inline-flex;align-items:center;gap:5px;font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:.04em}.opt-lv svg{width:13px;height:13px}
+.opt.lv-c .opt-lv{color:#9a6700}.opt.lv-e .opt-lv{color:#7a6a00}.opt.lv-s .opt-lv{color:var(--danger)}
+.opt.on{transform:scale(1.01);box-shadow:0 4px 14px #0000001a}
+.opt.on.lv-c{border-color:#e0a100;background:#fff8e6}.opt.on.lv-c .opt-r{background:#fdecc0;color:#5c4200}
+.opt.on.lv-e{border-color:#d9c200;background:#fffbe0}.opt.on.lv-e .opt-r{background:#fcf3b0;color:#585000}
+.opt.on.lv-s{border-color:var(--danger);background:var(--danger-s)}.opt.on.lv-s .opt-r{background:#fbd5cd;color:#7a1c10}
+.opt.on .opt-d{font-weight:600}
+@media(max-width:560px){.opt{grid-template-columns:1fr}.opt-r{border-left:0;border-top:2px dashed var(--line)}}
+@media(prefers-reduced-motion:reduce){.opt{transition:none}.opt.on{transform:none}}
+.prio-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:.82rem;color:var(--ac-d);margin:4px 2px 0}.prio-head.rest{color:var(--muted);margin-top:10px}
+details.group.arow.prio{border-color:var(--ac);background:#f7f4ff;box-shadow:0 0 0 3px #7c5cf022}
+details.group.arow.prio>summary .tile-ico{background:var(--ac);color:#fff}
+.alist{display:grid;gap:8px;margin:10px 0 12px}.alist details.group{margin:0;border:2px solid var(--line);border-radius:12px}
+details.group.arow>summary{grid-template-columns:30px minmax(0,1fr) max-content 20px;padding:11px 13px}
+details.group.arow[open]>summary{background:#fff;border-bottom:1px solid var(--line)}
+.arow-t{display:block;min-width:0}.arow-t b{display:block;font-weight:600}.arow-t small{display:block;color:var(--muted);font-weight:400;font-size:.74rem;margin-top:2px}
+.arow-st{display:flex;gap:6px;align-items:center}
+details.group.arow.found,.alist details.group.arow.prio.found{border-color:#b7e4c7;background:#f1faf5;box-shadow:none}details.group.arow.stopped{border-color:var(--danger);background:var(--danger-s)}
+.litem{border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 10px;background:#fff}.litem.stop{border-color:var(--danger-b);background:var(--danger-s)}
+.litem-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .area-toggle{display:flex;align-items:center;gap:10px;padding:12px 14px;border:2px solid var(--ac-b);border-radius:12px;background:var(--ac-s);font-weight:700;cursor:pointer}
 .area-toggle input{width:22px;height:22px}
 @media(max-width:560px){.tiles{grid-template-columns:repeat(2,1fr)}}
@@ -470,6 +497,34 @@ body.locked{overflow:hidden}
 @keyframes tourPulse{0%,100%{outline-color:var(--ac)}50%{outline-color:color-mix(in srgb,var(--ac) 25%,transparent)}}
 .tour-dim .tm>*:not(.tour-keep){opacity:.5}
 @media(max-width:700px){.tour-card{grid-template-columns:1fr;grid-template-areas:"bar" "prog" "stage" "cap"}.tour-stage{min-height:0}}
+
+/* ===== PALET KONSISTEN: ungu=prioritas, hijau=dipilih, amber=berisiko, biru=waspada, merah=STOP ===== */
+:root{--c-t:#7a4a00;--c-bg:#fff3d6;--c-bd:#d99a00;--e-t:#1e40af;--e-bg:#e8f0ff;--e-bd:#7ea2f2;--s-t:#8f1d0e;--s-bg:#ffe7e2;--s-bd:#c4321c;--ok-t:#0f5c35;--ok-bg:#e8f6ee;--ok-bd:#6fc69a}
+.legend2{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.lg{font-size:.76rem;font-weight:700;padding:4px 10px;border-radius:999px;border:1.5px solid}
+.lg.prio{color:var(--ac-d);background:var(--ac-s);border-color:var(--ac)}.lg.c{color:var(--c-t);background:var(--c-bg);border-color:var(--c-bd)}.lg.e{color:var(--e-t);background:var(--e-bg);border-color:var(--e-bd)}.lg.s{color:var(--s-t);background:var(--s-bg);border-color:var(--s-bd)}.lg.ok{color:var(--ok-t);background:var(--ok-bg);border-color:var(--ok-bd)}
+.opt-r{background:#f3f4f8;color:#4b5565}
+.opt.lv-c .opt-lv{color:var(--c-t)}.opt.lv-e .opt-lv{color:var(--e-t)}.opt.lv-s .opt-lv{color:var(--s-t)}
+.opt.on.lv-c{border-color:var(--c-bd);background:var(--c-bg)}.opt.on.lv-c .opt-r{background:#fde4a3;color:var(--c-t)}
+.opt.on.lv-e{border-color:var(--e-bd);background:var(--e-bg)}.opt.on.lv-e .opt-r{background:#cfe0ff;color:var(--e-t)}
+.opt.on.lv-s{border-color:var(--s-bd);background:var(--s-bg)}.opt.on.lv-s .opt-r{background:#fbcfc6;color:var(--s-t)}
+details.group.arow.found,.alist details.group.arow.prio.found{border-color:var(--ok-bd);background:var(--ok-bg)}
+details.group.arow.found .tile-ico{background:#cdeedc;color:var(--ok-t)}
+details.group.arow.stopped,.alist details.group.arow.prio.stopped{border-color:var(--s-bd);background:var(--s-bg)}
+details.group.arow.stopped .tile-ico{background:#fbcfc6;color:var(--s-t)}
+.tag.on{background:#cdeedc;color:var(--ok-t);border:1px solid var(--ok-bd)}
+.tag.stop{background:var(--s-bd);color:#fff}
+.opt-l{min-height:48px}.opt-t{line-height:1.3}
+@media(max-width:560px){
+ .alist details.group.arow>summary{grid-template-columns:30px minmax(0,1fr) 20px;row-gap:6px}
+ .arow-st{grid-column:2/3;grid-row:2}
+ .arow-t small{display:none}
+ .legend2 .lg{font-size:.72rem;padding:3px 8px}
+ .opt-l{padding:12px}.opt-r{padding:9px 12px}
+ .litem{padding:10px}.group-body{padding:10px}
+ body{font-size:16px}
+}
+details.group.arow.stopped>summary .tile-ico,details.group.arow.found>summary .tile-ico{background:#fbcfc6;color:var(--s-t)}details.group.arow.found>summary .tile-ico{background:#cdeedc;color:var(--ok-t)}
 </style>
 </head>
 <body>
@@ -478,36 +533,25 @@ body.locked{overflow:hidden}
 <main id="landing" class="container no-print">
   <div class="hero">
     <h1>Persetujuan Pemasangan pada Kondisi Berisiko</h1>
-    <p>Dipakai teknisi kalau saat cek lokasi ditemukan hal yang berisiko. Teknisi menjelaskan risikonya, konsumen menyatakan setuju, lalu keduanya tanda tangan.</p>
+    <p>Pilih dulu risiko yang ditemukan di lokasi, lalu isi data konsumen, jelaskan risikonya, dan minta tanda tangan.</p>
     <p class="mb-0"><span id="ic-shield"></span> Kalau ada kondisi <strong>STOP</strong>, pemasangan tidak boleh dilanjutkan lewat form ini. Tunda atau tanya Technical Support.</p>
     <p class="static-note mb-0"><span id="ic-static"></span> Form ini <strong>tidak memakai server dan tidak menyimpan data</strong>. Isian hanya ada di tab ini. Unduh JPG atau PDF sebelum menutup tab.</p>
   </div>
 
   <div class="bigcta" role="group" aria-label="Mulai form">
-    <button class="bigcard alt" data-action="glos" id="glosBtn" type="button"></button>
-    <button class="bigcard alt" data-tree="open" id="treeBtn" type="button"></button>
     <button class="bigcard" data-action="start" id="startBtn" type="button"></button>
     <button class="bigcard alt" data-action="resume" id="resumeBtn" type="button" hidden></button>
   </div>
 
-  <section class="lab no-print" aria-label="Panduan singkat">
-    <div class="lab-head"><div><span class="eyebrow">PANDUAN SINGKAT</span><h2>5 langkah, sekitar 2 menit</h2></div>
-      <button id="tourOpen" class="btn primary" type="button"></button></div>
-    <ol class="lab-steps">
-      <li><b>Periksa</b><span>lokasi sebelum memasang</span></li>
-      <li><b>Tandai</b><span>kondisi berisiko (✓)</span></li>
-      <li><b>Edukasi</b><span>jelaskan indikasi dan risikonya</span></li>
-      <li><b>Tanda tangan</b><span>teknisi dan konsumen</span></li>
-      <li><b>Unduh</b><span>JPG, PDF, atau cetak</span></li>
-    </ol>
-    <dl class="lab-out"><div><dt>Hasil</dt><dd>Form Persetujuan Pemasangan (JPG / PDF)</dd></div><div><dt>Setelah itu</dt><dd>Unggah ke sistem GCCS atau kirim ke Technical Support</dd></div></dl>
-  </section>
-
-  <section class="quicklink" aria-label="Alur keputusan lengkap">
-    <details open><summary>Alur keputusan lengkap: semua kasus, kondisi STOP, dan komunikasi ke konsumen</summary><div id="landingFlow"></div></details>
-  </section>
-
-  <section class="acc" aria-label="Panduan lengkap">
+  <div class="kb-wrap no-print"><span class="kb-label">Pengetahuan</span>
+    <div class="kb">
+      <button class="btn sm" type="button" data-info="glos" id="glosBtn"></button>
+      <button class="btn sm" type="button" data-info="flow" id="flowBtn"></button>
+      <button class="btn sm" type="button" data-info="guide" id="guideBtn"></button>
+      <button class="btn sm" type="button" id="tourOpen"></button>
+    </div>
+  </div>
+  <section class="acc" id="guideSrc" aria-label="Panduan lengkap" hidden>
     <h2>Panduan lengkap teknisi</h2>
     <p class="muted">Baca singkat sebelum ke lokasi.</p>
     <details open><summary>Kapan form ini dipakai</summary><div class="body">
@@ -1163,6 +1207,7 @@ const AREA_BY = Object.fromEntries(AREAS.map(a => [a.id, a]));
 const DECISIONS = [{"id":"lanjut","label":"Dilanjutkan, konsumen setuju","consent":true},{"id":"tunda","label":"Ditunda, konsumen memperbaiki dulu","consent":false},{"id":"eskalasi","label":"Eskalasi ke Technical Support dulu","consent":false},{"id":"batal","label":"Dibatalkan","consent":false}];
 const TOOLS = ["Senter untuk area sempit","Meteran untuk jarak","Tester listrik, bila teknisi berwenang","Alat cek bocor sesuai SOP (gas atau sambungan air)","Kamera untuk foto kondisi sebelum pemasangan","Buku petunjuk produk (jarak, daya, tekanan)"];
 const SIGNER_ROLES = ['Pemilik / penghuni','Pengelola / PIC','Perwakilan pemilik','Lainnya'];
+
 /* ====== FLOWCHART LENGKAP + KOMUNIKASI KONSUMEN ====== */
 function flowHtml() {
   const node = (cls, icon, cap, body, say) => `<div class="flow-node ${cls}"><span class="flow-ico">${ic(icon)}</span><div><span class="flow-cap">${cap}</span>${body}${say ? `<div class="say"><b>Ucapkan:</b> “${say}”</div>` : ''}</div></div>`;
@@ -1229,6 +1274,7 @@ function flowHtml() {
   <p class="hint">Sesuaikan dengan situasi. Pakai kata sederhana, tenang, dan tidak menekan.</p>
   <div class="say-grid">${scripts}</div>`;
 }
+
 /* ====== GLOSARIUM & ENSIKLOPEDIA RISIKO ====== */
 const TERMS = [
   ['Grounding / arde','Kabel pengaman yang membuang listrik bocor ke tanah. Tanpa ini, bodi unit bisa menyetrum.'],
@@ -1320,6 +1366,27 @@ function openGlos() {
   L.hidden = false; document.body.classList.add('locked'); L.querySelector('.gl-search').focus();
 }
 function closeGlos() { const L = $('glosLayer'); if (L) L.hidden = true; document.body.classList.remove('locked'); $('glosBtn')?.focus(); }
+
+function openInfo(id, title, html) {
+  const lid = 'info-' + id; let L = $(lid);
+  if (!L) {
+    L = document.createElement('div'); L.id = lid; L.className = 'glos-layer no-print'; L.setAttribute('role', 'dialog'); L.setAttribute('aria-modal', 'true'); L.setAttribute('aria-label', title);
+    L.innerHTML = `<div class="glos-card"><div class="glos-head"><h2>${esc(title)}</h2><button class="btn" type="button" data-info="close">${ic('x','me')}Tutup</button></div><div class="glos-scroll">${html}</div></div>`;
+    document.body.appendChild(L);
+  }
+  L.hidden = false; document.body.classList.add('locked');
+}
+function closeInfoLayers() { document.querySelectorAll('.glos-layer').forEach(l => { if (l.id !== 'treeLayer') l.hidden = true; }); if ($('treeLayer')?.hidden !== false) document.body.classList.remove('locked'); }
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-info]'); if (!b) return;
+  const k = b.dataset.info;
+  if (k === 'glos') openGlos();
+  else if (k === 'flow') openInfo('flow', 'Alur keputusan', flowHtml());
+  else if (k === 'guide') openInfo('guide', 'Panduan teknisi', $('guideSrc').innerHTML);
+  else if (k === 'close') { b.closest('.glos-layer').hidden = true; if (![...document.querySelectorAll('.glos-layer')].some(l => !l.hidden)) document.body.classList.remove('locked'); }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { const open = [...document.querySelectorAll('.glos-layer')].filter(l => !l.hidden && l.id !== 'treeLayer'); if (open.length) { open.forEach(l => l.hidden = true); document.body.classList.remove('locked'); } } });
+
 /* ====== HELPER & STATE ====== */
 const $ = id => document.getElementById(id);
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1332,7 +1399,7 @@ const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const KEY = 'modena-risk-consent-v1';
 const fresh = () => ({info:{date:today()}, areas:{}, decision:'', explained:false, photo:false, notes:'', signerName:'', signerRole:'', objection:'', consent:false, signatures:{}, eduKey:''});
-let dirty = false, exported = false, curArea = '', d = fresh(), step = 0, issuesShown = [], hasDraft = false, workspaceOpen = false;
+let dirty = false, exported = false, d = fresh(), step = 0, issuesShown = [], hasDraft = false, workspaceOpen = false;
 try {
   const s = JSON.parse(sessionStorage.getItem(KEY) || 'null');
   if (s && s.d && typeof s.d === 'object') { d = Object.assign(fresh(), s.d); d.info = d.info || {}; d.areas = d.areas || {}; d.signatures = d.signatures || {}; step = Math.min(2, Math.max(0, s.step || 0)); hasDraft = true; }
@@ -1340,6 +1407,21 @@ try {
 const save = () => { try { sessionStorage.setItem(KEY, JSON.stringify({d, step})); } catch (_) {} };
 
 const A = id => (d.areas[id] ||= {on:false, subs:[], where:'', note:'', other:'', risk:'', stop:false});
+const openAreas = new Set();
+/* Lainnya: banyak temuan sendiri. Field other/risk/stop diturunkan dari items agar output tetap sama. */
+function lainItems() {
+  const s = A('lainnya');
+  if (!Array.isArray(s.items)) s.items = (s.other || s.risk) ? [{text:s.other || '', risk:s.risk || '', stop:!!s.stop}] : [];
+  return s.items;
+}
+function syncLain() {
+  const s = A('lainnya'), it = lainItems();
+  s.on = it.length > 0;
+  s.other = it.map(x => (x.text || '').trim()).filter(Boolean).join('\n');
+  s.risk = it.map(x => (x.risk || '').trim()).filter(Boolean).join('\n');
+  s.stop = it.some(x => x.stop);
+}
+function addLain(text = '', risk = '', stop = false) { lainItems().push({text, risk, stop}); syncLain(); openAreas.add('lainnya'); }
 const found = () => AREAS.filter(a => d.areas[a.id]?.on);
 const subOf = (a, sid) => a.subs.find(s => s[0] === sid);
 function stopList() {
@@ -1347,7 +1429,7 @@ function stopList() {
   for (const a of found()) {
     const s = A(a.id);
     for (const sid of s.subs) { const sub = subOf(a, sid); if (sub && sub[2] === 's') out.push({area:a, text:sub[1]}); }
-    if (a.free && s.stop) out.push({area:a, text:'Kondisi lain yang membahayakan keselamatan: ' + (s.other || '-')});
+    if (a.free) for (const x of lainItems()) if (x.stop) out.push({area:a, text:'Kondisi lain yang membahayakan keselamatan: ' + (x.text || '-')});
   }
   return out;
 }
@@ -1370,14 +1452,16 @@ function validationIssues() {
   const f = d.info, out = [];
   const add = (st, message, target) => out.push({step:st, message, target});
   for (const [k, label] of [['date','tanggal'],['technician','nama teknisi'],['customer','nama konsumen'],['phone','no. telepon / HP'],['address','alamat konsumen'],['productType','tipe produk'],['model','model produk']])
-    if (!String(f[k] || '').trim()) add(0, 'Informasi ' + label + ' belum diisi.', 'f-' + k);
-  if (!found().length) add(1, 'Belum ada kondisi yang ditandai. Tandai minimal satu kondisi, atau gunakan pemasangan normal bila lokasi aman.', 'areas-start');
+    if (!String(f[k] || '').trim()) add(k === 'productType' ? 0 : 1, 'Informasi ' + label + ' belum diisi.', 'f-' + k);
+  if (!found().length) add(0, 'Belum ada kondisi yang ditandai. Tandai minimal satu kondisi, atau gunakan pemasangan normal bila lokasi aman.', 'areas-start');
   for (const a of found()) {
     const s = A(a.id);
     if (a.free) {
-      if (!String(s.other || '').trim()) add(1, 'Lainnya: tuliskan kondisi yang ditemukan.', 'area-other-' + a.id);
-      if (!String(s.risk || '').trim()) add(1, 'Lainnya: tuliskan risiko / potensi akibat yang dijelaskan.', 'area-risk-' + a.id);
-    } else if (!s.subs.length && !String(s.note || '').trim()) add(1, a.name + ': pilih indikasi yang ditemukan atau tulis catatan.', 'area-' + a.id);
+      lainItems().forEach((x, i) => {
+        if (!String(x.text || '').trim()) add(0, `Temuan lain ${i + 1}: tuliskan kondisi yang ditemukan.`, 'lain-text-' + i);
+        if (!String(x.risk || '').trim()) add(0, `Temuan lain ${i + 1}: tuliskan risiko / potensi akibat yang dijelaskan.`, 'lain-risk-' + i);
+      });
+    } else if (!s.subs.length && !String(s.note || '').trim()) add(0, a.name + ': pilih indikasi yang ditemukan atau tulis catatan.', 'area-' + a.id);
   }
   if (!d.decision) add(2, 'Keputusan pemasangan belum dipilih.', 'decision-card');
   if (!d.explained) add(2, 'Konfirmasi bahwa teknisi telah menjelaskan indikasi dan risiko belum dicentang.', 'explained-row');
@@ -1392,12 +1476,12 @@ function initStatic() {
   $('brandIcon').innerHTML = ic('shield');
   $('ic-shield').innerHTML = ic('alert', 'me'); $('ic-static').innerHTML = ic('info', 'me');
   const bc = (icon, t, s) => `<span class="bc-ico">${ic(icon)}</span><span><span class="bc-t">${t}</span><span class="bc-s">${s}</span></span><span class="bc-go">${ic('right')}</span>`;
-  $('glosBtn').innerHTML = bc('book', 'Cek glosarium dan ensiklopedia risiko', 'Pelajari cakupan pemasangan dan kondisi berisiko sebelum mengisi form');
-  $('startBtn').innerHTML = bc('shield', hasDraft ? 'Mulai Form Persetujuan Pemasangan baru' : 'Mulai Form Persetujuan Pemasangan', hasDraft ? 'Mulai dari kosong. Untuk meneruskan, pilih Lanjutkan draft' : 'Isi data, tandai kondisi lokasi, edukasi konsumen, lalu tanda tangan');
+  $('glosBtn').innerHTML = ic('book', 'me') + 'Glosarium risiko'; $('flowBtn').innerHTML = ic('grid', 'me') + 'Alur keputusan'; $('guideBtn').innerHTML = ic('info', 'me') + 'Panduan teknisi';
+  $('startBtn').innerHTML = bc('shield', hasDraft ? 'Mulai Form Persetujuan baru' : 'Mulai Form Persetujuan', hasDraft ? 'Mulai dari kosong. Untuk meneruskan, pilih Lanjutkan draft' : 'Pilih risiko dulu, lalu isi data dan minta tanda tangan');
   $('resumeBtn').innerHTML = bc('clip', 'Lanjutkan draft', 'Teruskan form yang sedang diisi di tab ini');
   $('resumeBtn').hidden = !hasDraft;
-  $('tourOpen').innerHTML = ic('play', 'me') + 'Coba simulasi';
-  $('landingFlow').innerHTML = flowHtml();
+  $('tourOpen').innerHTML = ic('play', 'me') + 'Simulasi';
+ 
   $('btnEdit').innerHTML = ic('left', 'me') + 'Edit form';
   $('btnJpg').innerHTML = ic('image', 'me') + 'Unduh JPG';
   $('btnPdf').innerHTML = ic('file', 'me') + 'Unduh PDF';
@@ -1440,8 +1524,6 @@ function field(key, label, o = {}) {
 }
 function panelInfo() {
   return `${roleGuide(0)}
-  <div class="preflight"><h2>${ic('clip','me')}Persiapan pemeriksaan lokasi</h2><p class="hint mb-0">Siapkan sebelum cek lokasi.</p>
-    <ul class="preflight-list">${TOOLS.map(t => `<li>${ic('check')}<span>${esc(t)}</span></li>`).join('')}</ul></div>
   <div class="required-guide">${ic('info')}<span><strong>Isi semua yang Wajib.</strong> Nama penandatangan konsumen diisi saat konsumen tanda tangan.</span></div>
   <section class="card ident"><h2>${ic('user','me')}Data Teknisi</h2><p class="hint">Teknisi MODENA yang melakukan pemeriksaan dan menandatangani form ini.</p>
     <div class="grid">
@@ -1457,7 +1539,6 @@ function panelInfo() {
     </div></section>
   <section class="card ident"><h2>${ic('clip','me')}Data Produk / Pekerjaan</h2><p class="hint">Sesuaikan dengan nameplate unit dan Work Order.</p>
     <div class="grid">
-      ${field('productType', 'Tipe produk', {select:PRODUCTS, placeholder:'Pilih tipe produk', help:'Dipakai untuk menandai area yang paling perlu diperiksa.'})}
       ${field('model', 'Model', {placeholder:'Sesuai nameplate / WO'})}
       ${field('serial', 'No. Seri', {req:'optional', placeholder:'Opsional, isi bila unit sudah ada'})}
       ${field('wo', 'No. Work Order', {req:'optional', placeholder:'Opsional, isi jika tersedia'})}
@@ -1470,10 +1551,12 @@ function tipsBlock(a) {
     <div class="caut"><h4>${ic('alert','me')}Caution</h4><ul>${a.caution.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
     <div><h4>Tindakan yang bisa ditawarkan</h4><ul>${a.mitigasi.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div></div></details>`;
 }
+const IMPL = {"l1": "Kalau ada arus bocor, orang bisa tersengat. Komponen unit juga mudah rusak.", "l2": "Kabel di dalam dinding bisa tertembus saat memasang, lalu korsleting.", "l3": "Colokan longgar dan panas. Bisa korsleting sampai terbakar.", "l4": "MCB sering turun, kabel panas, unit tidak bekerja normal.", "l5": "Komponen unit mudah rusak dan unit bisa mati sendiri.", "l6": "Kabel panas berlebih. Risiko korsleting dan kebakaran.", "l7": "Ada masalah di instalasi. Unit bisa memicu turun atau korsleting lagi.", "l8": "Sudah ada panas berlebih di titik ini. Risiko api.", "l9": "Bisa menyengat orang dan memicu kebakaran.", "a1": "Pipa bisa tertembus saat memasang, lalu air bocor.", "a2": "Unit tidak bekerja normal. Sambungan bisa bocor atau lepas.", "a3": "Sambungan bocor dan aliran air tidak sesuai.", "a4": "Air buangan meluap. Lantai basah dan licin.", "a5": "Pipa mudah pecah atau bocor saat disambung.", "a6": "Air merusak dinding dan lantai, bisa mengenai listrik.", "a7": "Air tidak bisa dimatikan cepat kalau ada bocor.", "a8": "Unit bisa jalan tanpa air dan cepat rusak.", "a9": "Risiko tersengat listrik.", "g1": "Pipa gas bisa tertembus saat memasang. Gas bocor.", "g2": "Gas bisa bocor. Risiko terbakar atau meledak.", "g3": "Api tidak stabil, pembakaran tidak sempurna, gas bisa bocor.", "g4": "Selang mudah bocor gas.", "g5": "Selang bisa bocor atau meleleh.", "g6": "Gas menumpuk. Risiko terbakar atau meledak.", "g7": "Gas sedang bocor. Bisa terbakar atau meledak.", "d1": "Unit bisa jatuh atau dinding rusak.", "d2": "Unit miring dan tidak stabil. Bisa bocor atau berisik.", "d3": "Unit sulit terpasang aman dan bisa lepas.", "d4": "Pengait tidak kuat menahan. Unit bisa jatuh.", "d5": "Dinding lemah, pengait longgar seiring waktu, jamur muncul.", "d6": "Unit tidak stabil dan air mengalir ke arah salah.", "d7": "Unit bisa jatuh dan melukai orang.", "v1": "Panas menumpuk. Unit cepat rusak dan udara pengap.", "v2": "Unit terlalu panas dan bisa mati sendiri.", "v3": "Unit panas berlebih dan kinerja turun.", "v4": "Unit terlalu panas di dalam kabinet.", "v5": "Pembuangan tidak lancar. Panas atau asap balik ke ruangan.", "v6": "Aliran udara berkurang dan debu atau minyak mudah terbakar.", "v7": "Gas buang menumpuk. Bahaya keracunan CO dan kebakaran.", "r1": "Unit terlalu panas dan sulit diservis.", "r2": "Pemasangan sulit dan sambungan bisa tertekan.", "r3": "Panas atau getaran mengenai benda sekitar.", "r4": "Unit dan benda sekitar bisa rusak atau terbakar.", "r5": "Servis nanti sulit dan lama.", "r6": "Hisapan kurang kuat, atau terlalu dekat panas kompor.", "r7": "Bahan di dekatnya bisa terbakar."};
+const LVL = {c:['Berisiko','c'], e:['Waspada','e'], s:['STOP','s']};
 function subList(a, s, type, head) {
   const list = a.subs.filter(x => x[2] === type);
   if (!list.length) return '';
-  return `<div class="sub-head">${head}</div>` + list.map(([sid, text, t]) => `<label class="inline-check${t === 's' ? ' stop' : ''}"><input type="checkbox" data-bind="sub" data-area="${a.id}" data-sub="${sid}" ${s.subs.includes(sid) ? 'checked' : ''}><span>${esc(text)}${t === 's' ? '<span class="tag-stop">STOP</span>' : ''}</span></label>`).join('');
+  return `<div class="sub-head">${head}</div><div class="opts">` + list.map(([sid, text, t]) => `<label class="opt lv-${t}${s.subs.includes(sid) ? ' on' : ''}"><span class="opt-l"><input type="checkbox" data-bind="sub" data-area="${a.id}" data-sub="${sid}" ${s.subs.includes(sid) ? 'checked' : ''}><span class="opt-t">${esc(text)}</span></span><span class="opt-r"><span class="opt-lv">${ic(t === 's' ? 'alert' : 'info', 'me')}${LVL[t][0]}</span><span class="opt-d">${esc(IMPL[sid] || '')}</span></span></label>`).join('') + '</div>';
 }
 function areaGroup(a, rel, open) {
   const s = A(a.id), on = s.on;
@@ -1481,46 +1564,50 @@ function areaGroup(a, rel, open) {
   const missGroup = isMissing('area-' + a.id);
   let body = '';
   if (!a.free) body += `<div class="tpl"><div><b>Indikasi kondisi berisiko (template)</b>${esc(a.indikasi)}</div><div><b>Risiko / potensi akibat (template)</b>${esc(a.risiko)}</div></div>`;
-  body += `<label class="area-toggle"><input type="checkbox" data-bind="on" data-area="${a.id}" ${on ? 'checked' : ''}> ${ic('check')} Kondisi ini ditemukan di lokasi (tandai ✓)</label>`;
+  if (!a.free) body += subList(a, s, 'c', 'Centang yang ditemukan (sesuai template)') + subList(a, s, 'e', 'Temuan tambahan') + subList(a, s, 's', 'Kondisi STOP');
+  if (!a.free) body += `<label class="area-toggle"><input type="checkbox" data-bind="on" data-area="${a.id}" ${on ? 'checked' : ''}> ${ic('check')} Ada temuan lain di area ini (isi di catatan)</label>`;
   if (on && !a.free) {
-    body += subList(a, s, 'c', 'Indikasi sesuai template') + subList(a, s, 'e', 'Temuan tambahan') + subList(a, s, 's', 'Kondisi STOP');
     if (stopHere.length) body += `<div class="stopbox"><strong>${ic('alert','me')}STOP: jangan lanjutkan pemasangan.</strong><br>${esc(a.stopAction)} <span class="hint">Ikuti SOP K3 perusahaan.</span></div>`;
     body += `<div class="grid mt-2"><div class="field"><label for="area-where-${a.id}">Titik / lokasi temuan ${reqTag('optional')}</label><input id="area-where-${a.id}" data-bind="where" data-area="${a.id}" value="${esc(s.where)}" placeholder="Contoh: dapur, dinding kiri unit"></div>
       <div class="field${missGroup ? ' needs-entry' : ''}"><label for="area-note-${a.id}">Catatan teknisi ${reqTag(s.subs.length ? 'optional' : 'conditional')}</label><input id="area-note-${a.id}" data-bind="note" data-area="${a.id}" value="${esc(s.note)}" placeholder="Ukuran, kondisi, atau hal lain"></div></div>`;
   }
-  if (on && a.free) {
-    body += `<div class="sub-head">Contoh kondisi (ketuk untuk mengisi)</div><div class="chips">${a.quick.map((q, i) => `<button class="btn sm" type="button" data-action="quick" data-q="${i}">${esc(q)}</button>`).join('')}</div>
-    <div class="field mt-2${isMissing('area-other-' + a.id) ? ' needs-entry' : ''}"><label for="area-other-${a.id}">Kondisi yang ditemukan ${reqTag('required')}</label><textarea id="area-other-${a.id}" data-bind="other" data-area="${a.id}" placeholder="Tuliskan kondisi di luar daftar">${esc(s.other)}</textarea></div>
-    <div class="field mt-2${isMissing('area-risk-' + a.id) ? ' needs-entry' : ''}"><label for="area-risk-${a.id}">Risiko / potensi akibat yang dijelaskan ${reqTag('required')}</label><textarea id="area-risk-${a.id}" data-bind="risk" data-area="${a.id}" placeholder="Apa yang dapat terjadi bila pemasangan tetap dilakukan">${esc(s.risk)}</textarea></div>
-    <label class="inline-check stop"><input type="checkbox" data-bind="stopfree" data-area="${a.id}" ${s.stop ? 'checked' : ''}><span>Kondisi ini membahayakan keselamatan<span class="tag-stop">STOP</span></span></label>
-    ${stopHere.length ? `<div class="stopbox"><strong>${ic('alert','me')}STOP: jangan lanjutkan pemasangan.</strong><br>Tunda pemasangan dan eskalasi ke Technical Support.</div>` : ''}`;
+  if (a.free) {
+    const it = lainItems();
+    body += `<div class="sub-head">Tulis sendiri. Bisa lebih dari satu temuan.</div>`;
+    body += it.map((x, k) => `<div class="litem${x.stop ? ' stop' : ''}"><div class="litem-head"><b>Temuan ${k + 1}</b><button class="btn sm" type="button" data-action="lain-del" data-i="${k}" aria-label="Hapus temuan ${k + 1}">${ic('x','me')}Hapus</button></div>
+      <div class="field${isMissing('lain-text-' + k) ? ' needs-entry' : ''}"><label for="lain-text-${k}">Yang ditemukan ${reqTag('required')}</label><textarea id="lain-text-${k}" data-bind="litem" data-i="${k}" data-f="text" placeholder="Contoh: pipa gas melewati dekat kabel listrik">${esc(x.text)}</textarea></div>
+      <div class="field mt-1${isMissing('lain-risk-' + k) ? ' needs-entry' : ''}"><label for="lain-risk-${k}">Risikonya ${reqTag('required')}</label><textarea id="lain-risk-${k}" data-bind="litem" data-i="${k}" data-f="risk" placeholder="Apa yang bisa terjadi kalau tetap dipasang">${esc(x.risk)}</textarea></div>
+      <label class="inline-check stop"><input type="checkbox" data-bind="litem-stop" data-i="${k}" ${x.stop ? 'checked' : ''}><span>Langsung membahayakan (api, tersengat, gas, roboh)<span class="tag-stop">STOP</span></span></label></div>`).join('');
+    body += `<button class="btn" type="button" data-action="lain-add">${ic('dots','me')}Tambah temuan lain</button>`;
+    body += `<div class="sub-head mt-2">Contoh cepat (ketuk untuk menambah)</div><div class="chips">${a.quick.map((q, k) => `<button class="btn sm" type="button" data-action="quick" data-q="${k}">${esc(q)}</button>`).join('')}</div>`;
+    if (stopHere.length) body += `<div class="stopbox mt-2"><strong>${ic('alert','me')}STOP: jangan lanjutkan pemasangan.</strong><br>Tunda pemasangan dan eskalasi ke Technical Support.</div>`;
   }
   body += tipsBlock(a);
-  const count = on ? (a.free ? 'Ditandai' : `${s.subs.length} indikasi`) : '—';
-  return `<details class="group${on ? ' found' : ''}${stopHere.length ? ' stopped' : ''}" id="area-${a.id}" data-group="${a.id}" ${open ? 'open' : ''}>
-    <summary><span class="group-title">${ic(a.icon)}${esc(a.name)}${on ? '<span class="tag on">✓ Ditemukan</span>' : ''}${stopHere.length ? '<span class="tag stop">STOP</span>' : ''}${relTag(rel)}</span><span class="group-count">${count}</span></summary>
+  const nSel = a.free ? lainItems().length : s.subs.length;
+  const sub = a.free ? 'Tulis sendiri, bisa lebih dari satu' : a.indikasi.split(' / ').slice(0, 2).join(' / ');
+  const chip = stopHere.length ? '<span class="tag stop">STOP</span>' : on ? `<span class="tag on">✓ ${nSel ? nSel + ' dipilih' : 'Ditemukan'}</span>` : relTag(rel);
+  return `<details class="group arow${rel === 't' ? ' prio' : ''}${on ? ' found' : ''}${stopHere.length ? ' stopped' : ''}" id="area-${a.id}" data-group="${a.id}" ${open ? 'open' : ''}>
+    <summary><span class="tile-ico">${ic(a.free ? 'dots' : a.icon)}</span><span class="arow-t"><b>${esc(a.free ? 'Lainnya (tidak ada di daftar)' : a.name)}</b><small>${esc(sub)}</small></span><span class="arow-st">${chip}</span></summary>
     <div class="group-body">${body}</div></details>`;
-}
-function areaTiles(rel) {
-  return `<div class="tiles" role="group" aria-label="Pilih area pemeriksaan">${AREAS.map(x => {
-    const s = d.areas[x.id], on = !!s?.on, st = stopList().some(y => y.area.id === x.id);
-    const status = st ? 'STOP' : on ? (x.free ? 'Ditemukan' : `${s.subs.length} indikasi`) : rel[x.id] === 't' ? 'Prioritas periksa' : 'Belum ditandai';
-    return `<button type="button" class="tile${on ? ' found' : ''}${st ? ' stopped' : ''}${x.id === curArea ? ' active' : ''}${!on && rel[x.id] === 't' ? ' prio' : ''}" data-action="area-pick" data-area="${x.id}" aria-pressed="${x.id === curArea}">
-      <span class="tile-ico">${ic(x.icon)}</span><span class="tile-name">${esc(x.name)}</span><span class="tile-st">${on ? '✓ ' : ''}${status}</span></button>`;
-  }).join('')}</div>`;
 }
 function panelCheck() {
   const rel = REL[d.info.productType] || {};
-  if (!AREA_BY[curArea]) curArea = (AREAS.find(x => rel[x.id] === 't') || AREAS[0]).id;
-  const groups = areaTiles(rel) + areaGroup(AREA_BY[curArea], rel[curArea], true).replace('class="group', 'class="single group');
   const sc = stopList().length;
   const prod = PRODUCTS.find(p => p[0] === d.info.productType);
+  const rank = x => x.free ? 9 : rel[x.id] === 't' ? 0 : rel[x.id] === 's' ? 1 : 2;
+  const sorted = AREAS.map((x, i) => [x, i]).sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1]).map(z => z[0]);
+  const nPrio = sorted.filter(x => rank(x) === 0).length;
+  const row = x => areaGroup(x, rel[x.id], openAreas.has(x.id));
+  const groups = nPrio
+    ? `<div class="alist"><div class="prio-head">${ic('alert','me')}Prioritas periksa untuk ${esc(prod[1])} (${nPrio})</div>${sorted.filter(x => rank(x) === 0).map(row).join('')}<div class="prio-head rest">Area lainnya</div>${sorted.filter(x => rank(x) > 0).map(row).join('')}</div>`
+    : `<div class="alist">${sorted.map(row).join('')}</div>`;
   return `${roleGuide(1)}
-  <details class="card flowdet"><summary>${ic('help','me')}Alur keputusan, kondisi STOP, dan komunikasi ke konsumen</summary>${flowHtml()}</details>
-  <p><button class="btn primary" type="button" data-tree="open">${ic('help','me')}Bantu tentukan tingkat risiko (decision tree)</button></p>
+  <div class="kb mb-2"><button class="btn primary" type="button" data-tree="open">${ic('help','me')}Bantu tentukan risiko</button><button class="btn sm" type="button" data-info="glos">${ic('book','me')}Glosarium</button><button class="btn sm" type="button" data-info="flow">${ic('grid','me')}Alur keputusan</button></div>
+  <section class="card"><h2>Produk yang dipasang</h2><p class="hint">Dipakai untuk menandai area yang paling perlu dicek.</p><div class="grid">${field('productType', 'Tipe produk', {select:PRODUCTS, placeholder:'Pilih tipe produk'})}</div>
+    <details class="flowdet mt-2"><summary>${ic('clip','me')}Persiapan cek lokasi</summary><ul class="preflight-list">${TOOLS.map(t => `<li>${ic('check')}<span>${esc(t)}</span></li>`).join('')}</ul></details></section>
   <div class="info">${ic('info','me')}<strong>Panduan Pengisian Teknisi.</strong> ${esc(GUIDE_TEXT)}</div>
-  <div class="section-heading" id="areas-start"><div><h2>Pemeriksaan lokasi</h2><p class="hint">${prod ? `Produk: ${esc(prod[1])}. Ketuk area untuk memeriksa. Area “Prioritas periksa” paling relevan.` : 'Ketuk area untuk memeriksa. Pilih tipe produk di langkah 1 agar area prioritas ditandai.'}</p></div><span id="areaCount" class="count-pill">${found().length} ditandai</span></div>
-  <div class="legend"><span>✓ Ditemukan: tandai kondisi</span><span>STOP: tidak boleh disetujui lewat form</span><span>Tersedia panduan di tiap area</span></div>
+  <div class="section-heading" id="areas-start"><div><h2>Pemeriksaan lokasi</h2><p class="hint">${prod ? `Produk: ${esc(prod[1])}. Ketuk area, lalu centang risiko yang ditemukan. Area “Prioritas periksa” paling relevan.` : 'Ketuk area, lalu centang risiko yang ditemukan. Pilih tipe produk agar area prioritas ditandai.'}</p></div><span id="areaCount" class="count-pill">${found().length} ditandai</span></div>
+  <div class="legend2" aria-label="Arti warna"><span class="lg prio">Prioritas periksa</span><span class="lg c">Berisiko</span><span class="lg e">Waspada</span><span class="lg s">STOP</span><span class="lg ok">Dipilih</span></div>
   ${sc ? `<div class="stopbox"><strong>${ic('alert','me')}${sc} kondisi STOP tercatat.</strong> Pemasangan tidak boleh dilanjutkan, meski konsumen setuju. Di langkah 3, pilih ditunda atau eskalasi.</div>` : ''}
   ${groups}
   <p class="hint mt-2">Jika semua area aman dan tidak ada kondisi yang ditandai, form ini tidak diperlukan. Lanjutkan pemasangan sesuai SOP.</p>`;
@@ -1543,7 +1630,6 @@ function panelConfirm() {
   const sigs = roleNames().map(([role, label]) => `<div id="sign-${role}" tabindex="-1"><strong>${label}</strong><div class="sig-thumb">${sigImage(d.signatures[role]) || 'Belum ditandatangani'}</div>
       <button class="btn primary" data-action="signature" data-role="${role}">${ic(role === 'customer' ? 'file' : 'pen', 'me')}${role === 'customer' ? 'Tinjau & tanda tangan' : 'Tanda tangan ' + label}</button></div>`).join('');
   return `${roleGuide(2)}
-  <details class="card flowdet"><summary>${ic('help','me')}Alur keputusan, kondisi STOP, dan komunikasi ke konsumen</summary>${flowHtml()}</details>
   <section class="card"><h2>Ringkasan kondisi yang ditandai</h2>
     ${stops.length ? `<div class="stopbox"><strong>${ic('alert','me')}Kondisi STOP ditemukan.</strong><ul>${stops.map(x => `<li>${esc(x.area.name)}: ${esc(x.text)}</li>`).join('')}</ul><p class="mb-0 mt-1">Pemasangan tidak boleh dilanjutkan, meski konsumen setuju. Tanda tangan konsumen dimatikan. Pilih ditunda atau eskalasi.</p></div>` : ''}
     <div class="handover"><h3>Kondisi untuk dijelaskan kepada konsumen</h3>${summaryList(true)}</div></section>
@@ -1569,8 +1655,8 @@ function renderEditor() {
   if (!workspaceOpen) return;
   issueTargets = new Set(validationIssues().filter(i => issuesShown.includes(i.step)).map(i => i.target));
   $('contextBar').innerHTML = `${ic('shield')}<strong>Persetujuan Pemasangan</strong><span class="grow">&nbsp;›&nbsp;Kondisi berisiko${d.info.productType ? ' › ' + esc(PRODUCTS.find(p => p[0] === d.info.productType)?.[1] || '') : ''}</span><span class="tag" title="Tidak ada server. Data hanya di tab ini.">Belum tersimpan di mana pun</span><button class="btn sm" data-action="home">${ic('grid','me')}Beranda</button>`;
-  const panels = [panelInfo(), panelCheck(), panelConfirm()];
-  const labels = ['Informasi', 'Pemeriksaan', 'Konfirmasi'];
+  const panels = [panelCheck(), panelInfo(), panelConfirm()];
+  const labels = ['Risiko', 'Informasi', 'Konfirmasi'];
   $('editor').innerHTML = `<div class="form-heading"><div class="title-line"><span class="title-icon">${ic('shield')}</span><div><h1>Persetujuan Pemasangan pada Kondisi Berisiko</h1><p>Tandai yang ditemukan, jelaskan ke konsumen, lalu minta persetujuan.</p></div></div></div>
     <div class="form-sticky"><nav class="stepper" aria-label="Langkah pengisian">${labels.map((l, i) => `<button class="step-tab" type="button" data-action="step" data-step="${i}"><span>${i + 1}</span>${l}</button>`).join('')}</nav>
     <div id="progressNotice" class="progress-strip" role="status" aria-live="polite"></div></div>
@@ -1593,11 +1679,11 @@ function setStep(i, scroll = true) {
 function renderProgress() {
   const box = $('progressNotice'); if (!box) return;
   let label = '', pct = 0, icon = 'user';
-  if (step === 0) {
+  if (step === 1) {
     const keys = ['date','technician','customer','phone','address','productType','model'];
     const n = keys.filter(k => String(d.info[k] || '').trim()).length;
     label = `${n}/7 informasi wajib terisi`; pct = n / 7 * 100; icon = 'user';
-  } else if (step === 1) {
+  } else if (step === 0) {
     const n = found().length, sc = stopList().length;
     label = n ? `${n} kondisi ditandai${sc ? ` · ${sc} STOP` : ''}` : 'Belum ada kondisi yang ditandai'; pct = n ? 100 : 0; icon = 'clip';
   } else {
@@ -1622,7 +1708,7 @@ function renderValidation() {
   nav.hidden = $('workspace').hidden || $('editor').hidden;
   nav.querySelector('.completion-count').textContent = pending.length;
   nav.querySelector('.completion-list').innerHTML = pending.length
-    ? '<p>Klik bagian yang ingin dilengkapi.</p>' + pending.map(i => `<button type="button" data-target="${esc(i.target)}"><small>${['Informasi','Pemeriksaan','Konfirmasi'][i.step]}</small>${esc(i.message)}</button>`).join('')
+    ? '<p>Klik bagian yang ingin dilengkapi.</p>' + pending.map(i => `<button type="button" data-target="${esc(i.target)}"><small>${['Risiko','Informasi','Konfirmasi'][i.step]}</small>${esc(i.message)}</button>`).join('')
     : '<div class="completion-done">✓ Semua bagian sudah lengkap</div>';
   const cur = issuesShown.length ? all.filter(i => issuesShown.includes(i.step) && i.step === step) : [];
   box.hidden = !cur.length;
@@ -1633,8 +1719,8 @@ function renderValidation() {
 function jumpTo(id) {
   const issue = validationIssues().find(i => i.target === id);
   if (issue && issue.step !== step) setStep(issue.step, false);
-  const ar = AREAS.find(x => id === 'area-' + x.id || id.endsWith('-' + x.id));
-  if (ar && ar.id !== curArea) { curArea = ar.id; renderEditor(); }
+  const ar = AREAS.find(x => id === 'area-' + x.id || id.endsWith('-' + x.id) || (x.free && /^lain-/.test(id)));
+  if (ar && !openAreas.has(ar.id)) { openAreas.add(ar.id); renderEditor(); }
   const t = $(id); if (!t) return;
   const g = t.closest?.('details.group'); if (g) g.open = true;
   if (t.tagName === 'DETAILS') t.open = true;
@@ -1683,6 +1769,8 @@ function onEdit(e) {
   else if (bind === 'other') area.other = t.value;
   else if (bind === 'risk') area.risk = t.value;
   else if (bind === 'stopfree') { area.stop = t.checked; structural = true; }
+  else if (bind === 'litem') { lainItems()[Number(t.dataset.i)][t.dataset.f] = t.value; syncLain(); }
+  else if (bind === 'litem-stop') { lainItems()[Number(t.dataset.i)].stop = t.checked; syncLain(); structural = true; }
   else if (bind === 'decision') { d.decision = t.value; structural = true; }
   else if (bind === 'explained') d.explained = t.checked;
   else if (bind === 'photo') d.photo = t.checked;
@@ -1693,6 +1781,7 @@ function onEdit(e) {
   invalidateSignatures(); dirty = true; exported = false; save();
   if (structural) rerender(t); else renderProgress();
 }
+document.addEventListener('toggle', e => { const g = e.target; if (g?.matches?.('details.group[data-group]')) { g.open ? openAreas.add(g.dataset.group) : openAreas.delete(g.dataset.group); } }, true);
 document.addEventListener('input', onEdit);
 document.addEventListener('change', onEdit);
 
@@ -2021,8 +2110,9 @@ document.addEventListener('click', e => {
   else if (act === 'download-pdf') downloadOutput('pdf');
   else if (act === 'print') { if (outputReady()) { try { window.print(); } catch (_) {} const s = $('exportStatus'); s.hidden = false; s.classList.remove('error'); s.textContent = 'Jika dialog cetak tidak muncul, gunakan Unduh PDF lalu cetak dari berkas tersebut.'; } }
   else if (act === 'reset') armConfirm(b, 'Klik lagi untuk menghapus semua isi', () => { d = fresh(); step = 0; issuesShown = []; save(); renderEditor(); window.scrollTo(0, 0); });
-  else if (act === 'quick') { const a = AREA_BY.lainnya, s = A('lainnya'), q = a.quick[Number(b.dataset.q)]; s.other = [s.other.trim(), q].filter(Boolean).join('\n'); invalidateSignatures(); save(); rerender(b); }
-  else if (act === 'area-pick') { curArea = b.dataset.area; renderEditor(); document.querySelector('#editor .single')?.scrollIntoView({behavior:reduced() ? 'auto' : 'smooth', block:'nearest'}); }
+  else if (act === 'quick') { const q = AREA_BY.lainnya.quick[Number(b.dataset.q)]; addLain(q); invalidateSignatures(); dirty = true; save(); renderEditor(); setTimeout(() => $('lain-risk-' + (lainItems().length - 1))?.focus(), 0); }
+  else if (act === 'lain-add') { addLain(); invalidateSignatures(); dirty = true; save(); renderEditor(); setTimeout(() => $('lain-text-' + (lainItems().length - 1))?.focus(), 0); }
+  else if (act === 'lain-del') { lainItems().splice(Number(b.dataset.i), 1); syncLain(); invalidateSignatures(); dirty = true; save(); renderEditor(); }
   else if (act === 'glos') openGlos();
   else if (act === 'glos-close') closeGlos();
   else if (act === 'edu-open') openEdu();
@@ -2048,6 +2138,7 @@ document.addEventListener('keydown', e => {
 initStatic();
 
 addEventListener('beforeunload', e => { if (dirty && !exported) { e.preventDefault(); e.returnValue = ''; } });
+
 /* ====== PANDU (simulasi panduan) ====== */
 (function () {
   const tm = inner => '<div class="tm tour-dim">' + inner + '</div>';
@@ -2059,12 +2150,12 @@ addEventListener('beforeunload', e => { if (dirty && !exported) { e.preventDefau
      r:() => tm('<ul><li class="y"><i>✓</i>Mencatat kondisi lokasi yang berisiko</li><li class="y"><i>✓</i>Menjelaskan risikonya kepada konsumen</li><li class="y"><i>✓</i>Merekam persetujuan konsumen bila disetujui</li></ul>')},
     {t:'Kapan tidak boleh dipakai', x:'Kondisi STOP tidak boleh disetujui lewat form. Pemasangan ditunda atau dieskalasi.', h:'', m:'Ada kondisi yang tidak boleh disetujui.',
      r:() => tm('<ul><li class="n"><i>✕</i>Tercium bau gas</li><li class="n"><i>✕</i>Stop kontak panas atau kabel terkelupas</li><li class="n"><i>✕</i>Kebocoran aktif dekat listrik</li><li class="n"><i>✕</i>Struktur tidak kuat menahan unit</li><li class="y"><i>→</i>Tunda atau eskalasi ke Technical Support</li></ul>')},
-    {t:'1. Isi data konsumen dan produk', x:'Isi nama, telepon, alamat, tipe produk, dan model. Tipe produk menentukan area yang diprioritaskan.', h:'Perhatikan kolom tipe produk yang menyala.',
-     r:() => tm('<h4>Data konsumen dan produk</h4><div class="tm-row"><input class="tm-input" placeholder="Nama konsumen" disabled><input class="tm-input" placeholder="No. Tlp/HP" disabled></div><div class="tm-row tour-keep" data-hl><input class="tm-input" value="Water Heater" disabled></div>')},
-    {t:'2. Tandai kondisi di lokasi', x:'Buka tiap area, lalu tandai ✓ bila kondisinya ditemukan. Area berlabel prioritas paling relevan untuk produk.', h:'Klik kartu Instalasi Listrik.',
+    {t:'1. Pilih risiko yang ditemukan', x:'Buka tiap area, lalu tandai ✓ bila kondisinya ditemukan. Area berlabel prioritas paling relevan untuk produk.', h:'Klik kartu Instalasi Listrik.',
      r:() => tm('<h4>Pemeriksaan lokasi</h4><div class="tm-grid"><div class="tm-card ' + (st.on ? 'on' : '') + ' tour-keep" data-hl><b>Instalasi Listrik</b>' + (st.on ? '✓ Ditemukan' : 'Prioritas periksa') + '</div><div class="tm-card"><b>Instalasi Air</b>Prioritas periksa</div><div class="tm-card"><b>Instalasi Gas</b>Prioritas periksa</div><div class="tm-card"><b>Dinding / Struktur</b></div></div>')},
-    {t:'3. Pilih indikasi yang ditemukan', x:'Di tiap area ada indikasi sesuai template, temuan tambahan, dan kondisi STOP. Panduan cek, caution, dan tindakan tersedia di bawahnya.', h:'Perhatikan tanda STOP.',
+    {t:'2. Pilih yang paling sesuai', x:'Di tiap area ada indikasi sesuai template, temuan tambahan, dan kondisi STOP. Panduan cek, caution, dan tindakan tersedia di bawahnya.', h:'Perhatikan tanda STOP.',
      r:() => tm('<h4>Instalasi Listrik</h4><ul><li class="y"><i>✓</i>Tidak tersedia grounding</li><li class="y"><i>✓</i>Kapasitas daya tidak memadai</li><li class="n tour-keep" data-hl><i>!</i>Stop kontak panas atau gosong <b style="color:#c4321c">STOP</b></li></ul>')},
+    {t:'3. Isi data konsumen dan produk', x:'Isi nama, telepon, alamat, tipe produk, dan model. Tipe produk menentukan area yang diprioritaskan.', h:'Perhatikan kolom tipe produk yang menyala.',
+     r:() => tm('<h4>Data konsumen dan produk</h4><div class="tm-row"><input class="tm-input" placeholder="Nama konsumen" disabled><input class="tm-input" placeholder="No. Tlp/HP" disabled></div><div class="tm-row tour-keep" data-hl><input class="tm-input" value="Water Heater" disabled></div>')},
     {t:'4. Edukasi konsumen', x:'Tombol Edukasi konsumen membuka layar berbahasa awam: apa temuannya, risikonya, dan pilihan konsumen. Dokumen output tetap sama.', h:'Klik tombol yang menyala.',
      r:() => tm('<h4>Edukasi konsumen</h4><div class="tm-card" style="margin-bottom:8px"><b>Instalasi Listrik</b>Risiko: korsleting, panas berlebih, kerusakan komponen.</div><button class="tm-btn tour-keep" data-hl style="background:var(--ac);color:#fff;border-color:var(--ac)">Buka edukasi konsumen</button>')},
     {t:'5. Pilih keputusan', x:'Dilanjutkan atas persetujuan, ditunda, eskalasi, atau dibatalkan. Bila ada STOP, pilihan dilanjutkan otomatis nonaktif.', h:'',
@@ -2078,9 +2169,9 @@ addEventListener('beforeunload', e => { if (dirty && !exported) { e.preventDefau
     ['Ikuti satu per satu, bisa dijeda.', ''],
     ['Pakai bila konsumen tetap meminta pemasangan.', 'Pakai untuk kasus yang tidak berisiko.'],
     ['Tunda dan eskalasi bila ada STOP.', 'Meminta konsumen menyetujui kondisi STOP.'],
-    ['Pilih tipe produk sesuai WO.', 'Mengosongkan tipe produk.'],
     ['Tandai hanya yang benar-benar ditemukan.', 'Menandai semua area tanpa memeriksa.'],
     ['Pilih indikasi yang spesifik dan tulis titiknya.', 'Mengabaikan tanda STOP.'],
+    ['Pilih tipe produk sesuai WO.', 'Mengosongkan tipe produk.'],
     ['Baca bersama, beri waktu bertanya.', 'Menekan konsumen untuk menyetujui.'],
     ['Pilih keputusan sesuai kesepakatan.', 'Memilih lanjut saat ada STOP.'],
     ['Konsumen baca dulu, baru tanda tangan.', 'Mengisi atau menandatangani atas nama konsumen.'],
@@ -2088,7 +2179,7 @@ addEventListener('beforeunload', e => { if (dirty && !exported) { e.preventDefau
   ];
   const MS = ['Pilih tipe produk dulu.', 'Klik kartu yang menyala.', 'STOP berarti jangan lanjut.', 'Konsumen baca dulu, ya.', 'Pilih sesuai kesepakatan.', 'Tanda tangan di sini.', 'Unduh lalu kirim.'];
   const PROPS = {clipboard:['..##..','######','#....#','#.##.#','#....#','#.##.#','######'], wrench:['##..##','#....#','##..##','..##..','..##..','..##..','..##..'], question:['.####.','#....#','....#.','...#..','......','...#..'], shield:['######','#....#','#....#','#....#','.#..#.','..##..'], folder:['###...','######','#....#','#....#','#....#','######'], pin:['.####.','.#..#.','..##..','..##..','..#...','..#...'], magnifier:['.####.','#....#','#....#','.####.','....#.','.....#'], doc:['#####.','#...##','#....#','#.##.#','#....#','######'], rocket:['..##..','.####.','.####.','.####.','#.##.#','..##..']};
-  const VIS = [{pose:'wave'},{pose:'point',prop:'clipboard'},{pose:'warn',prop:'shield'},{pose:'point',prop:'pin'},{pose:'point',prop:'wrench'},{pose:'think',prop:'magnifier'},{pose:'point',prop:'doc'},{pose:'think',prop:'question'},{pose:'point',prop:'pin'},{pose:'cheer',prop:'rocket'}];
+  const VIS = [{pose:'wave'},{pose:'point',prop:'clipboard'},{pose:'warn',prop:'shield'},{pose:'point',prop:'wrench'},{pose:'think',prop:'magnifier'},{pose:'point',prop:'pin'},{pose:'point',prop:'doc'},{pose:'think',prop:'question'},{pose:'point',prop:'pin'},{pose:'cheer',prop:'rocket'}];
   function grid(pose, fr, prop) {
     const g = Array.from({length:16}, () => Array(16).fill(0)), P = (x, y) => { if (x >= 0 && x < 16 && y >= 0 && y < 16) g[y][x] = 1; };
     const oy = (pose === 'cheer' && fr % 2) || (pose === 'wave' && fr % 2) ? -1 : 0, L = pts => pts.forEach(([x, y]) => P(x, y + oy));
@@ -2108,7 +2199,7 @@ addEventListener('beforeunload', e => { if (dirty && !exported) { e.preventDefau
   let faceT = null, faceI = 0, typeT = null;
   function setFace(v) { clearInterval(faceT); faceI = 0; const tick = () => { paint(grid(v.pose || 'point', faceI, v.prop)); faceI++; }; tick(); if (!reduced()) faceT = setInterval(tick, 320); }
   function say(t) { clearInterval(typeT); const b = $('tourBubble'); if (reduced()) { b.textContent = t; return; } b.textContent = ''; let n = 0; typeT = setInterval(() => { b.textContent = t.slice(0, ++n); if (n >= t.length) clearInterval(typeT); }, 11); }
-  const CLICKSTEP = 4, STEP_MS = 3800; let i = 0, playing = true, timer = null, clickTimer = null;
+  const CLICKSTEP = 3, STEP_MS = 3800; let i = 0, playing = true, timer = null, clickTimer = null;
   const clearT = () => { clearTimeout(timer); clearTimeout(clickTimer); };
   function arm() {
     clearT(); const bar = $('tourAuto'); bar.style.transition = 'none'; bar.style.width = '0';
@@ -2140,6 +2231,7 @@ addEventListener('beforeunload', e => { if (dirty && !exported) { e.preventDefau
   $('tour').addEventListener('click', e => { if (e.target === $('tour')) close(); });
   document.addEventListener('keydown', e => { if ($('tour').hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowRight') next(); if (e.key === 'ArrowLeft' && i > 0) { i--; show(); } });
 })();
+
 /* ====== DECISION TREE: bantu tentukan tingkat risiko ====== */
 const LV = {s:['Sangat berisiko (STOP)','stop'], c:['Berisiko','mid'], e:['Waspada','warn']};
 let tr = {screen:'area', area:'', picks:[], draft:{text:'', risk:''}};
@@ -2190,10 +2282,10 @@ function applyTree() {
   for (const p of tr.picks) {
     const s = A(p.areaId); s.on = true;
     if (p.sub) s.subs = [...new Set([...s.subs, p.sub])];
-    else if (p.areaId === 'lainnya') { s.other = [s.other.trim(), p.text].filter(Boolean).join('\n'); s.risk = [s.risk.trim(), p.risk].filter(Boolean).join('\n'); if (p.level === 's') s.stop = true; }
+    else if (p.areaId === 'lainnya') addLain(p.text, p.risk, p.level === 's');
     else { s.note = [s.note.trim(), p.text].filter(Boolean).join('; '); }
   }
-  curArea = tr.picks[0].areaId; invalidateSignatures(); save(); closeTree(); step = 1; issuesShown = []; renderEditor(); window.scrollTo(0, 0);
+  tr.picks.forEach(x => openAreas.add(x.areaId)); invalidateSignatures(); save(); closeTree(); step = 0; issuesShown = []; renderEditor(); window.scrollTo(0, 0);
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-tree]'); if (!b) return;
@@ -2218,6 +2310,5 @@ document.addEventListener('click', e => {
   if (act !== 'other-done' || tr.screen === 'result') renderTree();
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('treeLayer') && !$('treeLayer').hidden) closeTree(); });
-$('treeBtn').innerHTML = `<span class="bc-ico">${ic('help')}</span><span><span class="bc-t">Bantu tentukan tingkat risiko</span><span class="bc-s">Jawab beberapa pertanyaan, dapat hasilnya, lalu masukkan ke form</span></span><span class="bc-go">${ic('right')}</span>`;
-</script>
-</body></html>
+
+</script></body></html>
