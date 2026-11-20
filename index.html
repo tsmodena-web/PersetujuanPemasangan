@@ -525,6 +525,33 @@ details.group.arow.stopped .tile-ico{background:#fbcfc6;color:var(--s-t)}
  body{font-size:16px}
 }
 details.group.arow.stopped>summary .tile-ico,details.group.arow.found>summary .tile-ico{background:#fbcfc6;color:var(--s-t)}details.group.arow.found>summary .tile-ico{background:#cdeedc;color:var(--ok-t)}
+
+/* ===== OVERRIDE UI 2026-W47 (tampilan saja; area output #printArea tidak disentuh) ===== */
+:root{font-family:Inter,"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif}
+.btn{min-height:44px}
+.btn.sm{min-height:44px;padding:6px 14px;font-size:.85rem}
+.btn:hover{border-color:var(--ac)}
+input,select,textarea{border-radius:8px}
+.hint,.field-help,.tag,.lv,.lg,.req,.eyebrow,.kb-label,.tile-st,.topt small,.arow-t small,.cf-n small,.cf-ar b,.cf-side b,.cf-two b,.lab-out dt,.tpl b,.sub-head,.tips h4,.opt-lv,.completion-help,.completion-list p,.sig-instruction,.step-tab span,.jump-link,.tag-stop,.legend,.gl-term span{font-size:max(.8rem,12px)}
+.step-tab span{font-size:.8rem}
+.jump-link{min-height:44px}
+.reset-row .btn{min-height:44px;font-size:.85rem}
+.completion-list button{min-height:44px;font-size:.85rem}
+.sig-head .btn{min-height:44px}
+.step-tab{min-height:44px}
+.progress-strip{box-shadow:none}
+.wizard-actions{box-shadow:none}
+.stepper{background:#eef0f5;border-radius:9px}
+small:not(#printArea small){font-size:max(.8rem,12px)}
+.tips>summary,.flowdet>summary{min-height:44px;padding-top:12px;padding-bottom:12px}
+.legend2 .lg{font-size:.8rem}
+@media(max-width:600px){
+ .container{padding-bottom:132px}
+ .form-sticky .step-tab{min-height:44px;font-size:.82rem}
+ .step-tab span{width:22px;height:22px;font-size:.78rem}
+ .wizard-actions{border-top:1px solid var(--line);box-shadow:0 -1px 0 var(--line)}
+ .legend2 .lg{font-size:.8rem}
+}
 </style>
 </head>
 <body>
