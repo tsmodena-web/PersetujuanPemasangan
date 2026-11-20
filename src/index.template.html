@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Form Persetujuan Pemasangan pada Kondisi Berisiko · MODENA (staging)</title>
+<style>
+:root{--ink:#1f2430;--muted:#667085;--line:#e4e7ec;--bg:#f6f7fb;--ac:#7c5cf0;--ac-d:#5b3fd1;--ac-s:#f4f1ff;--ac-b:#ddd5fb;--r:10px;--shell:1120px;--ctx-h:46px;--danger:#c4321c;--danger-s:#fff1ee;--danger-b:#f3b9ae;--warn-s:#fffaf0;--warn-b:#f3d9a4;--ok:#198754;
+font-family:"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;line-height:1.5;background:var(--bg);color:var(--ink);font-size:15px}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+h1,h2,h3,h4{margin:0}
+p{line-height:1.5;margin:0 0 8px}
+.ic{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.17em;flex:none}
+.me{margin-right:6px}
+.muted,.hint{color:var(--muted);font-size:.88rem}
+.hint{font-size:.82rem}
+.mt-1{margin-top:6px}.mt-2{margin-top:10px}.mt-3{margin-top:16px}.mb-0{margin-bottom:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* header */
+.top{background:#fff;border-bottom:1px solid var(--line);padding:10px max(16px,calc((100vw - var(--shell))/2 + 18px))}
+.brand{display:grid;grid-template-columns:34px 1fr;column-gap:10px;align-items:center;font-weight:700}
+.brand>.bi{grid-row:1/span 2;width:34px;height:34px;display:grid;place-items:center;border-radius:9px;background:var(--ac);color:#fff}
+.brand small{color:var(--muted);font-size:.75rem;font-weight:400}
+.container{max-width:var(--shell);margin:auto;padding:22px 18px 80px}
+/* controls */
+.btn{min-height:42px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ac-d);font-weight:600;font-size:.9rem;line-height:1.2}
+.btn:hover{background:var(--ac-s);border-color:var(--ac)}
+.btn.primary{background:var(--ac);border-color:var(--ac);color:#fff}
+.btn.primary:hover{background:var(--ac-d);border-color:var(--ac-d)}
+.btn.danger{color:#a12031;border-color:#e0aab2}
+.btn.danger:hover{background:var(--danger-s)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.sm{min-height:34px;padding:4px 12px;font-size:.82rem}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid color-mix(in srgb,var(--ac) 35%,transparent);outline-offset:2px}
+input,select,textarea{width:100%;min-height:44px;padding:9px 12px;border:1px solid #d0d5dd;border-radius:10px;background:#fff;font-size:16px}
+textarea{min-height:76px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 16%,transparent);outline:none}
+input[type=checkbox],input[type=radio]{width:20px;min-height:0;height:20px;padding:0;accent-color:var(--ac);flex:none}
+input[readonly]{background:#f3f4f8}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;margin:14px 0}
+.card h2{font-size:1.1rem;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.grid>*{min-width:0}
+.field.wide{grid-column:1/-1}
+.field label,.field-label{display:block;font-weight:600;font-size:.88rem;margin-bottom:6px}
+.field-help{display:block;color:var(--muted);font-size:.76rem;margin-top:5px}
+.req{display:inline-block;margin-left:6px;font-size:.7rem;font-weight:500;vertical-align:middle}
+.req.required{color:var(--danger)}.req.optional{color:var(--muted)}.req.conditional{color:#9a6700}
+.inline-check{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;font-size:.9rem;line-height:1.4;margin:6px 0}
+.inline-check:has(input:checked){border-color:var(--ac);background:var(--ac-s)}
+.inline-check.disabled{opacity:.5;cursor:not-allowed}
+.inline-check.stop:has(input:checked){border-color:var(--danger);background:var(--danger-s)}
+.tag-stop{display:inline-block;margin-left:6px;padding:0 7px;border-radius:999px;background:var(--danger);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.05em;vertical-align:middle}
+.tag{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;font-size:.68rem;font-weight:600;vertical-align:middle;background:#eef0f5;color:var(--muted)}
+.tag.hi{background:var(--ac-s);color:var(--ac-d);border:1px solid var(--ac-b)}
+.tag.on{background:var(--ac);color:#fff}
+.tag.stop{background:var(--danger);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips .inline-check{margin:0}
+/* panels */
+.info{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin:10px 0;font-size:.88rem}
+.warning{background:var(--warn-s);border:1px solid var(--warn-b);border-radius:var(--r);padding:12px 14px;margin:10px 0;font-size:.88rem}
+.warning ul{margin:6px 0 0;padding-left:18px;color:var(--muted)}
+.warning li{margin:5px 0}
+.stopbox{background:var(--danger-s);border:2px solid var(--danger);border-radius:var(--r);padding:14px 16px;margin:12px 0;font-size:.9rem;color:#6a1d10}
+.stopbox strong{color:var(--danger)}
+.stopbox ul{margin:6px 0 0;padding-left:20px}
+.required-guide,.role-guide{display:flex;align-items:flex-start;gap:10px;background:var(--ac-s);border:1px solid var(--ac-b);border-radius:var(--r);padding:10px 14px;margin:0 0 14px;color:var(--muted);font-size:.85rem}
+.role-guide strong{color:var(--ink)}
+.role-guide p{margin:2px 0 0}
+.role-guide.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.preflight{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:0 0 14px}
+.preflight h2{font-size:1rem;margin-bottom:4px}
+.preflight-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 15px;margin:8px 0 0;padding:0;list-style:none;font-size:.86rem}
+.preflight-list li{display:flex;gap:9px;align-items:flex-start}
+.preflight-list .ic{color:var(--ac);margin-top:3px}
+.jump-link{margin-left:6px;padding:2px 10px;min-height:28px;border:1px solid var(--ac-b);border-radius:8px;background:#fff;color:var(--ac-d);font-size:.75rem;font-weight:600}
+.needs-entry{border:1px solid #f0b4a8!important;background:#fff7f5!important;border-radius:var(--r)}
+.field.needs-entry{border:0!important;background:transparent!important;padding:0;margin:0;border-radius:0}
+.field.needs-entry>label{color:#b3261e}
+.field.needs-entry input,.field.needs-entry select,.field.needs-entry textarea{border-color:#d9534f!important;background:#fff7f5}
+/* landing */
+.kb-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:4px 0 16px}.kb-label{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.kb{display:flex;flex-wrap:wrap;gap:8px}
+
+.static-note{margin-top:10px;padding:8px 12px;border-radius:10px;background:#fff8e6;border:1px solid #f1d58a;color:#7a5a00;font-size:.84rem}
+.static-note svg{width:16px;height:16px;vertical-align:-3px}
+
+.tlist{display:grid;gap:8px}.tlist.two{grid-template-columns:1fr 1fr}
+.topt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:11px 13px;border:2px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;font:inherit}
+.topt:hover{border-color:var(--ac-b)}.topt small{display:block;color:var(--muted);font-weight:400;font-size:.74rem;margin-top:2px}.topt b{font-weight:600}
+.topt.stop{background:var(--danger-s);border-color:var(--danger-b)}.topt.mid{background:var(--ac-s)}.topt.warn{background:#fff8e6;border-color:#f1d58a}
+.lv{display:inline-block;padding:1px 8px;border-radius:999px;font-size:.68rem;font-weight:700;border:1px solid}
+.lv.stop{color:#8f2414;border-color:var(--danger-b);background:#fff}.lv.mid{color:var(--ac-d);border-color:var(--ac-b);background:#fff}.lv.warn{color:#7a5a00;border-color:#f1d58a;background:#fff}
+.tv{padding:12px 14px;border-radius:12px;margin-bottom:10px}.tv p{margin:4px 0 0}.tv.stop{background:var(--danger-s);border:1px solid var(--danger-b);color:#8f2414}.tv.mid{background:var(--ac-s);border:1px solid var(--ac-b)}
+.tpicks{display:grid;gap:8px;margin-bottom:10px}.tpick{display:flex;justify-content:space-between;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}.tpick small{display:block;margin-top:4px;color:var(--muted)}
+.tpick.stop{border-color:var(--danger-b);background:var(--danger-s)}
+@media(max-width:560px){.tlist.two{grid-template-columns:1fr}}
+
+.gl-stop{background:var(--danger-s);border:1px solid var(--danger-b);border-radius:8px;padding:8px 10px}
+.ftable tr[data-gl][hidden]{display:none}
+
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 12px}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:11px 12px;border:2px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;font:inherit;text-align:left;min-height:84px}
+.tile:hover{border-color:var(--ac-b)}.tile:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.tile-ico{width:30px;height:30px;border-radius:9px;background:var(--ac-s);color:var(--ac);display:grid;place-items:center}.tile-ico svg{width:18px;height:18px}
+.tile-name{font-weight:700;font-size:.86rem;line-height:1.2}.tile-st{font-size:.72rem;color:var(--muted)}
+.tile.prio .tile-st{color:var(--ac-d);font-weight:600}
+.tile.found{background:#f1faf5;border-color:#b7e4c7}.tile.found .tile-ico{background:#dcf3e6;color:#1a7f4b}.tile.found .tile-st{color:#14623b;font-weight:600}
+.tile.stopped{background:var(--danger-s);border-color:var(--danger-b)}.tile.stopped .tile-ico{background:#fde0da;color:var(--danger)}.tile.stopped .tile-st{color:#8f2414;font-weight:700}
+.tile.active{box-shadow:0 0 0 3px #7c5cf040;border-color:var(--ac)}
+.opts{display:grid;gap:8px;margin:6px 0 10px}
+.opt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:2px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;cursor:pointer;transition:transform .12s,box-shadow .12s,border-color .12s}
+.opt:hover{border-color:var(--ac-b)}
+.opt-l{display:flex;gap:10px;align-items:center;padding:11px 13px;font-weight:600}.opt-l input{width:20px;height:20px;flex:none;accent-color:var(--ac)}
+.opt-r{display:flex;flex-direction:column;gap:3px;padding:10px 13px;background:#f6f6f9;border-left:2px dashed var(--line);color:var(--muted);font-size:.82rem;line-height:1.35}
+.opt-lv{display:inline-flex;align-items:center;gap:5px;font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:.04em}.opt-lv svg{width:13px;height:13px}
+.opt.lv-c .opt-lv{color:#9a6700}.opt.lv-e .opt-lv{color:#7a6a00}.opt.lv-s .opt-lv{color:var(--danger)}
+.opt.on{transform:scale(1.01);box-shadow:0 4px 14px #0000001a}
+.opt.on.lv-c{border-color:#e0a100;background:#fff8e6}.opt.on.lv-c .opt-r{background:#fdecc0;color:#5c4200}
+.opt.on.lv-e{border-color:#d9c200;background:#fffbe0}.opt.on.lv-e .opt-r{background:#fcf3b0;color:#585000}
+.opt.on.lv-s{border-color:var(--danger);background:var(--danger-s)}.opt.on.lv-s .opt-r{background:#fbd5cd;color:#7a1c10}
+.opt.on .opt-d{font-weight:600}
+@media(max-width:560px){.opt{grid-template-columns:1fr}.opt-r{border-left:0;border-top:2px dashed var(--line)}}
+@media(prefers-reduced-motion:reduce){.opt{transition:none}.opt.on{transform:none}}
+.prio-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:.82rem;color:var(--ac-d);margin:4px 2px 0}.prio-head.rest{color:var(--muted);margin-top:10px}
+details.group.arow.prio{border-color:var(--ac);background:#f7f4ff;box-shadow:0 0 0 3px #7c5cf022}
+details.group.arow.prio>summary .tile-ico{background:var(--ac);color:#fff}
+.alist{display:grid;gap:8px;margin:10px 0 12px}.alist details.group{margin:0;border:2px solid var(--line);border-radius:12px}
+details.group.arow>summary{grid-template-columns:30px minmax(0,1fr) max-content 20px;padding:11px 13px}
+details.group.arow[open]>summary{background:#fff;border-bottom:1px solid var(--line)}
+.arow-t{display:block;min-width:0}.arow-t b{display:block;font-weight:600}.arow-t small{display:block;color:var(--muted);font-weight:400;font-size:.74rem;margin-top:2px}
+.arow-st{display:flex;gap:6px;align-items:center}
+details.group.arow.found,.alist details.group.arow.prio.found{border-color:#b7e4c7;background:#f1faf5;box-shadow:none}details.group.arow.stopped{border-color:var(--danger);background:var(--danger-s)}
+.litem{border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 10px;background:#fff}.litem.stop{border-color:var(--danger-b);background:var(--danger-s)}
+.litem-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.area-toggle{display:flex;align-items:center;gap:10px;padding:12px 14px;border:2px solid var(--ac-b);border-radius:12px;background:var(--ac-s);font-weight:700;cursor:pointer}
+.area-toggle input{width:22px;height:22px}
+@media(max-width:560px){.tiles{grid-template-columns:repeat(2,1fr)}}
+
+.glos-layer{position:fixed;inset:0;z-index:60;background:#1a1a2e99;display:grid;place-items:center;padding:14px}.glos-layer[hidden]{display:none}
+.glos-card{background:#fff;border-radius:16px;width:100%;max-width:860px;max-height:100%;display:flex;flex-direction:column;overflow:hidden}
+.glos-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}.glos-head h2{margin:0;font-size:1.05rem}
+.glos-scroll{overflow:auto;padding:0 16px 16px}
+
+.glos{margin-top:10px;font-size:.86rem}.gl-scope{padding:9px 12px;background:var(--ac-s);border-radius:10px;margin-bottom:10px}
+.gl-search{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;margin-bottom:4px}
+.gl-areas{display:grid;gap:6px}.gl-area{border:1px solid var(--line);border-radius:10px;background:#fff}
+.gl-area>summary{cursor:pointer;padding:9px 12px;font-weight:600}.gl-body{padding:0 12px 12px}.gl-body p{margin:0 0 8px}
+.gl-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px}.gl-cols ul{margin:4px 0 0;padding-left:16px}
+.gl-terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.gl-term{border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:#fff}.gl-term b{display:block;color:var(--ac-d)}.gl-term span{color:var(--muted);font-size:.82rem}
+[data-gl][hidden],.gl-empty[hidden]{display:none}
+@media(max-width:700px){.gl-cols{grid-template-columns:1fr}}
+
+.cf{display:flex;flex-direction:column;align-items:center;gap:0;margin:10px 0;font-size:.82rem;max-width:760px;margin-inline:auto}
+.cf-n{width:100%;max-width:300px;text-align:center;padding:7px 10px;border-radius:10px;border:1px solid var(--line);background:#fff;font-weight:600;line-height:1.25}
+.cf-n small{display:block;font-weight:400;color:var(--muted);font-size:.74rem;margin-top:1px}
+.cf-n.start{background:var(--ac);border-color:var(--ac);color:#fff}.cf-n.start small{color:#ffffffcc}
+.cf-n.mid{background:var(--ac-s);border-color:var(--ac-b)}
+.cf-n.dec{background:#fff;border:2px solid var(--ac);color:var(--ac-d);border-radius:999px}
+.cf-n.ok{background:#f1faf5;border-color:#b7e4c7;color:#14623b}.cf-n.ok small{color:#3d8b62}
+.cf-n.stop{background:var(--danger-s);border-color:var(--danger-b);color:#8f2414}.cf-n.stop small{color:#b04a3b}
+.cf-n.warn{background:#fff8e6;border-color:#f1d58a;color:#7a5a00}.cf-n.warn small{color:#9a7a1a}
+.cf-ar{position:relative;display:flex;align-items:center;justify-content:center;width:2px;height:20px;background:var(--ac-b);margin:0}
+.cf-ar::after{content:"";position:absolute;bottom:-1px;left:-4px;border:5px solid transparent;border-top:6px solid var(--ac-b);border-bottom:0}
+.cf-ar.sm{height:12px}
+.cf-ar b{position:absolute;left:10px;font-size:.66rem;white-space:nowrap}
+.cf b.yes,.cf b.yes2{color:#14623b}.cf b.no,.cf b.no2{color:#8f2414}
+.cf-dr{position:relative;display:flex;justify-content:center;width:100%}
+.cf-dr>.cf-n{max-width:240px}
+.cf-side{position:absolute;left:calc(50% + 130px);top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:6px;width:200px}
+.cf-side b{font-size:.66rem}.cf-side .cf-n{max-width:none;flex:1}
+.cf-lanes{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;margin-top:10px}
+.cf-lane{display:flex;flex-direction:column;align-items:center;padding:8px;border-radius:12px;border:1px solid var(--line)}
+.cf-lane.stop{background:#c4321c08;border-color:var(--danger-b)}.cf-lane.go{background:#7c5cf008;border-color:var(--ac-b)}
+.cf-lane h4{margin:0 0 8px;font-size:.78rem;font-weight:700}.cf-lane .cf-n{max-width:none}
+.cf-two{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;margin-top:8px}.cf-two>div{display:flex;flex-direction:column;gap:3px;align-items:stretch}.cf-two b{font-size:.66rem;text-align:center}
+@media(max-width:700px){.cf-lanes{grid-template-columns:1fr}.cf-side{position:static;transform:none;width:100%;margin-top:6px}.cf-dr{flex-direction:column;align-items:center}}
+
+.ff{margin:12px 0}.ff .flow-node{max-width:none}.ff .flow-branches{max-width:none}
+.say{margin-top:6px;padding:6px 9px;border-left:3px solid var(--ac);background:#7c5cf00f;border-radius:6px;font-size:.8rem;font-weight:400;color:var(--ink)}
+.flow-node.stopn .say{border-color:var(--danger);background:#c4321c0d}
+.ffh{font-size:1rem;margin:20px 0 6px}
+.tscroll{overflow-x:auto}.ftable{width:100%;border-collapse:collapse;font-size:.84rem;background:#fff}
+.ftable th,.ftable td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.ftable thead th{background:var(--ac-s)}.ftable tbody th{font-weight:600;white-space:nowrap;width:1%}
+.ftable ul{margin:0;padding-left:16px}.ftable td:first-of-type{min-width:180px}
+.say-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.say-card{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff}.say-card b{font-size:.82rem;color:var(--ac-d)}.say-card p{margin:4px 0 0;font-size:.84rem}
+.flowdet{padding:12px 16px}.flowdet>summary{cursor:pointer;font-weight:700;color:var(--ac-d)}
+@media(max-width:700px){.ff .flow-branches{grid-template-columns:1fr}.flow-branches::before,.flow-branches::after{display:none}.ftable tbody th{white-space:normal}}
+
+.bigcta{display:grid;gap:12px;margin:0 0 16px}
+.bigcard{display:flex;align-items:center;gap:16px;width:100%;text-align:left;padding:22px 24px;border-radius:16px;border:2px solid var(--ac);background:var(--ac);color:#fff;cursor:pointer;font:inherit;box-shadow:0 6px 18px #7c5cf040;transition:transform .12s,box-shadow .12s}
+.bigcard:hover{transform:translateY(-1px);box-shadow:0 10px 24px #7c5cf055}
+.bigcard:focus-visible{outline:3px solid #1a1a2e;outline-offset:3px}
+.bigcard .bc-ico{flex:none;width:56px;height:56px;border-radius:14px;background:#ffffff2e;display:grid;place-items:center}
+.bigcard .bc-ico svg{width:30px;height:30px}
+.bigcard .bc-t{display:block;font-size:1.2rem;font-weight:700;line-height:1.25}
+.bigcard .bc-s{display:block;font-size:.88rem;opacity:.9;margin-top:3px}
+.bigcard .bc-go{margin-left:auto;flex:none}.bigcard .bc-go svg{width:26px;height:26px}
+.bigcard.alt{background:#fff;color:var(--ac);box-shadow:none}.bigcard.alt .bc-ico{background:#7c5cf01a}
+.bigcard[hidden]{display:none}
+@media(max-width:560px){.bigcard{padding:18px 16px}.bigcard .bc-t{font-size:1.05rem}.bigcard .bc-ico{width:46px;height:46px}}
+
+.hero{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-bottom:16px}
+.hero h1{font-size:1.4rem;margin-bottom:6px}
+.hero p{color:var(--muted);font-size:.9rem}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.lab{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:14px 0}
+.lab-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.lab-head h2{font-size:1.05rem;margin:2px 0 0}
+.eyebrow{display:inline-block;color:var(--ac-d);font-size:.68rem;font-weight:700;letter-spacing:.06em}
+.lab-steps{list-style:none;counter-reset:l;margin:14px 0 12px;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.lab-steps li{counter-increment:l;position:relative;padding-top:34px;font-size:.84rem;line-height:1.3}
+.lab-steps li::before{content:counter(l);position:absolute;top:0;left:0;width:26px;height:26px;border-radius:50%;background:var(--ac-s);color:var(--ac-d);font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center;z-index:1}
+.lab-steps li::after{content:"";position:absolute;top:12px;left:32px;right:-10px;height:2px;background:repeating-linear-gradient(90deg,var(--ac-b) 0 6px,transparent 6px 11px)}
+.lab-steps li:last-child::after{display:none}
+.lab-steps b{display:block}.lab-steps span{color:var(--muted)}
+.lab-out{display:grid;grid-template-columns:1fr 1.6fr;gap:10px;margin:0;padding-top:12px;border-top:1px solid var(--line)}
+.lab-out dt{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.lab-out dd{margin:2px 0 0;font-size:.86rem;font-weight:600}
+.quicklink{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin:14px 0}
+.quicklink summary{cursor:pointer;font-weight:700;color:var(--ac-d);font-size:.92rem}
+.acc{margin:14px 0}
+.acc>h2{font-size:1.05rem;margin:0 0 4px}
+.acc details{background:#fff;border:1px solid var(--line);border-radius:var(--r);margin:8px 0;overflow:hidden}
+.acc summary{padding:14px 16px;font-weight:600;cursor:pointer;list-style:none;display:flex;gap:10px;align-items:center}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:'⌄';margin-left:auto;color:var(--ac);font-size:1.2rem;transition:transform .18s}
+.acc details[open]>summary{background:var(--ac-s);border-bottom:1px solid var(--ac-b)}
+.acc details[open]>summary::after{transform:rotate(180deg)}
+.acc .body{padding:12px 16px 14px;font-size:.88rem}
+.acc .body ul,.acc .body ol{margin:6px 0;padding-left:20px}
+.acc .body li{margin:4px 0}
+.acc table{width:100%;border-collapse:collapse;font-size:.82rem;margin:6px 0}
+.acc th,.acc td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.acc th{background:#eef0f5}
+.say{border-left:3px solid var(--ac);background:var(--ac-s);padding:8px 12px;border-radius:0 8px 8px 0;margin:8px 0;font-size:.86rem}
+/* workspace */
+#workspace{max-width:var(--shell);display:grid;grid-template-columns:220px minmax(0,1fr);gap:0 24px;align-items:start}
+#workspace>.context-bar,#workspace>#previewView{grid-column:1/-1;min-width:0}
+#workspace>#editor{grid-column:2;grid-row:2;min-width:0}
+#workspace>.completion-nav{grid-column:1;grid-row:2}
+.context-bar{position:sticky;top:0;z-index:45;height:var(--ctx-h);display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:0 10px 0 14px;font-size:.86rem;white-space:nowrap;overflow:hidden;box-shadow:0 10px 0 var(--bg)}
+.context-bar .grow{flex:1;overflow:hidden;text-overflow:ellipsis}
+.context-bar .ic{color:var(--ac)}
+.completion-nav{position:sticky;top:calc(var(--ctx-h) + 24px);margin:16px 0 24px;border:1px solid var(--line);border-radius:var(--r);background:#fff;font-size:.85rem;z-index:40}
+.completion-nav>summary{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;min-height:46px;padding:10px 12px;cursor:pointer;list-style:none;font-weight:600}
+.completion-nav>summary::-webkit-details-marker{display:none}
+.completion-nav>summary::after{content:'+';margin-left:auto}
+.completion-nav[open]>summary::after{content:'−'}
+.completion-count{background:var(--ac-s);color:var(--ac-d);border:1px solid var(--ac-b);border-radius:999px;padding:1px 9px}
+.completion-help{flex:0 0 100%;color:var(--muted);font-size:.75rem;font-weight:400}
+.completion-nav[open] .completion-help{display:none}
+.completion-list{max-height:calc(100dvh - 130px);overflow-y:auto;padding:6px 8px;border-top:1px solid var(--line)}
+.completion-list p{margin:4px 0 8px;color:var(--muted);font-size:.75rem}
+.completion-list button{display:block;width:100%;min-height:40px;text-align:left;padding:9px 10px;border:0;border-radius:8px;background:transparent;font-size:.8rem;line-height:1.35}
+.completion-list button:hover{background:var(--ac-s);color:var(--ac-d)}
+.completion-list small{display:block;color:var(--muted)}
+.completion-done{color:var(--ok);padding:10px}
+.form-heading{margin:16px 0 14px}
+.title-line{display:flex;align-items:center;gap:12px}
+.title-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:10px;background:var(--ac-s);color:var(--ac);font-size:1.25rem;flex:none}
+.form-heading h1{font-size:1.3rem;line-height:1.3}
+.form-heading p{color:var(--muted);font-size:.86rem;margin:2px 0 0}
+.form-sticky{position:sticky;top:calc(var(--ctx-h) + 10px);z-index:40;background:var(--bg);padding:2px 0 10px;margin-top:6px}
+.stepper{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding:4px;margin:0 0 8px;background:#eef0f5;border-radius:var(--r)}
+.step-tab{display:flex;align-items:center;justify-content:center;gap:8px;min-height:42px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-weight:600;font-size:.86rem}
+.step-tab span{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#dcdfe8;color:var(--ink);font-size:.75rem}
+.step-tab.active{background:#fff;color:var(--ac-d);box-shadow:0 1px 4px #1f243014}
+.step-tab.active span{background:var(--ac);color:#fff}
+.progress-strip{position:relative;overflow:hidden;display:flex;align-items:center;gap:9px;padding:10px 13px;background:#fff;border:1px solid var(--line);border-radius:var(--r);font-weight:600;font-size:.86rem;box-shadow:0 8px 12px -10px #1f243040}
+.progress-strip .ic{color:var(--ac)}
+.progress-strip::after{content:'';position:absolute;left:0;bottom:0;height:3px;width:var(--fill,0%);background:var(--ac)}
+.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:20px 0 10px}
+.section-heading h2{font-size:1.1rem;margin:0 0 2px}
+.count-pill{flex:none;padding:6px 11px;border-radius:999px;background:var(--ac-s);color:var(--ac-d);font-size:.82rem;font-weight:600}
+.legend{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 14px;font-size:.78rem;color:var(--muted)}
+.legend span{padding:5px 8px;border-radius:7px;background:#eef0f5}
+details.group{margin:11px 0;border:1px solid var(--line);border-radius:var(--r);background:#fff;overflow:hidden}
+details.group>summary{padding:15px 16px;font-weight:600;cursor:pointer;list-style:none;display:grid;grid-template-columns:minmax(0,1fr) max-content 20px;align-items:center;gap:12px}
+details.group>summary::-webkit-details-marker{display:none}
+details.group>summary::after{content:'⌄';font-size:1.3rem;line-height:1;text-align:center;color:var(--ac);transition:transform .18s}
+details.group[open]>summary::after{transform:rotate(180deg)}
+details.group[open]>summary{background:var(--ac-s);border-bottom:1px solid var(--ac-b)}
+details.group.found{border-color:var(--ac)}
+details.group.stopped{border:2px solid var(--danger)}
+.group-title{display:flex;gap:9px;align-items:center;flex-wrap:wrap;min-width:0}
+.group-title .ic{color:var(--ac);font-size:1.15rem}
+.group-count{white-space:nowrap;color:var(--muted);font-weight:600;font-size:.84rem}
+.group-body{padding:14px 16px 16px}
+.tpl{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.tpl>div{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fafbfd;font-size:.84rem}
+.tpl b{display:block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.sub-head{font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:12px 0 4px}
+.area-toggle{display:flex;align-items:center;gap:10px;padding:12px 14px;border:2px solid var(--line);border-radius:10px;cursor:pointer;font-weight:600;background:#fff}
+.area-toggle:has(input:checked){border-color:var(--ac);background:var(--ac-s);color:var(--ac-d)}
+.tips{margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.tips>summary{padding:10px 14px;font-weight:600;font-size:.86rem;cursor:pointer;color:var(--ac-d);background:#fafbfd}
+.tips .tbody{padding:8px 14px 12px;font-size:.84rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tips h4{font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.tips ul{margin:0;padding-left:17px}.tips li{margin:3px 0}
+.tips .caut h4{color:#9a6700}
+.tips .caut{background:var(--warn-s);border:1px solid var(--warn-b);border-radius:8px;padding:8px 10px}
+.sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sig-grid .btn{width:100%;white-space:normal}
+.sig-thumb{height:104px;display:grid;place-items:center;margin:8px 0;border:1px dashed #a9bdcd;border-radius:9px;color:#667787;background:#fbfdff;overflow:hidden;font-size:.85rem}
+.sig-thumb img{max-width:100%;max-height:100%}
+.status-line{margin-top:10px;font-size:.87rem;font-weight:600}
+.handover{margin:12px 0 16px;padding:14px 16px;border:1px solid var(--ac-b);border-radius:var(--r);background:var(--ac-s);font-size:.86rem}
+.handover h3{font-size:.95rem;color:var(--ac-d);margin-bottom:6px}
+.handover ul{margin:6px 0;padding-left:20px}.handover li{margin:4px 0;overflow-wrap:anywhere}
+.consent-box{border:1px solid var(--ink);border-radius:8px;padding:12px 14px;background:#fff;font-size:.88rem;line-height:1.55}
+.wizard-actions{position:sticky;bottom:12px;z-index:30;display:flex;align-items:center;gap:9px;padding:11px;margin:24px 0 0;border:1px solid var(--line);border-radius:var(--r);background:#fff;box-shadow:0 4px 14px #1f243012}
+.step-counter{flex:1;text-align:center;color:var(--muted);font-size:.82rem;font-weight:600}
+.reset-row{text-align:right;margin:16px 0}
+.reset-row .btn{border:0;background:transparent;font-size:.82rem;min-height:32px}
+.preview-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:12px}
+.preview-toolbar .spacer{flex:1}
+.export-status{margin:0 0 12px;padding:10px 12px;border-radius:8px;background:var(--ac-s);color:var(--ink);font-size:.85rem;overflow-wrap:anywhere}
+.export-status.error{background:var(--danger-s);color:#9c3030}
+.export-status img{display:block;max-width:min(100%,420px);margin-top:8px;border:1px solid var(--line)}
+.zoom-btn{display:none}
+/* overlays */
+.layer{position:fixed;z-index:900;inset:0;display:grid;place-items:center;padding:12px;background:#10283fb8}
+.panel{display:flex;flex-direction:column;min-width:0;min-height:0;width:min(100%,940px);height:min(95dvh,900px);border-radius:var(--r);background:var(--bg);overflow:hidden}
+.panel-head{flex:none;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:14px 18px;border-bottom:1px solid var(--line);background:#fff}
+.panel-head h2{font-size:1.1rem}
+.panel-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:18px}
+.panel-actions{flex:none;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;padding:12px 18px max(12px,env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#fff}
+body.locked{overflow:hidden}
+.consumer-choice{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;margin:9px 0;border:1px solid #cddce6;border-radius:var(--r);background:#fff;line-height:1.4}
+.err{margin:10px 0;padding:10px 12px;border:1px solid #dc9a76;border-radius:9px;background:#fff1e8;color:#853e1d;font-size:.86rem}
+.sig-layer{position:fixed;z-index:1000;inset:0;background:#dce7ed}
+.sig-panel{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;padding:max(10px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+.sig-head{display:flex;align-items:center;flex-wrap:wrap;gap:7px 10px;justify-content:space-between}
+.sig-head .actions{display:flex;gap:5px;margin-left:auto}
+.sig-head .btn{min-height:38px;padding:6px 10px;white-space:nowrap}
+.sig-consent{display:flex;gap:10px;align-items:flex-start;overflow-y:auto;flex:0 1 auto;min-height:0;padding:9px 11px;border:2px solid #e2a84b;border-radius:8px;background:#fff6e3;font-size:.8rem;line-height:1.4;cursor:pointer}
+.sig-consent.done{border-color:var(--ok);background:#eaf8ee}
+.sig-consent.attn{outline:3px solid #b8374b}
+.sig-consent input{width:22px;height:22px;margin:0;accent-color:var(--ok)}
+.sig-consent strong{display:block}
+#signatureCanvas{flex:1;display:block;min-height:0;width:100%;border:2px dashed #91aabd;border-radius:6px;background:#fff;touch-action:none}
+.sig-instruction{margin:0;font-size:.76rem;color:#4c6374}
+/* edukasi konsumen */
+.edu-layer .panel{background:#fff}
+.edu-bar{height:4px;background:#edf0f2;flex:none}.edu-bar i{display:block;height:100%;background:var(--ac);transition:width .25s}
+.edu-slide{max-width:720px;margin:0 auto}
+.edu-hero{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+.edu-ico{width:64px;height:64px;border-radius:16px;background:var(--ac-s);color:var(--ac);display:grid;place-items:center;font-size:2rem;flex:none}
+.edu-hero h3{font-size:1.35rem;line-height:1.25}
+.edu-hero p{margin:2px 0 0;color:var(--muted)}
+.edu-sec{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;font-size:1rem;line-height:1.55}
+.edu-sec h4{font-size:.74rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ac-d);margin-bottom:6px}
+.edu-sec ul{margin:0;padding-left:20px}.edu-sec li{margin:5px 0}
+.edu-sec.risk{background:var(--warn-s);border-color:var(--warn-b)}.edu-sec.risk h4{color:#9a6700}
+.edu-sec.stop{background:var(--danger-s);border:2px solid var(--danger)}.edu-sec.stop h4{color:var(--danger)}
+.edu-dots{display:flex;gap:6px;justify-content:center;margin:14px 0 0}
+.edu-dots i{width:9px;height:9px;border-radius:50%;background:#dcdfe8}.edu-dots i.on{background:var(--ac)}
+.edu-big{font-size:1.05rem}
+/* flowchart */
+.flow{display:flex;flex-direction:column;align-items:center;margin:18px 0 6px;font-size:.86rem}
+.flow-node{position:relative;display:flex;align-items:center;gap:12px;width:100%;max-width:430px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;line-height:1.4;animation:flow-glow 6s ease-in-out infinite}
+.flow-ico{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--ac-s);color:var(--ac);font-size:1.2rem}
+.flow-cap{display:block;margin-bottom:2px;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.flow-node.start{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+.flow-node.start .flow-ico{background:#ffffff2e;color:#fff}.flow-node.start .flow-cap{color:#ffffffbf}
+.flow-node.decision{background:var(--ac-s);border:1.5px solid var(--ac);font-weight:600;animation-delay:1.2s}
+.flow-node.go{background:#f1faf5;border-color:#b7e4c7;animation-delay:2.6s}
+.flow-node.go .flow-ico{background:#dcf3e6;color:#1a7f4b}
+.flow-node.stopn{background:var(--danger-s);border-color:var(--danger-b);animation-delay:3.4s}
+.flow-node.stopn .flow-ico{background:#fde0da;color:var(--danger)}
+.flow-node.stay{animation-delay:3.9s}
+.flow-link{position:relative;width:2px;height:28px;background:repeating-linear-gradient(to bottom,var(--ac) 0 5px,transparent 5px 10px);background-size:2px 10px;animation:flow-down .8s linear infinite}
+.flow-link::after,.flow-branch::after{content:"";position:absolute;left:-5px;bottom:-3px;border:6px solid transparent;border-top:7px solid var(--ac);border-bottom:0}
+.flow-branches{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;width:100%;max-width:720px}
+.flow-branches::before,.flow-branches::after{content:"";position:absolute;top:-1px;height:2px;width:calc(25% - 1px);background:repeating-linear-gradient(to right,var(--ac) 0 5px,transparent 5px 10px);background-size:10px 2px}
+.flow-branches::before{right:50%;animation:flow-left .8s linear infinite}
+.flow-branches::after{left:50%;animation:flow-right .8s linear infinite}
+.flow-branch{position:relative;display:flex;flex-direction:column;align-items:center;padding-top:34px}
+.flow-branch::before{content:"";position:absolute;top:0;left:50%;margin-left:-1px;width:2px;height:34px;background:repeating-linear-gradient(to bottom,var(--ac) 0 5px,transparent 5px 10px);background-size:2px 10px;animation:flow-down .8s linear infinite}
+.flow-branch::after{left:50%;margin-left:-6px;bottom:auto;top:28px}
+.flow-branch .flow-node{max-width:none}
+.flow-label{position:absolute;top:6px;left:50%;transform:translateX(-50%);z-index:1;padding:1px 11px;border-radius:999px;background:#fff;border:1px solid var(--ac-b);color:var(--ac-d);font-size:.72rem;font-weight:700;letter-spacing:.04em}
+.flow-label.yes{border-color:#b7e4c7;color:#1a7f4b;background:#f1faf5}
+@keyframes flow-down{to{background-position:0 10px}}@keyframes flow-left{to{background-position:-10px 0}}@keyframes flow-right{to{background-position:10px 0}}
+@keyframes flow-glow{0%,34%,100%{box-shadow:0 0 0 0 transparent}10%{box-shadow:0 0 0 5px color-mix(in srgb,var(--ac) 22%,transparent)}}
+/* paper */
+.paper-wrap{overflow-x:auto}
+.paper{width:100%;max-width:794px;min-width:640px;margin:auto;padding:30px 34px;background:#fff;color:#111;font:11px/1.38 Arial,sans-serif}
+.paper h1{font:bold 16px/1.25 Arial,sans-serif;text-align:center;margin:0 0 4px}
+.paper h2{font:bold 12px Arial,sans-serif;margin:14px 0 5px}
+.paper .sub{text-align:center;margin:0 0 12px}
+.paper .kop{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:16px;align-items:start;border-bottom:2.5px solid #111;padding-bottom:9px;margin-bottom:3px}
+.paper .kop .web{font-size:14px;font-weight:600}
+.paper .kop-info{text-align:right;font-size:10px;line-height:1.5}
+.paper .kop-rule{border-bottom:1px solid #111;margin-bottom:12px}
+.paper table{border-collapse:collapse;width:100%;margin:6px 0 10px}
+.paper th,.paper td{border:1px solid #444;padding:5px 7px;vertical-align:top}
+.paper th{background:#f0f0f0;text-align:left}
+.paper tr{break-inside:avoid}
+.paper .chk{text-align:center;font-weight:bold;font-size:1.15em;width:28px}
+.paper .info-table td:nth-child(odd){font-weight:bold;width:17%}
+.paper .info-table td:nth-child(even){width:33%}
+.paper .detail{margin-top:5px;padding-top:4px;border-top:1px dashed #777;font-size:.92em}
+.paper .detail b{font-weight:bold}
+.paper .guide-note{font-style:italic}
+.paper .status-box{border:2px solid #111;padding:7px 10px;margin:10px 0;font-weight:bold}
+.paper .consent{border:1px solid #111;padding:8px 10px;text-align:justify}
+.paper .signatures{display:flex;gap:25px;margin-top:14px;break-inside:avoid}
+.paper .signature{flex:1 1 0;border:1px solid #444;padding:7px 9px}
+.paper .signature .role{font-weight:bold;border-bottom:1px solid #444;padding-bottom:3px;margin-bottom:5px}
+.paper .signature img{display:block;max-width:100%;max-height:78px;margin:2px auto}
+.paper .signature .blank{height:70px}
+.paper .signature .line{display:block;text-align:center;border-top:1px solid #111;margin-top:3px;padding-top:2px}
+.paper .draft{font-weight:bold}
+.paper .footer{margin-top:10px;color:#444;font-size:9px}
+.validation-block{margin-top:10px;padding:5px 8px;border:1px dashed #555;border-radius:3px;font:10px/1.5 "Courier New",ui-monospace,monospace;color:#111;word-break:break-word;break-inside:avoid}
+#outputFrame{position:relative;width:100%;height:1280px;overflow:hidden;background:#fff}
+#printArea.paper.output-form{position:absolute;inset:0 auto auto 0;width:1280px;height:1280px;max-width:none;min-width:0;margin:0;padding:0;transform-origin:top left;font:14px/1.38 Arial,sans-serif;box-shadow:0 1px 8px #00000018}
+.output-form .output-content{position:absolute;top:24px;left:24px;display:flex;flex-direction:column;width:1232px;min-height:1232px;transform-origin:top left}
+.output-form .output-content>*{flex:0 0 auto}
+.output-form .output-content>.footer{margin-top:auto;padding-top:8px}
+.output-form h1{font:bold 22px/1.2 Arial,sans-serif}
+.output-form h2{font:bold 15px/1.2 Arial,sans-serif;margin:11px 0 4px}
+.output-form .kop .web{font-size:17px}.output-form .kop-info{font-size:11.5px}
+.output-form table{table-layout:fixed;margin:5px 0 8px}
+.output-form th,.output-form td{padding:5px 8px;overflow-wrap:anywhere}
+.output-form .footer{font-size:10px}.output-form .validation-block{font-size:11px;color:#000;border:1px solid #000}
+.output-sizer{position:absolute;left:0;top:0;pointer-events:none;visibility:hidden}
+/* signature rotation fallback */
+@media(orientation:portrait) and (max-width:760px){.sig-panel{inset:auto;top:0;left:100vw;width:100dvh;height:100dvw;transform-origin:top left;transform:rotate(90deg)}}
+@media(max-width:991px){#workspace{grid-template-columns:minmax(0,1fr)}#workspace>.completion-nav{grid-column:1;grid-row:2;top:calc(var(--ctx-h) + 8px);margin:0 0 14px}#workspace>#editor{grid-column:1;grid-row:3}.completion-list{max-height:35dvh}.tips .tbody{grid-template-columns:1fr}}
+@media(max-width:800px){.lab-steps{grid-template-columns:1fr;gap:0}.lab-steps li{padding:2px 0 14px 38px;min-height:40px}.lab-steps li::after{top:28px;bottom:0;left:12px;right:auto;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--ac-b) 0 6px,transparent 6px 11px)}.lab-out{grid-template-columns:1fr}}
+@media(max-width:600px){
+ .container{padding:14px 14px 100px}.grid,.preflight-list,.tpl,.sig-grid,.role-guide.two{grid-template-columns:minmax(0,1fr)}
+ .card{padding:16px}.flow-branches{grid-template-columns:1fr;gap:6px}.flow-branches::before,.flow-branches::after{display:none}
+ :root{--ctx-h:42px}.form-sticky .step-tab{flex-direction:row;gap:6px;min-height:36px;font-size:.78rem}.step-tab span{width:20px;height:20px;font-size:.68rem}
+ .progress-strip{padding:6px 12px;font-size:.78rem}.completion-nav{position:static!important}.completion-help{display:none}
+ .wizard-actions{position:fixed;bottom:0;left:0;right:0;border-radius:var(--r) var(--r) 0 0;padding:10px 14px max(10px,env(safe-area-inset-bottom));flex-wrap:wrap;margin:0}
+ .wizard-actions .btn:not([hidden]){flex:1 1 max-content;min-height:48px}.step-counter{display:none}
+ .layer{padding:0}.panel{width:100%;height:100dvh;border-radius:0}.panel-scroll{padding:16px 14px}.panel-actions .btn{flex:1 1 140px}
+ .zoom-btn{display:inline-flex}.preview-toolbar .spacer{display:none}.preview-toolbar .btn{flex:1 1 max-content}
+ .paper{padding:18px 14px}.edu-hero h3{font-size:1.15rem}.edu-ico{width:52px;height:52px;font-size:1.6rem}.edu-sec{font-size:.98rem}
+ .group-title{font-size:.92rem}details.group>summary{padding:13px 12px}.group-body{padding:12px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.flow *{animation:none!important}}
+@media print{
+ @page{size:1280px 1280px;margin:0}
+ body{background:#fff}
+ .no-print,#landing,#editor,.layer,.sig-layer,.context-bar,.completion-nav,.top{display:none!important}
+ #workspace,#previewView,#outputFrame{display:block!important;width:1280px!important;max-width:none!important;padding:0;margin:0}
+ #outputFrame{height:1280px!important;overflow:hidden}
+ #printArea.paper.output-form{position:relative;inset:auto;transform:none!important;box-shadow:none}
+ .paper th{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+/* tour (PANDU) */
+.tour{position:fixed;inset:0;z-index:1100;background:rgba(15,23,32,.55);display:flex;align-items:center;justify-content:center;padding:12px}
+.tour-card{width:min(920px,100%);max-height:100%;overflow:auto;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.3);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);grid-template-areas:"bar bar" "prog prog" "stage cap" "auto cap"}
+.tour-bar{grid-area:bar;display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.tour-tag{font-size:.74rem;color:var(--muted);font-weight:500}
+.tour-count{margin-left:auto;font-size:.8rem;color:var(--muted)}
+.tour-x{border:0;background:none;font-size:1.5rem;line-height:1;color:var(--muted);padding:0 4px;min-width:44px;min-height:44px}
+.tour-progress{grid-area:prog;height:3px;background:#edf0f2}.tour-progress i{display:block;height:100%;background:var(--ac);transition:width .25s}
+.tour-stage{grid-area:stage;padding:16px;background:#f6f8fa;min-height:340px}
+.tour-cap{grid-area:cap;padding:18px;display:flex;flex-direction:column;gap:8px}
+.tour-cap h3{font-size:1.05rem}.tour-cap p{margin:0;font-size:.9rem;color:#2b3a44}
+.tour-hint{font-size:.8rem;color:var(--ac-d);background:var(--ac-s);border-radius:8px;padding:8px 10px}.tour-hint:empty{display:none}
+.tour-auto{grid-area:auto;height:3px;background:#e3e8ec}.tour-auto i{display:block;height:100%;width:0;background:var(--ac)}
+.tour-mascot{display:flex;gap:10px;align-items:center;height:104px}
+.tour-char{flex:none;box-sizing:border-box;width:112px;height:100px;overflow:hidden;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:12px;background:#fff}
+#tourFace{color:#16232b;width:96px;height:96px;line-height:0}#tourFace svg{display:block;width:96px;height:96px;image-rendering:pixelated}
+.tour-bubble{flex:1 1 auto;min-width:0;max-height:100px;overflow:hidden;position:relative;background:var(--ac-s);border-radius:12px 12px 12px 2px;padding:8px 12px;font-size:.86rem;font-weight:600;min-height:36px;display:flex;align-items:center}
+.tour-bubble::before{content:"";position:absolute;left:-7px;bottom:0;border:7px solid transparent;border-right-color:var(--ac-s);border-bottom-color:var(--ac-s)}
+.tour-dd{display:grid;gap:6px;font-size:.82rem}.tour-dd div{display:flex;gap:8px;align-items:flex-start;line-height:1.35}
+.tour-dd b{white-space:nowrap;flex:0 0 78px;font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;padding-top:2px}
+.tour-dd .do b{color:#17734a}.tour-dd .dont b{color:#b3303a}
+.tour-nav{margin-top:auto;display:flex;gap:8px;justify-content:flex-end;padding-top:8px}
+.tm{background:#fff;border:1px solid #dfe4e8;border-radius:12px;padding:12px;font-size:.82rem}
+.tm h4{font-size:.85rem;margin:0 0 8px}
+.tm ul{margin:0;padding:0;list-style:none;display:grid;gap:7px}.tm li{display:flex;gap:8px;align-items:flex-start;line-height:1.35}.tm li i{font-style:normal;font-weight:800;flex:0 0 16px}.tm li.y i{color:#17734a}.tm li.n i{color:#b3303a}
+.tm-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.tm-card{border:1px solid #dfe4e8;border-radius:10px;padding:10px;background:#fff;font-size:.8rem}.tm-card b{display:block;margin-bottom:2px}
+.tm-card.on{border-color:var(--ac);background:var(--ac-s)}.tm-card.stop{border-color:var(--danger);background:var(--danger-s)}
+.tm-row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.tm-btn{border:1px solid #dfe4e8;background:#fff;border-radius:9px;min-height:34px;padding:4px 14px;font-weight:600;font-size:.8rem}
+.tm-sig{border:1px dashed #9aa7b0;border-radius:10px;height:70px;display:flex;align-items:center;justify-content:center;color:#667;font-size:.78rem}
+.tm-input{border:1px solid #dfe4e8;border-radius:9px;min-height:34px;padding:4px 10px;font-size:.8rem;width:100%}
+.tour-hl{position:relative;z-index:2;outline:3px solid var(--ac);outline-offset:3px;border-radius:10px;animation:tourPulse 1.4s ease-in-out infinite;cursor:pointer}
+@keyframes tourPulse{0%,100%{outline-color:var(--ac)}50%{outline-color:color-mix(in srgb,var(--ac) 25%,transparent)}}
+.tour-dim .tm>*:not(.tour-keep){opacity:.5}
+@media(max-width:700px){.tour-card{grid-template-columns:1fr;grid-template-areas:"bar" "prog" "stage" "cap"}.tour-stage{min-height:0}}
+
+/* ===== PALET KONSISTEN: ungu=prioritas, hijau=dipilih, amber=berisiko, biru=waspada, merah=STOP ===== */
+:root{--c-t:#7a4a00;--c-bg:#fff3d6;--c-bd:#d99a00;--e-t:#1e40af;--e-bg:#e8f0ff;--e-bd:#7ea2f2;--s-t:#8f1d0e;--s-bg:#ffe7e2;--s-bd:#c4321c;--ok-t:#0f5c35;--ok-bg:#e8f6ee;--ok-bd:#6fc69a}
+.legend2{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.lg{font-size:.76rem;font-weight:700;padding:4px 10px;border-radius:999px;border:1.5px solid}
+.lg.prio{color:var(--ac-d);background:var(--ac-s);border-color:var(--ac)}.lg.c{color:var(--c-t);background:var(--c-bg);border-color:var(--c-bd)}.lg.e{color:var(--e-t);background:var(--e-bg);border-color:var(--e-bd)}.lg.s{color:var(--s-t);background:var(--s-bg);border-color:var(--s-bd)}.lg.ok{color:var(--ok-t);background:var(--ok-bg);border-color:var(--ok-bd)}
+.opt-r{background:#f3f4f8;color:#4b5565}
+.opt.lv-c .opt-lv{color:var(--c-t)}.opt.lv-e .opt-lv{color:var(--e-t)}.opt.lv-s .opt-lv{color:var(--s-t)}
+.opt.on.lv-c{border-color:var(--c-bd);background:var(--c-bg)}.opt.on.lv-c .opt-r{background:#fde4a3;color:var(--c-t)}
+.opt.on.lv-e{border-color:var(--e-bd);background:var(--e-bg)}.opt.on.lv-e .opt-r{background:#cfe0ff;color:var(--e-t)}
+.opt.on.lv-s{border-color:var(--s-bd);background:var(--s-bg)}.opt.on.lv-s .opt-r{background:#fbcfc6;color:var(--s-t)}
+details.group.arow.found,.alist details.group.arow.prio.found{border-color:var(--ok-bd);background:var(--ok-bg)}
+details.group.arow.found .tile-ico{background:#cdeedc;color:var(--ok-t)}
+details.group.arow.stopped,.alist details.group.arow.prio.stopped{border-color:var(--s-bd);background:var(--s-bg)}
+details.group.arow.stopped .tile-ico{background:#fbcfc6;color:var(--s-t)}
+.tag.on{background:#cdeedc;color:var(--ok-t);border:1px solid var(--ok-bd)}
+.tag.stop{background:var(--s-bd);color:#fff}
+.opt-l{min-height:48px}.opt-t{line-height:1.3}
+@media(max-width:560px){
+ .alist details.group.arow>summary{grid-template-columns:30px minmax(0,1fr) 20px;row-gap:6px}
+ .arow-st{grid-column:2/3;grid-row:2}
+ .arow-t small{display:none}
+ .legend2 .lg{font-size:.72rem;padding:3px 8px}
+ .opt-l{padding:12px}.opt-r{padding:9px 12px}
+ .litem{padding:10px}.group-body{padding:10px}
+ body{font-size:16px}
+}
+details.group.arow.stopped>summary .tile-ico,details.group.arow.found>summary .tile-ico{background:#fbcfc6;color:var(--s-t)}details.group.arow.found>summary .tile-ico{background:#cdeedc;color:var(--ok-t)}
+
+</style>
+<style id="standar-ui-v1">
+/* ===== STANDAR UI BERSAMA MODENA TS v1 (2026-W47) =====
+   Blok ini IDENTIK di Form Service Result, Checklist Unit Pendingin, dan Persetujuan Pemasangan.
+   Hanya tampilan. Tidak menyentuh area output (.paper / #outputFrame / #printArea). */
+:root{
+  --ui-ink:#1f2430; --ui-muted:#667085; --ui-line:#e4e7ec; --ui-bg:#f6f7fb; --ui-card:#fff; --ui-field:#d0d5dd;
+  --ui-primary:#7c5cf0; --ui-primary-d:#5b3fd1; --ui-primary-soft:#f4f1ff; --ui-primary-line:#ddd5fb;
+  --ui-danger:#c4321c; --ui-danger-bg:#fff1ee; --ui-danger-line:#f3b9ae;
+  --ui-warn:#7a4a00; --ui-warn-bg:#fff3d6; --ui-warn-line:#d99a00;
+  --ui-info:#1e40af; --ui-info-bg:#e8f0ff; --ui-info-line:#7ea2f2;
+  --ui-ok:#198754; --ui-ok-bg:#e8f6ee; --ui-ok-line:#6fc69a;
+  --ui-font:Inter,"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --ui-r-card:10px; --ui-r-ctl:8px; --ui-r-tile:9px; --ui-r-pill:999px;
+  --ui-touch:44px; --ui-gap:12px;
+  --ui-focus:3px solid color-mix(in srgb, var(--ui-primary) 35%, transparent);
+}
+body{font-family:var(--ui-font)}
+button,input,select,textarea{font-family:inherit}
+:focus-visible{outline:var(--ui-focus);outline-offset:2px}
+input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=range]),select,textarea{border-radius:var(--ui-r-ctl);font-size:max(16px,1rem)}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+}
+/* ===== akhir STANDAR UI BERSAMA v1 ===== */
+</style>
+<style id="ui-override-2026-w47">
+/* ===== OVERRIDE UI 2026-W47 (tampilan saja; area output #printArea tidak disentuh) ===== */
+:root{font-family:Inter,"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif}
+.btn{min-height:44px}
+.btn.sm{min-height:44px;padding:6px 14px;font-size:.85rem}
+.btn:hover{border-color:var(--ac)}
+input,select,textarea{border-radius:8px}
+.hint,.field-help,.tag,.lv,.lg,.req,.eyebrow,.kb-label,.tile-st,.topt small,.arow-t small,.cf-n small,.cf-ar b,.cf-side b,.cf-two b,.lab-out dt,.tpl b,.sub-head,.tips h4,.opt-lv,.completion-help,.completion-list p,.sig-instruction,.step-tab span,.jump-link,.tag-stop,.legend,.gl-term span{font-size:max(.8rem,12px)}
+.step-tab span{font-size:.8rem}
+.jump-link{min-height:44px}
+.reset-row .btn{min-height:44px;font-size:.85rem}
+.completion-list button{min-height:44px;font-size:.85rem}
+.sig-head .btn{min-height:44px}
+.step-tab{min-height:44px}
+.progress-strip{box-shadow:none}
+.wizard-actions{box-shadow:none}
+.stepper{background:#eef0f5;border-radius:9px}
+small:not(#printArea small){font-size:max(.8rem,12px)}
+.tips>summary,.flowdet>summary{min-height:44px;padding-top:12px;padding-bottom:12px}
+.legend2 .lg{font-size:.8rem}
+@media(max-width:600px){
+ .container{padding-bottom:132px}
+ .form-sticky .step-tab{min-height:44px;font-size:.82rem}
+ .step-tab span{width:22px;height:22px;font-size:.78rem}
+ .wizard-actions{border-top:1px solid var(--line);box-shadow:0 -1px 0 var(--line)}
+ .legend2 .lg{font-size:.8rem}
+}
+/* ===== Penyeragaman ke blok standar-ui-v1 (komponen setara tampil sama di tiga app) ===== */
+body{background:var(--ui-bg);color:var(--ui-ink);line-height:1.5}
+.top{padding-top:10px;padding-bottom:10px}
+.brand{min-height:44px;line-height:1.5;font-size:1rem}
+.brand small{font-size:.75rem}
+h1:not(.paper h1){font-size:1.4rem}
+.card{padding:16px;box-shadow:none}
+@media(min-width:601px){.card{padding:22px}}
+.btn,.btn.sm{font-size:.9375rem;line-height:1.3;padding:10px 16px;color:var(--ui-ink);border-color:var(--ui-field)}
+.btn:hover{background:var(--ui-primary-soft);border-color:var(--ui-primary-line)}
+.btn.primary{color:#fff;background:var(--ui-primary);border-color:var(--ui-primary)}
+.btn.primary:hover{background:var(--ui-primary-d);border-color:var(--ui-primary-d)}
+.btn.danger{color:var(--ui-danger);border-color:var(--ui-danger-line)}
+.btn.danger:hover{background:var(--ui-danger-bg)}
+input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=range]),select{min-height:48px}
+.stepper{gap:4px;border:0}
+.step-tab{border-radius:var(--ui-r-tile);font-size:.8125rem;color:#586174}
+.step-tab.active{color:var(--ui-primary-d);box-shadow:none}
+.step-tab span{background:#dcdfe8;width:22px;height:22px}
+.step-tab.active span{background:var(--ui-primary);color:#fff}
+.wizard-actions{border-radius:var(--ui-r-card)}
+@media(max-width:600px){.wizard-actions{border-radius:var(--ui-r-card) var(--ui-r-card) 0 0}}
+</style>
+</head>
+<body>
+<header class="top no-print"><div class="brand"><span class="bi" id="brandIcon"></span> Form Persetujuan Pemasangan<small>MODENA · Technical Support · staging</small></div></header>
+
+<main id="landing" class="container no-print">
+  <div class="hero">
+    <h1>Persetujuan Pemasangan pada Kondisi Berisiko</h1>
+    <p>Pilih dulu risiko yang ditemukan di lokasi, lalu isi data konsumen, jelaskan risikonya, dan minta tanda tangan.</p>
+    <p class="mb-0"><span id="ic-shield"></span> Kalau ada kondisi <strong>STOP</strong>, pemasangan tidak boleh dilanjutkan lewat form ini. Tunda atau tanya Technical Support.</p>
+    <p class="static-note mb-0"><span id="ic-static"></span> Form ini <strong>tidak memakai server dan tidak menyimpan data</strong>. Isian hanya ada di tab ini. Unduh JPG atau PDF sebelum menutup tab.</p>
+  </div>
+
+  <div class="bigcta" role="group" aria-label="Mulai form">
+    <button class="bigcard" data-action="start" id="startBtn" type="button"></button>
+    <button class="bigcard alt" data-action="resume" id="resumeBtn" type="button" hidden></button>
+  </div>
+
+  <div class="kb-wrap no-print"><span class="kb-label">Pengetahuan</span>
+    <div class="kb">
+      <button class="btn sm" type="button" data-info="glos" id="glosBtn"></button>
+      <button class="btn sm" type="button" data-info="flow" id="flowBtn"></button>
+      <button class="btn sm" type="button" data-info="guide" id="guideBtn"></button>
+      <button class="btn sm" type="button" id="tourOpen"></button>
+    </div>
+  </div>
+  <section class="acc" id="guideSrc" aria-label="Panduan lengkap" hidden>
+    <h2>Panduan lengkap teknisi</h2>
+    <p class="muted">Baca singkat sebelum ke lokasi.</p>
+    <details open><summary>Kapan form ini dipakai</summary><div class="body">
+      <ul><li>Kalau cek lokasi menemukan satu atau lebih hal berisiko: listrik, air, gas, dinding, lubang udara, ruang pasang, atau hal lain di luar daftar.</li>
+      <li>Konsumen tetap minta dipasang, dan kondisinya <strong>bukan</strong> kondisi STOP.</li>
+      <li>Satu form untuk satu lokasi dan satu unit. Boleh menandai beberapa area dalam satu form.</li></ul></div></details>
+    <details><summary>Kondisi STOP dan langkah aman</summary><div class="body">
+      <p>Kondisi ini tidak boleh disetujui lewat form. Form otomatis menutup persetujuan konsumen. Ikuti SOP K3.</p>
+      <table><thead><tr><th>Area</th><th>Contoh kondisi STOP</th><th>Langkah awal</th></tr></thead><tbody>
+      <tr><td>Listrik</td><td>Stop kontak panas / gosong, kabel terkelupas</td><td>Jangan sentuh, matikan MCB bila aman, jangan lanjut, eskalasi</td></tr>
+      <tr><td>Air</td><td>Genangan atau bocor dekat listrik</td><td>Hentikan, jauhkan unit dari air, eskalasi</td></tr>
+      <tr><td>Gas</td><td>Tercium bau gas</td><td>Jangan nyalakan api, saklar, atau alat listrik. Buka jendela, jauhkan orang, tutup gas bila aman, eskalasi</td></tr>
+      <tr><td>Dinding / struktur</td><td>Dinding tidak kuat menahan unit</td><td>Jangan pasang di titik itu, eskalasi</td></tr>
+      <tr><td>Ventilasi</td><td>Unit gas di ruang tertutup tanpa lubang udara</td><td>Jangan pasang atau nyalakan, eskalasi</td></tr>
+      <tr><td>Ruang / jarak</td><td>Unit panas atau berapi dekat bahan mudah terbakar</td><td>Pindah lokasi, kalau tidak bisa tunda dan eskalasi</td></tr>
+      </tbody></table></div></details>
+    <details><summary>Cara menjelaskan kepada konsumen</summary><div class="body">
+      <p>Pakai tombol <strong>Edukasi konsumen</strong> di langkah 3. Bahasanya sederhana. Urutannya:</p>
+      <ol><li><strong>Temuan</strong>: apa dan di mana.</li><li><strong>Risiko</strong>: apa yang bisa terjadi kalau tetap dipasang.</li><li><strong>Pilihan</strong>: diperbaiki dulu, dipindah, atau tetap dipasang kalau setuju.</li><li><strong>Tanggung jawab</strong>: risiko dari hal yang disetujui jadi tanggung jawab konsumen sesuai pernyataan di form.</li></ol>
+      <div class="say">Contoh pembuka: “Bapak/Ibu, saat cek tadi kami menemukan beberapa hal. Kami jelaskan risikonya dulu, lalu Bapak/Ibu bisa memilih.”</div>
+      <p class="hint">Beri waktu konsumen membaca dan bertanya. Jangan menekan untuk setuju.</p></div></details>
+    <details><summary>Kalau konsumen ragu, menolak, atau tidak ada</summary><div class="body">
+      <ul><li><strong>Ragu atau ingin memperbaiki dulu</strong>: pilih <em>Ditunda</em>. Konsumen tidak perlu tanda tangan.</li>
+      <li><strong>Menolak tanda tangan</strong>: tidak dilanjutkan. Catat, lalu pilih <em>Ditunda</em> atau <em>Eskalasi</em>.</li>
+      <li><strong>Yang hadir bukan pemilik</strong>: isi nama dan hubungannya. Pastikan boleh memutuskan.</li>
+      <li><strong>Konsumen keberatan</strong>: tulis di kolom keberatan. Ikut tercetak.</li></ul></div></details>
+    <details><summary>Setelah form selesai</summary><div class="body">
+      <ul><li>Unduh JPG atau PDF, lalu unggah ke GCCS atau kirim ke Technical Support.</li>
+      <li>Kalau isi diubah setelah tanda tangan, tanda tangan terhapus dan harus diulang.</li>
+      <li>Draft hanya tersimpan selama tab terbuka. Unduh hasilnya sebelum menutup tab.</li></ul></div></details>
+  </section>
+</main>
+
+<main id="workspace" class="container" hidden>
+  <div id="contextBar" class="context-bar no-print"></div>
+  <section id="editor" class="no-print"></section>
+  <section id="previewView" hidden>
+    <div class="preview-toolbar no-print">
+      <button class="btn" data-action="edit" id="btnEdit"></button><span class="spacer"></span>
+      <button class="btn zoom-btn" data-action="zoom-output" aria-pressed="false"><span>Perbesar</span></button>
+      <button class="btn" data-action="download-jpg" id="btnJpg"></button>
+      <button class="btn primary" data-action="download-pdf" id="btnPdf"></button>
+      <button class="btn" data-action="print" id="btnPrint"></button>
+    </div>
+    <p id="exportStatus" class="export-status no-print" role="status" aria-live="polite" hidden></p>
+    <div id="previewWarnings" class="no-print"></div>
+    <p class="hint no-print">Format 1:1 · JPG di bawah 1 MB.</p>
+    <div class="paper-wrap"><div id="outputFrame"><article id="printArea" class="paper output-form"></article></div></div>
+  </section>
+</main>
+
+<!-- Edukasi konsumen -->
+<div id="eduLayer" class="layer edu-layer" role="dialog" aria-modal="true" aria-label="Edukasi konsumen" hidden>
+  <div class="panel">
+    <div class="panel-head"><div><span class="eyebrow">LAYAR UNTUK KONSUMEN · DIBACA BERSAMA TEKNISI</span><h2>Penjelasan kondisi di lokasi Anda</h2></div>
+      <button class="btn" data-action="edu-close" id="eduClose"></button></div>
+    <div class="edu-bar"><i id="eduFill"></i></div>
+    <div id="eduBody" class="panel-scroll"></div>
+    <div class="panel-actions"><span class="hint" id="eduCount" style="margin-right:auto;align-self:center"></span>
+      <button class="btn" data-action="edu-prev" id="eduPrev"></button>
+      <button class="btn primary" data-action="edu-next" id="eduNext"></button></div>
+  </div>
+</div>
+
+<!-- Konfirmasi konsumen -->
+<div id="consumerLayer" class="layer" role="dialog" aria-modal="true" aria-label="Konfirmasi konsumen" hidden>
+  <div class="panel">
+    <div class="panel-head"><div><span class="eyebrow">DIISI KONSUMEN · SEBELUM TANDA TANGAN</span><h2>Persetujuan konsumen</h2></div>
+      <button class="btn" data-action="close-consumer" id="consumerBack"></button></div>
+    <div id="consumerConfirm" class="panel-scroll"></div>
+    <div id="consumerDocument" class="panel-scroll" hidden>
+      <p class="hint">Tinjau isi form. Jika ada yang perlu dikoreksi, kembali ke form sebelum menandatangani.</p>
+      <div class="paper-wrap"><article id="reviewDocument" class="paper"></article></div>
+    </div>
+    <div class="panel-actions">
+      <button id="customerReviewButton" class="btn" data-action="customer-review"></button>
+      <button id="customerBackButton" class="btn" data-action="customer-back" hidden></button>
+      <button class="btn primary" data-action="customer-sign" id="customerSignBtn"></button>
+    </div>
+  </div>
+</div>
+
+<!-- Tanda tangan -->
+<div id="signatureLayer" class="sig-layer" role="dialog" aria-modal="true" aria-label="Tanda tangan" hidden>
+  <div id="signaturePanel" class="sig-panel">
+    <div class="sig-head"><strong id="signatureTitle">Tanda tangan</strong><div class="actions">
+      <button class="btn danger" data-action="clear-signature">Hapus</button>
+      <button class="btn" data-action="cancel-signature">Batal</button>
+      <button class="btn primary" data-action="save-signature">Simpan</button></div></div>
+    <label id="consentRow" class="sig-consent" for="consent" hidden><input id="consent" type="checkbox"><span><strong id="consentHead">Ketuk untuk konfirmasi</strong>Saya telah membaca dan memahami pernyataan persetujuan pada form ini, serta telah menerima penjelasan dari teknisi MODENA mengenai kondisi yang ditandai dan risikonya.</span></label>
+    <canvas id="signatureCanvas" width="1200" height="420" aria-label="Area tanda tangan"></canvas>
+    <p class="sig-instruction">Tanda tangan dengan jari atau mouse. Pada ponsel, area otomatis tampil landscape.</p>
+  </div>
+</div>
+
+<!-- PANDU -->
+<div id="tour" class="tour" hidden role="dialog" aria-modal="true" aria-labelledby="tourTitle">
+  <div class="tour-card">
+    <div class="tour-bar"><strong>PANDU</strong><span class="tour-tag">Your Technical Knowledge Buddy</span><span id="tourCount" class="tour-count"></span><button class="tour-x" id="tourClose" type="button" aria-label="Tutup panduan">&times;</button></div>
+    <div class="tour-progress"><i id="tourFill"></i></div>
+    <div class="tour-stage" id="tourStage"></div><div class="tour-auto"><i id="tourAuto"></i></div>
+    <div class="tour-cap"><div class="tour-mascot"><div class="tour-char" aria-hidden="true"><div id="tourFace"></div></div><div class="tour-bubble" id="tourBubble"></div></div><h3 id="tourTitle"></h3><p id="tourText"></p><div class="tour-hint" id="tourHint"></div><div class="tour-dd" id="tourDd"></div>
+      <div class="tour-nav"><button class="btn" id="tourPlay" type="button" style="margin-right:auto">Jeda</button><button class="btn" id="tourPrev" type="button">Kembali</button><button class="btn primary" id="tourNext" type="button">Lanjut</button></div></div>
+  </div>
+</div>
+<script>
+'use strict';
+/* ====== DATA ====== (teks "tpl" mengikuti template resmi apa adanya; sisanya pengayaan) */
+const GUIDE_TEXT = /*@@GUIDE_TEXT@@*/;
+const CONSENT_TEXT = /*@@CONSENT_TEXT@@*/;
+const FORM_TITLE = /*@@FORM_TITLE@@*/;
+
+const ICONS = {
+  zap:'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+  droplet:'<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',
+  flame:'<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
+  wall:'<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="9"/><line x1="15" y1="9" x2="15" y2="15"/><line x1="9" y1="15" x2="9" y2="21"/>',
+  wind:'<path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>',
+  move:'<polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/>',
+  dots:'<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>',
+  alert:'<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+  check:'<polyline points="20 6 9 17 4 12"/>',
+  x:'<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
+  pen:'<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>',
+  file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>',
+  left:'<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>',
+  right:'<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>',
+  camera:'<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>',
+  shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16" x2="12.01" y2="16"/>',
+  info:'<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>',
+  clip:'<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><polyline points="9 14 11 16 15 12"/>',
+  grid:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>',
+  trash:'<polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>',
+  download:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
+  printer:'<polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>',
+  image:'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>',
+  play:'<polygon points="5 3 19 12 5 21 5 3"/>',
+  book:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+  users:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  user:'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+  help:'<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+  tool:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+  ear:'<path d="M6 8.5a6.5 6.5 0 1 1 13 0c0 6-6 6-6 10a3.5 3.5 0 1 1-7 0"/><path d="M15 8.5a2.5 2.5 0 0 0-5 0v1a2 2 0 1 1 0 4"/>'
+};
+const ic = (n, cls='') => `<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n]||''}</svg>`;
+
+const PRODUCTS = /*@@PRODUCTS@@*/;
+// prioritas periksa per produk (t=tinggi, s=sedang). Area tanpa entri = tidak diprioritaskan.
+const REL = /*@@REL@@*/;
+
+// sub: [id, teks, tipe]  tipe: c=sesuai template, e=temuan tambahan, s=tambahan berhenti-kerja (STOP)
+const AREAS = /*@@AREAS@@*/;
+const AREA_BY = Object.fromEntries(AREAS.map(a => [a.id, a]));
+
+const DECISIONS = /*@@DECISIONS@@*/;
+const TOOLS = /*@@TOOLS@@*/;
+const SIGNER_ROLES = /*@@SIGNER_ROLES@@*/;
+
+/* ====== FLOWCHART LENGKAP + KOMUNIKASI KONSUMEN ====== */
+function flowHtml() {
+  const node = (cls, icon, cap, body, say) => `<div class="flow-node ${cls}"><span class="flow-ico">${ic(icon)}</span><div><span class="flow-cap">${cap}</span>${body}${say ? `<div class="say"><b>Ucapkan:</b> “${say}”</div>` : ''}</div></div>`;
+  const link = '<div class="flow-link"></div>';
+  const lbl = (t, yes) => `<span class="flow-label${yes ? ' yes' : ''}" style="position:static;transform:none;display:inline-block;margin:2px 0 6px">${t}</span>`;
+  const stopRows = AREAS.filter(a => !a.free).map(a => {
+    const trig = a.subs.filter(s => s[2] === 's').map(s => `<li>${esc(s[1])}</li>`).join('');
+    return `<tr><th>${ic(a.icon, 'me')}${esc(a.name)}</th><td><ul>${trig}</ul></td><td>${esc(a.stopAction)}</td></tr>`;
+  }).join('');
+  const situasi = [
+    ['Semua area aman, tidak ada yang ditandai', 'Form tidak diperlukan. Lanjutkan pemasangan sesuai SOP.'],
+    ['Ada kondisi berisiko tetapi bukan STOP', 'Isi form, edukasi konsumen, minta persetujuan. Konsumen berhak menolak.'],
+    ['Ada kondisi STOP', 'Jangan lanjut pasang. Konsumen tidak diminta setuju. Pilih ditunda, eskalasi, atau batal. Hanya teknisi yang tanda tangan.'],
+    ['Konsumen meminta tetap dipasang pada kondisi STOP', 'Tolak dengan sopan. Form tidak bisa dipakai untuk menyetujui kondisi STOP. Tanya Technical Support.'],
+    ['Konsumen ragu atau butuh waktu', 'Pilih Ditunda. Jangan minta tanda tangan hari itu.'],
+    ['Konsumen menolak atau keberatan', 'Catat di kolom keberatan. Pilih Eskalasi atau Dibatalkan. Jangan memaksa.'],
+    ['Penandatangan bukan pemilik unit', 'Pilih hubungannya (pengelola, perwakilan). Kalau ragu boleh memutuskan, tanya pemilik dulu.'],
+    ['Konsumen tidak ada di lokasi', 'Jangan tanda tangan atas nama konsumen. Tunda sampai konsumen atau perwakilannya ada.'],
+    ['Kondisi di luar daftar template', 'Pilih Lainnya, tulis kondisi dan risikonya. Kalau berbahaya, centang STOP.'],
+    ['Isi form diubah setelah tanda tangan', 'Tanda tangan terhapus. Jelaskan perubahannya, lalu tanda tangan ulang.'],
+    ['Konsumen memperbaiki kondisi (kasus ditunda)', 'Cek ulang lokasi. Buat form baru.'],
+    ['Teknisi ragu menilai kondisi', 'Anggap berisiko. Foto, lalu tanya Technical Support sebelum memasang.']
+  ].map(([a, b]) => `<tr><th>${esc(a)}</th><td>${esc(b)}</td></tr>`).join('');
+  const scripts = [
+    ['Membuka', 'Sebelum dipasang, saya cek dulu lokasinya supaya aman dan produknya awet. Ada beberapa hal yang perlu saya sampaikan.'],
+    ['Menjelaskan temuan', 'Di sini saya menemukan [kondisi]. Artinya [dampak sederhana]. Kalau tetap dipasang, risikonya [risiko].'],
+    ['Menawarkan pilihan', 'Ada beberapa pilihan: diperbaiki dulu, menunggu arahan tim kami, atau tetap dipasang kalau Bapak/Ibu setuju. Semua hak Bapak/Ibu.'],
+    ['Saat STOP', 'Demi keselamatan, hari ini saya tidak bisa lanjut memasang. Kondisinya berbahaya, jadi tidak bisa disetujui lewat form. Saya laporkan ke tim supaya dijadwalkan ulang setelah aman.'],
+    ['Konsumen menekan lanjut', 'Saya paham Bapak/Ibu ingin cepat terpasang. Untuk kondisi ini saya tidak boleh lanjut, demi keselamatan Bapak/Ibu dan keluarga.'],
+    ['Sebelum tanda tangan', 'Silakan baca pernyataannya dulu. Kalau kurang jelas, tanya saja. Tanda tangan hanya kalau Bapak/Ibu benar-benar setuju.'],
+    ['Konsumen menolak', 'Tidak apa-apa. Keberatannya saya catat dan saya laporkan ke tim untuk dicarikan solusi.'],
+    ['Menutup', 'Terima kasih. Salinan form akan dikirim, dan tim kami akan menghubungi kalau perlu tindak lanjut.']
+  ].map(([t, s]) => `<div class="say-card"><b>${t}</b><p>“${esc(s)}”</p></div>`).join('');
+  const n = (cls, t, sub) => `<div class="cf-n ${cls}">${t}${sub ? `<small>${sub}</small>` : ''}</div>`;
+  return `<div class="cf" role="group" aria-label="Alur: periksa lokasi. Tanpa kondisi berisiko, pasang normal. Dengan kondisi berisiko, isi form. Bila ada STOP: hentikan, jelaskan, ditunda, eskalasi atau batal. Bila tidak ada STOP: edukasi, keputusan konsumen, tanda tangan, pasang.">
+    ${n('start', '1 · Periksa lokasi', 'Listrik, air, gas, struktur, ventilasi, ruang')}
+    <i class="cf-ar"></i>
+    <div class="cf-dr">${n('dec', 'Ada kondisi berisiko?')}<span class="cf-side"><b class="no">TIDAK</b>${n('ok', 'Pasang normal', 'Form tidak diperlukan')}</span></div>
+    <i class="cf-ar"><b class="yes">YA</b></i>
+    ${n('mid', '2 · Isi form &amp; tandai kondisi', 'Data teknisi, konsumen, produk, foto')}
+    <i class="cf-ar"></i>
+    ${n('dec', 'Ada kondisi STOP?')}
+    <div class="cf-lanes">
+      <div class="cf-lane stop"><h4><b class="yes2">YA</b> Jalur STOP</h4>
+        ${n('stop', 'Hentikan &amp; amankan', 'Lihat tabel STOP di bawah')}<i class="cf-ar sm"></i>
+        ${n('stop', 'Jelaskan alasan dengan tenang', 'Tanpa jalan pintas')}<i class="cf-ar sm"></i>
+        ${n('stop', 'Pilih keputusan', 'Ditunda · Eskalasi · Dibatalkan')}<i class="cf-ar sm"></i>
+        ${n('stop', 'Teknisi tanda tangan saja', 'Output: pemasangan tidak dilanjutkan')}
+      </div>
+      <div class="cf-lane go"><h4><b class="no2">TIDAK</b> Jalur persetujuan</h4>
+        ${n('mid', '3 · Edukasi konsumen', 'Baca per kondisi: temuan, risiko, pilihan')}<i class="cf-ar sm"></i>
+        ${n('dec', 'Konsumen setuju?')}
+        <div class="cf-two"><div><b class="yes">YA</b>${n('ok', 'Tanda tangan konsumen &amp; teknisi', 'Lalu pasang')}</div><div><b class="no">TIDAK / RAGU</b>${n('warn', 'Ditunda · Eskalasi · Batal', 'Catat keberatan')}</div></div>
+      </div>
+    </div>
+    <i class="cf-ar"></i>
+    ${n('start', 'Pratinjau &amp; unduh JPG / PDF', 'Unggah ke GCCS atau kirim ke Technical Support')}
+  </div>
+  <h3 class="ffh">Kondisi STOP dan tindakan di lokasi</h3>
+  <div class="tscroll"><table class="ftable"><thead><tr><th>Area</th><th>Pemicu STOP</th><th>Tindakan di lokasi</th></tr></thead><tbody>${stopRows}<tr><th>${ic('dots', 'me')}Lainnya</th><td><ul><li>Hal lain di luar daftar yang berbahaya (centang STOP)</li></ul></td><td>Hentikan, catat kondisi dan risikonya, lalu eskalasi.</td></tr></tbody></table></div>
+  <h3 class="ffh">Semua kemungkinan kasus</h3>
+  <div class="tscroll"><table class="ftable"><thead><tr><th>Situasi</th><th>Yang dilakukan</th></tr></thead><tbody>${situasi}</tbody></table></div>
+  <h3 class="ffh">Komunikasi ke konsumen (contoh kalimat)</h3>
+  <p class="hint">Sesuaikan dengan situasi. Pakai kata sederhana, tenang, dan tidak menekan.</p>
+  <div class="say-grid">${scripts}</div>`;
+}
+
+/* ====== GLOSARIUM & ENSIKLOPEDIA RISIKO ====== */
+const TERMS = /*@@TERMS@@*/;
+
+const AREA_EXTRA = /*@@AREA_EXTRA@@*/;
+const BUILDING = /*@@BUILDING@@*/;
+function glossHtml() {
+  const list = arr => `<ul>${arr.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
+  const areas = AREAS.filter(a => !a.free).map(a => {
+    const ex = a.subs.map(s => `<li>${esc(s[1])}${s[2] === 's' ? ' <span class="tag stop">STOP</span>' : ''}</li>`).join('');
+    const x = AREA_EXTRA[a.id] || {gejala:[], khusus:[]};
+    return `<details class="gl-area" data-gl="${esc((a.name + ' ' + a.indikasi + ' ' + a.subs.map(s => s[1]).join(' ') + ' ' + x.gejala.join(' ') + ' ' + x.khusus.join(' ')).toLowerCase())}"><summary>${ic(a.icon, 'me')}${esc(a.name)}</summary><div class="gl-body">
+      <p><b>Yang dicek teknisi.</b> ${esc(a.edu.apa)}</p>
+      <div class="gl-cols"><div><b>Contoh kondisi berisiko</b><ul>${ex}</ul></div><div><b>Kenapa berisiko</b>${list(a.edu.risiko)}</div></div>
+      <div class="gl-cols"><div><b>Tanda-tanda di lapangan</b>${list(x.gejala)}</div><div><b>Kasus yang sering ditemui</b>${list(x.khusus)}</div></div>
+      <div class="gl-cols"><div><b>Cara cek</b>${list(a.cek)}</div><div><b>Caution</b>${list(a.caution)}</div></div>
+      <div class="gl-cols"><div><b>Yang bisa ditawarkan</b>${list(a.mitigasi)}</div><div class="gl-stop"><b>Bila masuk kategori STOP</b><p class="mb-0">${esc(a.stopAction)}</p></div></div>
+      <p class="mb-0"><b>Pilihan konsumen.</b> ${a.edu.opsi.map(esc).join(' ')}</p></div></details>`;
+  }).join('');
+  const other = AREA_BY.lainnya;
+  const lain = `<details class="gl-area" data-gl="lainnya kondisi lain ${esc(other.quick.join(' ').toLowerCase())}"><summary>${ic('dots', 'me')}Lainnya (di luar daftar)</summary><div class="gl-body"><p>Pakai kalau ada hal berisiko yang tidak ada di area lain. Tulis kondisi dan risikonya. Kalau membahayakan, centang STOP.</p><div class="gl-cols"><div><b>Contoh</b>${list(other.quick)}</div><div><b>Cara cek</b>${list(other.cek)}</div></div><div class="gl-cols"><div><b>Caution</b>${list(other.caution)}</div><div><b>Yang bisa ditawarkan</b>${list(other.mitigasi)}</div></div></div></details>`;
+  const prodRows = PRODUCTS.map(([pid, pname]) => {
+    const r = REL[pid] || {};
+    const t = AREAS.filter(a => r[a.id] === 't').map(a => a.name), s = AREAS.filter(a => r[a.id] === 's').map(a => a.name);
+    return `<tr data-gl="${esc(pname.toLowerCase())}"><th>${esc(pname)}</th><td>${t.length ? esc(t.join(', ')) : '-'}</td><td>${s.length ? esc(s.join(', ')) : '-'}</td></tr>`;
+  }).join('');
+  const bld = BUILDING.map(([t, d]) => `<div class="gl-term" data-gl="${esc((t + ' ' + d).toLowerCase())}"><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join('');
+  const terms = TERMS.map(([t, d]) => `<div class="gl-term" data-gl="${esc((t + ' ' + d).toLowerCase())}"><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join('');
+  return `<div class="glos"><div class="gl-scope"><b>Yang dicek sebelum memasang:</b> listrik, air, gas, dinding, lubang udara, ruang atau jarak pasang, dan hal lain di luar daftar. Kalau ada yang berisiko, jelaskan dulu ke konsumen sebelum mengisi form.</div>
+    <input class="gl-search" type="search" placeholder="Cari istilah atau kondisi, contoh: grounding, bau gas, retak" aria-label="Cari glosarium">
+    <h3 class="ffh">Area pemeriksaan dan kondisi berisiko</h3><div class="gl-areas">${areas}${lain}</div>
+    <h3 class="ffh">Area prioritas menurut tipe produk</h3><div class="tscroll"><table class="ftable"><thead><tr><th>Produk</th><th>Prioritas periksa</th><th>Perlu dicek</th></tr></thead><tbody>${prodRows}</tbody></table></div>
+    <h3 class="ffh">Kondisi menurut jenis bangunan</h3><div class="gl-terms">${bld}</div>
+    <h3 class="ffh">Glosarium istilah</h3><div class="gl-terms">${terms}</div><p class="gl-empty hint" hidden>Tidak ada yang cocok.</p></div>`;
+}
+document.addEventListener('input', e => {
+  if (!e.target.classList?.contains('gl-search')) return;
+  const root = e.target.closest('.glos'), q = e.target.value.trim().toLowerCase();
+  let n = 0;
+  root.querySelectorAll('[data-gl]').forEach(el => { const hit = !q || el.dataset.gl.includes(q); el.hidden = !hit; if (hit) n++; if (q && hit && el.tagName === 'DETAILS') el.open = true; });
+  root.querySelector('.gl-empty').hidden = n > 0;
+});
+
+function openGlos() {
+  let L = $('glosLayer');
+  if (!L) {
+    L = document.createElement('div'); L.id = 'glosLayer'; L.className = 'glos-layer no-print'; L.setAttribute('role', 'dialog'); L.setAttribute('aria-modal', 'true'); L.setAttribute('aria-label', 'Glosarium dan ensiklopedia risiko');
+    L.innerHTML = `<div class="glos-card"><div class="glos-head"><h2>${ic('book','me')}Glosarium dan ensiklopedia risiko</h2><button class="btn" type="button" data-action="glos-close">${ic('x','me')}Tutup</button></div><div class="glos-scroll">${glossHtml()}</div></div>`;
+    document.body.appendChild(L);
+  }
+  L.hidden = false; document.body.classList.add('locked'); L.querySelector('.gl-search').focus();
+}
+function closeGlos() { const L = $('glosLayer'); if (L) L.hidden = true; document.body.classList.remove('locked'); $('glosBtn')?.focus(); }
+
+function openInfo(id, title, html) {
+  const lid = 'info-' + id; let L = $(lid);
+  if (!L) {
+    L = document.createElement('div'); L.id = lid; L.className = 'glos-layer no-print'; L.setAttribute('role', 'dialog'); L.setAttribute('aria-modal', 'true'); L.setAttribute('aria-label', title);
+    L.innerHTML = `<div class="glos-card"><div class="glos-head"><h2>${esc(title)}</h2><button class="btn" type="button" data-info="close">${ic('x','me')}Tutup</button></div><div class="glos-scroll">${html}</div></div>`;
+    document.body.appendChild(L);
+  }
+  L.hidden = false; document.body.classList.add('locked');
+}
+function closeInfoLayers() { document.querySelectorAll('.glos-layer').forEach(l => { if (l.id !== 'treeLayer') l.hidden = true; }); if ($('treeLayer')?.hidden !== false) document.body.classList.remove('locked'); }
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-info]'); if (!b) return;
+  const k = b.dataset.info;
+  if (k === 'glos') openGlos();
+  else if (k === 'flow') openInfo('flow', 'Alur keputusan', flowHtml());
+  else if (k === 'guide') openInfo('guide', 'Panduan teknisi', $('guideSrc').innerHTML);
+  else if (k === 'close') { b.closest('.glos-layer').hidden = true; if (![...document.querySelectorAll('.glos-layer')].some(l => !l.hidden)) document.body.classList.remove('locked'); }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { const open = [...document.querySelectorAll('.glos-layer')].filter(l => !l.hidden && l.id !== 'treeLayer'); if (open.length) { open.forEach(l => l.hidden = true); document.body.classList.remove('locked'); } } });
+
+/* ====== HELPER & STATE ====== */
+const $ = id => document.getElementById(id);
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today = () => { const x = new Date(); return x.getFullYear() + '-' + String(x.getMonth()+1).padStart(2,'0') + '-' + String(x.getDate()).padStart(2,'0'); };
+const fmtDate = iso => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${m[3]} / ${m[2]} / ${m[1]}` : '__ / __ / ____'; };
+const textOrDash = v => (v === null || v === undefined || String(v).trim() === '') ? '-' : esc(v);
+const nl2br = v => esc(v).replace(/\n/g, '<br>');
+const reqTag = k => `<span class="req ${k}">${k==='required'?'Wajib':k==='conditional'?'Kondisional':'Opsional'}</span>`;
+const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const KEY = 'modena-risk-consent-v1';
+const fresh = () => ({info:{date:today()}, areas:{}, decision:'', explained:false, photo:false, notes:'', signerName:'', signerRole:'', objection:'', consent:false, signatures:{}, eduKey:''});
+let dirty = false, exported = false, d = fresh(), step = 0, issuesShown = [], hasDraft = false, workspaceOpen = false;
+try {
+  const s = JSON.parse(sessionStorage.getItem(KEY) || 'null');
+  if (s && s.d && typeof s.d === 'object') { d = Object.assign(fresh(), s.d); d.info = d.info || {}; d.areas = d.areas || {}; d.signatures = d.signatures || {}; step = Math.min(2, Math.max(0, s.step || 0)); hasDraft = true; }
+} catch (_) { /* mode privat bisa menolak penyimpanan */ }
+const save = () => { try { sessionStorage.setItem(KEY, JSON.stringify({d, step})); } catch (_) {} };
+
+const A = id => (d.areas[id] ||= {on:false, subs:[], where:'', note:'', other:'', risk:'', stop:false});
+const openAreas = new Set();
+/* Lainnya: banyak temuan sendiri. Field other/risk/stop diturunkan dari items agar output tetap sama. */
+function lainItems() {
+  const s = A('lainnya');
+  if (!Array.isArray(s.items)) s.items = (s.other || s.risk) ? [{text:s.other || '', risk:s.risk || '', stop:!!s.stop}] : [];
+  return s.items;
+}
+function syncLain() {
+  const s = A('lainnya'), it = lainItems();
+  s.on = it.length > 0;
+  s.other = it.map(x => (x.text || '').trim()).filter(Boolean).join('\n');
+  s.risk = it.map(x => (x.risk || '').trim()).filter(Boolean).join('\n');
+  s.stop = it.some(x => x.stop);
+}
+function addLain(text = '', risk = '', stop = false) { lainItems().push({text, risk, stop}); syncLain(); openAreas.add('lainnya'); }
+const found = () => AREAS.filter(a => d.areas[a.id]?.on);
+const subOf = (a, sid) => a.subs.find(s => s[0] === sid);
+function stopList() {
+  const out = [];
+  for (const a of found()) {
+    const s = A(a.id);
+    for (const sid of s.subs) { const sub = subOf(a, sid); if (sub && sub[2] === 's') out.push({area:a, text:sub[1]}); }
+    if (a.free) for (const x of lainItems()) if (x.stop) out.push({area:a, text:'Kondisi lain yang membahayakan keselamatan: ' + (x.text || '-')});
+  }
+  return out;
+}
+const hasStop = () => stopList().length > 0;
+const decisionObj = () => DECISIONS.find(x => x.id === d.decision);
+const blocked = () => hasStop() || (!!d.decision && !decisionObj()?.consent);
+const roleNames = () => blocked() ? [['technician','Teknisi MODENA']] : [['technician','Teknisi MODENA'],['customer','Konsumen']];
+function eduKeyNow() {
+  return found().map(a => { const s = A(a.id); return a.id + ':' + [...s.subs].sort().join(',') + '|' + (s.other || '') + '|' + (s.risk || '') + '|' + (s.where || '') + '|' + (s.note || ''); }).join(';');
+}
+const educated = () => !!d.eduKey && d.eduKey === eduKeyNow();
+function invalidateSignatures() {
+  if (!Object.keys(d.signatures).length && !d.consent) return;
+  d.signatures = {}; d.consent = false;
+  document.querySelectorAll('#editor .sig-thumb').forEach(t => t.textContent = 'Isi berubah · tanda tangan ulang');
+}
+
+/* ====== VALIDASI ====== */
+function validationIssues() {
+  const f = d.info, out = [];
+  const add = (st, message, target) => out.push({step:st, message, target});
+  for (const [k, label] of [['date','tanggal'],['technician','nama teknisi'],['customer','nama konsumen'],['phone','no. telepon / HP'],['address','alamat konsumen'],['productType','tipe produk'],['model','model produk']])
+    if (!String(f[k] || '').trim()) add(k === 'productType' ? 0 : 1, 'Informasi ' + label + ' belum diisi.', 'f-' + k);
+  if (!found().length) add(0, 'Belum ada kondisi yang ditandai. Tandai minimal satu kondisi, atau gunakan pemasangan normal bila lokasi aman.', 'areas-start');
+  for (const a of found()) {
+    const s = A(a.id);
+    if (a.free) {
+      lainItems().forEach((x, i) => {
+        if (!String(x.text || '').trim()) add(0, `Temuan lain ${i + 1}: tuliskan kondisi yang ditemukan.`, 'lain-text-' + i);
+        if (!String(x.risk || '').trim()) add(0, `Temuan lain ${i + 1}: tuliskan risiko / potensi akibat yang dijelaskan.`, 'lain-risk-' + i);
+      });
+    } else if (!s.subs.length && !String(s.note || '').trim()) add(0, a.name + ': pilih indikasi yang ditemukan atau tulis catatan.', 'area-' + a.id);
+  }
+  if (!d.decision) add(2, 'Keputusan pemasangan belum dipilih.', 'decision-card');
+  if (!d.explained) add(2, 'Konfirmasi bahwa teknisi telah menjelaskan indikasi dan risiko belum dicentang.', 'explained-row');
+  if (d.signatures.customer && !d.consent && !blocked()) add(2, 'Konfirmasi konsumen sebelum tanda tangan belum dicentang.', 'sign-customer');
+  for (const [role, label] of roleNames()) if (!d.signatures[role]) add(2, 'Tanda tangan ' + label + ' belum ada.', 'sign-' + role);
+  return out;
+}
+const warnings = () => validationIssues().map(x => x.message);
+
+/* ====== LANDING ====== */
+function initStatic() {
+  $('brandIcon').innerHTML = ic('shield');
+  $('ic-shield').innerHTML = ic('alert', 'me'); $('ic-static').innerHTML = ic('info', 'me');
+  const bc = (icon, t, s) => `<span class="bc-ico">${ic(icon)}</span><span><span class="bc-t">${t}</span><span class="bc-s">${s}</span></span><span class="bc-go">${ic('right')}</span>`;
+  $('glosBtn').innerHTML = ic('book', 'me') + 'Glosarium risiko'; $('flowBtn').innerHTML = ic('grid', 'me') + 'Alur keputusan'; $('guideBtn').innerHTML = ic('info', 'me') + 'Panduan teknisi';
+  $('startBtn').innerHTML = bc('shield', hasDraft ? 'Mulai Form Persetujuan baru' : 'Mulai Form Persetujuan', hasDraft ? 'Mulai dari kosong. Untuk meneruskan, pilih Lanjutkan draft' : 'Pilih risiko dulu, lalu isi data dan minta tanda tangan');
+  $('resumeBtn').innerHTML = bc('clip', 'Lanjutkan draft', 'Teruskan form yang sedang diisi di tab ini');
+  $('resumeBtn').hidden = !hasDraft;
+  $('tourOpen').innerHTML = ic('play', 'me') + 'Simulasi';
+ 
+  $('btnEdit').innerHTML = ic('left', 'me') + 'Edit form';
+  $('btnJpg').innerHTML = ic('image', 'me') + 'Unduh JPG';
+  $('btnPdf').innerHTML = ic('file', 'me') + 'Unduh PDF';
+  $('btnPrint').innerHTML = ic('printer', 'me') + 'Cetak';
+  $('eduClose').innerHTML = ic('x', 'me') + 'Tutup';
+  $('eduPrev').innerHTML = ic('left', 'me') + 'Kembali';
+  $('consumerBack').innerHTML = ic('left', 'me') + 'Kembali ke form';
+  $('customerReviewButton').innerHTML = ic('file', 'me') + 'Lihat dokumen';
+  $('customerBackButton').innerHTML = ic('left', 'me') + 'Kembali';
+  $('customerSignBtn').innerHTML = ic('pen', 'me') + 'Tanda tangan';
+}
+function openWorkspace() {
+  workspaceOpen = true;
+  $('landing').hidden = true; $('workspace').hidden = false;
+  $('previewView').hidden = true; $('editor').hidden = false;
+  renderEditor(); window.scrollTo(0, 0);
+}
+function goHome() {
+  workspaceOpen = false; clearExportLink();
+  $('workspace').hidden = true; $('landing').hidden = false;
+  hasDraft = true; initStatic(); window.scrollTo(0, 0);
+}
+
+/* ====== EDITOR ====== */
+const isMissing = t => issuesShown.length && issueTargets.has(t);
+let issueTargets = new Set();
+function roleGuide(s) {
+  if (s === 0) return `<div class="role-guide">${ic('user')}<div><strong>Diisi oleh Teknisi</strong><p>Isi data teknisi, konsumen, dan produk.</p></div></div>`;
+  if (s === 1) return `<div class="role-guide">${ic('clip')}<div><strong>Diisi oleh Teknisi</strong><p>Periksa lokasi, lalu tandai yang ditemukan.</p></div></div>`;
+  return `<div class="role-guide two"><div><strong>${ic('user','me')}Teknisi</strong><p>Jelaskan ke konsumen, pilih keputusan, lalu tanda tangan.</p></div><div><strong>${ic('users','me')}Konsumen</strong><p>Baca penjelasan dan pernyataan, lalu tanda tangan kalau setuju.</p></div></div>`;
+}
+function field(key, label, o = {}) {
+  const v = esc(d.info[key] ?? ''), id = 'f-' + key;
+  const miss = isMissing(id);
+  let control;
+  if (o.select) control = `<select id="${id}" data-bind="info" data-key="${key}"><option value="">${esc(o.placeholder || 'Pilih')}</option>${o.select.map(([val, lab]) => `<option value="${esc(val)}" ${d.info[key] === val ? 'selected' : ''}>${esc(lab)}</option>`).join('')}</select>`;
+  else if (o.textarea) control = `<textarea id="${id}" data-bind="info" data-key="${key}" placeholder="${esc(o.placeholder || '')}">${v}</textarea>`;
+  else control = `<input id="${id}" data-bind="info" data-key="${key}" type="${o.type || 'text'}" ${o.inputmode ? `inputmode="${o.inputmode}"` : ''} value="${v}" placeholder="${esc(o.placeholder || '')}">`;
+  return `<div class="field${o.wide ? ' wide' : ''}${miss ? ' needs-entry' : ''}"><label for="${id}">${esc(label)}${reqTag(o.req || 'required')}</label>${control}${o.help ? `<span class="field-help">${esc(o.help)}</span>` : ''}</div>`;
+}
+function panelInfo() {
+  return `${roleGuide(0)}
+  <div class="required-guide">${ic('info')}<span><strong>Isi semua yang Wajib.</strong> Nama penandatangan konsumen diisi saat konsumen tanda tangan.</span></div>
+  <section class="card ident"><h2>${ic('user','me')}Data Teknisi</h2><p class="hint">Teknisi MODENA yang melakukan pemeriksaan dan menandatangani form ini.</p>
+    <div class="grid">
+      ${field('technician', 'Nama teknisi', {placeholder:'Nama lengkap teknisi MODENA'})}
+      ${field('date', 'Tanggal pemeriksaan', {type:'date'})}
+    </div></section>
+  <section class="card ident"><h2>${ic('users','me')}Data Konsumen</h2><p class="hint">Pemilik atau penghuni lokasi pemasangan. Nama di sini dipakai sebagai nama penandatangan konsumen (bisa diubah saat konsumen tanda tangan).</p>
+    <div class="grid">
+      ${field('customer', 'Nama', {placeholder:'Nama konsumen / PIC'})}
+      ${field('phone', 'No. Tlp/HP', {type:'tel', inputmode:'tel', placeholder:'08xxxxxxxxxx'})}
+      ${field('address', 'Alamat', {textarea:true, wide:true, placeholder:'Alamat lengkap lokasi pemasangan'})}
+      ${field('landmark', 'Patokan lokasi / lantai / unit', {req:'optional', wide:true, placeholder:'Contoh: Apartemen X tower B lantai 12, dekat lift'})}
+    </div></section>
+  <section class="card ident"><h2>${ic('clip','me')}Data Produk / Pekerjaan</h2><p class="hint">Sesuaikan dengan nameplate unit dan Work Order.</p>
+    <div class="grid">
+      ${field('model', 'Model', {placeholder:'Sesuai nameplate / WO'})}
+      ${field('serial', 'No. Seri', {req:'optional', placeholder:'Opsional, isi bila unit sudah ada'})}
+      ${field('wo', 'No. Work Order', {req:'optional', placeholder:'Opsional, isi jika tersedia'})}
+    </div></section>`;
+}
+function relTag(r) { return r === 't' ? '<span class="tag hi">Prioritas periksa</span>' : r === 's' ? '<span class="tag">Perlu dicek</span>' : ''; }
+function tipsBlock(a) {
+  return `<details class="tips"><summary>Panduan teknisi: cara cek, caution, dan tindakan</summary><div class="tbody">
+    <div><h4>Cara cek</h4><ul>${a.cek.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+    <div class="caut"><h4>${ic('alert','me')}Caution</h4><ul>${a.caution.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+    <div><h4>Tindakan yang bisa ditawarkan</h4><ul>${a.mitigasi.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div></div></details>`;
+}
+const IMPL = /*@@IMPL@@*/;
+const LVL = {c:['Berisiko','c'], e:['Waspada','e'], s:['STOP','s']};
+function subList(a, s, type, head) {
+  const list = a.subs.filter(x => x[2] === type);
+  if (!list.length) return '';
+  return `<div class="sub-head">${head}</div><div class="opts">` + list.map(([sid, text, t]) => `<label class="opt lv-${t}${s.subs.includes(sid) ? ' on' : ''}"><span class="opt-l"><input type="checkbox" data-bind="sub" data-area="${a.id}" data-sub="${sid}" ${s.subs.includes(sid) ? 'checked' : ''}><span class="opt-t">${esc(text)}</span></span><span class="opt-r"><span class="opt-lv">${ic(t === 's' ? 'alert' : 'info', 'me')}${LVL[t][0]}</span><span class="opt-d">${esc(IMPL[sid] || '')}</span></span></label>`).join('') + '</div>';
+}
+function areaGroup(a, rel, open) {
+  const s = A(a.id), on = s.on;
+  const stopHere = stopList().filter(x => x.area.id === a.id);
+  const missGroup = isMissing('area-' + a.id);
+  let body = '';
+  if (!a.free) body += `<div class="tpl"><div><b>Indikasi kondisi berisiko (template)</b>${esc(a.indikasi)}</div><div><b>Risiko / potensi akibat (template)</b>${esc(a.risiko)}</div></div>`;
+  if (!a.free) body += subList(a, s, 'c', 'Centang yang ditemukan (sesuai template)') + subList(a, s, 'e', 'Temuan tambahan') + subList(a, s, 's', 'Kondisi STOP');
+  if (!a.free) body += `<label class="area-toggle"><input type="checkbox" data-bind="on" data-area="${a.id}" ${on ? 'checked' : ''}> ${ic('check')} Ada temuan lain di area ini (isi di catatan)</label>`;
+  if (on && !a.free) {
+    if (stopHere.length) body += `<div class="stopbox"><strong>${ic('alert','me')}STOP: jangan lanjutkan pemasangan.</strong><br>${esc(a.stopAction)} <span class="hint">Ikuti SOP K3 perusahaan.</span></div>`;
+    body += `<div class="grid mt-2"><div class="field"><label for="area-where-${a.id}">Titik / lokasi temuan ${reqTag('optional')}</label><input id="area-where-${a.id}" data-bind="where" data-area="${a.id}" value="${esc(s.where)}" placeholder="Contoh: dapur, dinding kiri unit"></div>
+      <div class="field${missGroup ? ' needs-entry' : ''}"><label for="area-note-${a.id}">Catatan teknisi ${reqTag(s.subs.length ? 'optional' : 'conditional')}</label><input id="area-note-${a.id}" data-bind="note" data-area="${a.id}" value="${esc(s.note)}" placeholder="Ukuran, kondisi, atau hal lain"></div></div>`;
+  }
+  if (a.free) {
+    const it = lainItems();
+    body += `<div class="sub-head">Tulis sendiri. Bisa lebih dari satu temuan.</div>`;
+    body += it.map((x, k) => `<div class="litem${x.stop ? ' stop' : ''}"><div class="litem-head"><b>Temuan ${k + 1}</b><button class="btn sm" type="button" data-action="lain-del" data-i="${k}" aria-label="Hapus temuan ${k + 1}">${ic('x','me')}Hapus</button></div>
+      <div class="field${isMissing('lain-text-' + k) ? ' needs-entry' : ''}"><label for="lain-text-${k}">Yang ditemukan ${reqTag('required')}</label><textarea id="lain-text-${k}" data-bind="litem" data-i="${k}" data-f="text" placeholder="Contoh: pipa gas melewati dekat kabel listrik">${esc(x.text)}</textarea></div>
+      <div class="field mt-1${isMissing('lain-risk-' + k) ? ' needs-entry' : ''}"><label for="lain-risk-${k}">Risikonya ${reqTag('required')}</label><textarea id="lain-risk-${k}" data-bind="litem" data-i="${k}" data-f="risk" placeholder="Apa yang bisa terjadi kalau tetap dipasang">${esc(x.risk)}</textarea></div>
+      <label class="inline-check stop"><input type="checkbox" data-bind="litem-stop" data-i="${k}" ${x.stop ? 'checked' : ''}><span>Langsung membahayakan (api, tersengat, gas, roboh)<span class="tag-stop">STOP</span></span></label></div>`).join('');
+    body += `<button class="btn" type="button" data-action="lain-add">${ic('dots','me')}Tambah temuan lain</button>`;
+    body += `<div class="sub-head mt-2">Contoh cepat (ketuk untuk menambah)</div><div class="chips">${a.quick.map((q, k) => `<button class="btn sm" type="button" data-action="quick" data-q="${k}">${esc(q)}</button>`).join('')}</div>`;
+    if (stopHere.length) body += `<div class="stopbox mt-2"><strong>${ic('alert','me')}STOP: jangan lanjutkan pemasangan.</strong><br>Tunda pemasangan dan eskalasi ke Technical Support.</div>`;
+  }
+  body += tipsBlock(a);
+  const nSel = a.free ? lainItems().length : s.subs.length;
+  const sub = a.free ? 'Tulis sendiri, bisa lebih dari satu' : a.indikasi.split(' / ').slice(0, 2).join(' / ');
+  const chip = stopHere.length ? '<span class="tag stop">STOP</span>' : on ? `<span class="tag on">✓ ${nSel ? nSel + ' dipilih' : 'Ditemukan'}</span>` : relTag(rel);
+  return `<details class="group arow${rel === 't' ? ' prio' : ''}${on ? ' found' : ''}${stopHere.length ? ' stopped' : ''}" id="area-${a.id}" data-group="${a.id}" ${open ? 'open' : ''}>
+    <summary><span class="tile-ico">${ic(a.free ? 'dots' : a.icon)}</span><span class="arow-t"><b>${esc(a.free ? 'Lainnya (tidak ada di daftar)' : a.name)}</b><small>${esc(sub)}</small></span><span class="arow-st">${chip}</span></summary>
+    <div class="group-body">${body}</div></details>`;
+}
+function panelCheck() {
+  const rel = REL[d.info.productType] || {};
+  const sc = stopList().length;
+  const prod = PRODUCTS.find(p => p[0] === d.info.productType);
+  const rank = x => x.free ? 9 : rel[x.id] === 't' ? 0 : rel[x.id] === 's' ? 1 : 2;
+  const sorted = AREAS.map((x, i) => [x, i]).sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1]).map(z => z[0]);
+  const nPrio = sorted.filter(x => rank(x) === 0).length;
+  const row = x => areaGroup(x, rel[x.id], openAreas.has(x.id));
+  const groups = nPrio
+    ? `<div class="alist"><div class="prio-head">${ic('alert','me')}Prioritas periksa untuk ${esc(prod[1])} (${nPrio})</div>${sorted.filter(x => rank(x) === 0).map(row).join('')}<div class="prio-head rest">Area lainnya</div>${sorted.filter(x => rank(x) > 0).map(row).join('')}</div>`
+    : `<div class="alist">${sorted.map(row).join('')}</div>`;
+  return `${roleGuide(1)}
+  <div class="kb mb-2"><button class="btn primary" type="button" data-tree="open">${ic('help','me')}Bantu tentukan risiko</button><button class="btn sm" type="button" data-info="glos">${ic('book','me')}Glosarium</button><button class="btn sm" type="button" data-info="flow">${ic('grid','me')}Alur keputusan</button></div>
+  <section class="card"><h2>Produk yang dipasang</h2><p class="hint">Dipakai untuk menandai area yang paling perlu dicek.</p><div class="grid">${field('productType', 'Tipe produk', {select:PRODUCTS, placeholder:'Pilih tipe produk'})}</div>
+    <details class="flowdet mt-2"><summary>${ic('clip','me')}Persiapan cek lokasi</summary><ul class="preflight-list">${TOOLS.map(t => `<li>${ic('check')}<span>${esc(t)}</span></li>`).join('')}</ul></details></section>
+  <div class="info">${ic('info','me')}<strong>Panduan Pengisian Teknisi.</strong> ${esc(GUIDE_TEXT)}</div>
+  <div class="section-heading" id="areas-start"><div><h2>Pemeriksaan lokasi</h2><p class="hint">${prod ? `Produk: ${esc(prod[1])}. Ketuk area, lalu centang risiko yang ditemukan. Area “Prioritas periksa” paling relevan.` : 'Ketuk area, lalu centang risiko yang ditemukan. Pilih tipe produk agar area prioritas ditandai.'}</p></div><span id="areaCount" class="count-pill">${found().length} ditandai</span></div>
+  <div class="legend2" aria-label="Arti warna"><span class="lg prio">Prioritas periksa</span><span class="lg c">Berisiko</span><span class="lg e">Waspada</span><span class="lg s">STOP</span><span class="lg ok">Dipilih</span></div>
+  ${sc ? `<div class="stopbox"><strong>${ic('alert','me')}${sc} kondisi STOP tercatat.</strong> Pemasangan tidak boleh dilanjutkan, meski konsumen setuju. Di langkah 3, pilih ditunda atau eskalasi.</div>` : ''}
+  ${groups}
+  <p class="hint mt-2">Jika semua area aman dan tidak ada kondisi yang ditandai, form ini tidak diperlukan. Lanjutkan pemasangan sesuai SOP.</p>`;
+}
+function summaryList(forConsumer) {
+  const f = found();
+  if (!f.length) return '<p>Belum ada kondisi yang ditandai.</p>';
+  return `<ul>${f.map(a => {
+    const s = A(a.id);
+    const items = a.free ? [s.other].filter(Boolean) : s.subs.map(id => subOf(a, id)?.[1]).filter(Boolean);
+    const stop = (a.free ? s.stop : s.subs.some(id => subOf(a, id)?.[2] === 's'));
+    const risk = a.free ? s.risk : a.risiko;
+    return `<li><strong>${esc(a.name)}</strong>${stop ? ' <span class="tag stop">STOP</span>' : ''}: ${items.length ? esc(items.join('; ')) : '-'}${s.where ? ' (' + esc(s.where) + ')' : ''}${forConsumer ? `<br><span class="hint">Risiko: ${esc(risk || '-')}</span>` : ''}</li>`;
+  }).join('')}</ul>`;
+}
+function panelConfirm() {
+  const stops = stopList();
+  const edu = educated();
+  const dis = hasStop();
+  const sigs = roleNames().map(([role, label]) => `<div id="sign-${role}" tabindex="-1"><strong>${label}</strong><div class="sig-thumb">${sigImage(d.signatures[role]) || 'Belum ditandatangani'}</div>
+      <button class="btn primary" data-action="signature" data-role="${role}">${ic(role === 'customer' ? 'file' : 'pen', 'me')}${role === 'customer' ? 'Tinjau & tanda tangan' : 'Tanda tangan ' + label}</button></div>`).join('');
+  return `${roleGuide(2)}
+  <section class="card"><h2>Ringkasan kondisi yang ditandai</h2>
+    ${stops.length ? `<div class="stopbox"><strong>${ic('alert','me')}Kondisi STOP ditemukan.</strong><ul>${stops.map(x => `<li>${esc(x.area.name)}: ${esc(x.text)}</li>`).join('')}</ul><p class="mb-0 mt-1">Pemasangan tidak boleh dilanjutkan, meski konsumen setuju. Tanda tangan konsumen dimatikan. Pilih ditunda atau eskalasi.</p></div>` : ''}
+    <div class="handover"><h3>Kondisi untuk dijelaskan kepada konsumen</h3>${summaryList(true)}</div></section>
+  <section class="card" id="edu-card"><h2>${ic('ear','me')}Edukasi konsumen</h2>
+    <p class="hint">Buka layar penjelasan sederhana, lalu baca bersama konsumen. Isi dokumen tetap sama.</p>
+    <button class="btn primary" data-action="edu-open" ${found().length ? '' : 'disabled'}>${ic('ear','me')}Buka edukasi konsumen</button>
+    <span class="tag ${edu ? 'on' : ''}" style="margin-left:8px">${edu ? '✓ Sudah ditampilkan' : 'Belum ditampilkan'}</span>
+    ${d.eduKey && !edu ? '<p class="hint mt-1">Kondisi berubah sejak edukasi terakhir. Tampilkan ulang agar penjelasannya sesuai.</p>' : ''}</section>
+  <section class="card${isMissing('decision-card') ? ' needs-entry' : ''}" id="decision-card" tabindex="-1"><h2>Keputusan pemasangan ${reqTag('required')}</h2>
+    <div class="chips" style="flex-direction:column;align-items:stretch">${DECISIONS.map(x => {
+      const off = dis && x.consent;
+      return `<label class="inline-check ${off ? 'disabled' : ''}"><input type="radio" name="decision" data-bind="decision" value="${x.id}" ${d.decision === x.id ? 'checked' : ''} ${off ? 'disabled' : ''}><span>${esc(x.label)}${off ? ' <span class="hint">(tidak tersedia: ada kondisi STOP)</span>' : ''}</span></label>`;
+    }).join('')}</div></section>
+  <section class="card"><h2>Konfirmasi teknisi</h2>
+    <label class="inline-check${isMissing('explained-row') ? ' needs-entry' : ''}" id="explained-row" tabindex="-1"><input type="checkbox" data-bind="explained" ${d.explained ? 'checked' : ''}><span>Saya sudah menjelaskan semua yang ditandai dan risikonya ke konsumen, dan konsumen boleh bertanya. ${reqTag('required')}</span></label>
+    <label class="inline-check"><input type="checkbox" data-bind="photo" ${d.photo ? 'checked' : ''}><span>Foto kondisi lokasi sudah diambil dan dilampirkan di WO / GCCS ${reqTag('optional')}</span></label>
+    <div class="field mt-2"><label for="notes">Catatan teknisi ${reqTag('optional')}</label><textarea id="notes" data-bind="notes" placeholder="Ukuran asli, kesepakatan khusus, atau hal lain">${esc(d.notes)}</textarea></div></section>
+  <section class="card"><h2>Persetujuan Konsumen</h2>
+    ${blocked() ? '<div class="info">Persetujuan konsumen tidak diminta karena pemasangan tidak dilanjutkan.</div>' : `<div class="consent-box">${esc(CONSENT_TEXT)}</div>`}</section>
+  <section class="card"><h2>${ic('pen','me')}Tanda tangan ${reqTag('required')}</h2><p class="hint">Kalau isi form diubah setelah tanda tangan, tanda tangan terhapus.</p><div class="sig-grid">${sigs}</div></section>`;
+}
+function renderEditor() {
+  if (!workspaceOpen) return;
+  issueTargets = new Set(validationIssues().filter(i => issuesShown.includes(i.step)).map(i => i.target));
+  $('contextBar').innerHTML = `${ic('shield')}<strong>Persetujuan Pemasangan</strong><span class="grow">&nbsp;›&nbsp;Kondisi berisiko${d.info.productType ? ' › ' + esc(PRODUCTS.find(p => p[0] === d.info.productType)?.[1] || '') : ''}</span><span class="tag" title="Tidak ada server. Data hanya di tab ini.">Belum tersimpan di mana pun</span><button class="btn sm" data-action="home">${ic('grid','me')}Beranda</button>`;
+  const panels = [panelCheck(), panelInfo(), panelConfirm()];
+  const labels = ['Risiko', 'Informasi', 'Konfirmasi'];
+  $('editor').innerHTML = `<div class="form-heading"><div class="title-line"><span class="title-icon">${ic('shield')}</span><div><h1>Persetujuan Pemasangan pada Kondisi Berisiko</h1><p>Tandai yang ditemukan, jelaskan ke konsumen, lalu minta persetujuan.</p></div></div></div>
+    <div class="form-sticky"><nav class="stepper" aria-label="Langkah pengisian">${labels.map((l, i) => `<button class="step-tab" type="button" data-action="step" data-step="${i}"><span>${i + 1}</span>${l}</button>`).join('')}</nav>
+    <div id="progressNotice" class="progress-strip" role="status" aria-live="polite"></div></div>
+    <div id="formWarnings" class="warning" role="alert" hidden></div>
+    ${panels.map((p, i) => `<section class="step-panel" data-step-panel="${i}" ${i !== step ? 'hidden' : ''}>${p}</section>`).join('')}
+    <div class="wizard-actions"><button id="prevStep" class="btn" data-action="previous">${ic('left','me')}Kembali</button><span id="stepCounter" class="step-counter"></span>
+      <button id="nextStep" class="btn primary" data-action="next">Lanjut${ic('right','ms')}</button><button id="previewStep" class="btn primary" data-action="preview">${ic('file','me')}Pratinjau form</button></div>
+    <div class="reset-row"><button class="btn danger" data-action="reset" id="resetBtn">${ic('trash','me')}Hapus isi form ini</button></div>`;
+  setStep(step, false);
+}
+function setStep(i, scroll = true) {
+  step = Math.max(0, Math.min(2, i));
+  document.querySelectorAll('#editor [data-step-panel]').forEach(p => p.hidden = Number(p.dataset.stepPanel) !== step);
+  document.querySelectorAll('#editor [data-action="step"]').forEach(b => { const on = Number(b.dataset.step) === step; b.classList.toggle('active', on); on ? b.setAttribute('aria-current', 'step') : b.removeAttribute('aria-current'); });
+  $('prevStep').hidden = step === 0; $('nextStep').hidden = step === 2; $('previewStep').hidden = step !== 2;
+  $('stepCounter').textContent = `Langkah ${step + 1} dari 3`;
+  save(); renderProgress();
+  if (scroll) window.scrollTo({top:0, behavior:reduced() ? 'auto' : 'smooth'});
+}
+function renderProgress() {
+  const box = $('progressNotice'); if (!box) return;
+  let label = '', pct = 0, icon = 'user';
+  if (step === 1) {
+    const keys = ['date','technician','customer','phone','address','productType','model'];
+    const n = keys.filter(k => String(d.info[k] || '').trim()).length;
+    label = `${n}/7 informasi wajib terisi`; pct = n / 7 * 100; icon = 'user';
+  } else if (step === 0) {
+    const n = found().length, sc = stopList().length;
+    label = n ? `${n} kondisi ditandai${sc ? ` · ${sc} STOP` : ''}` : 'Belum ada kondisi yang ditandai'; pct = n ? 100 : 0; icon = 'clip';
+  } else {
+    const r = roleNames(), signed = r.filter(([x]) => d.signatures[x]).length;
+    label = `${signed}/${r.length} tanda tangan · keputusan ${d.decision ? 'dipilih' : 'belum dipilih'}`; pct = signed / r.length * 100; icon = 'pen';
+  }
+  box.innerHTML = `${ic(icon)}<span>${esc(label)}</span>`; box.style.setProperty('--fill', Math.round(pct) + '%');
+  const ac = $('areaCount'); if (ac) ac.textContent = found().length + ' ditandai';
+  renderValidation();
+}
+function renderValidation() {
+  const box = $('formWarnings'); if (!box || !workspaceOpen) return;
+  const all = validationIssues();
+  let nav = $('completionNavigator');
+  if (!nav) {
+    nav = document.createElement('details'); nav.id = 'completionNavigator'; nav.className = 'completion-nav no-print';
+    nav.innerHTML = '<summary><span>Belum diisi</span><span class="completion-count"></span><small class="completion-help">Klik untuk melihat bagian yang belum diisi</small></summary><div class="completion-list"></div>';
+    $('workspace').insertBefore(nav, $('editor'));
+    nav.addEventListener('click', ev => { const b = ev.target.closest('button[data-target]'); if (!b) return; jumpTo(b.dataset.target); if (innerWidth < 992) nav.open = false; });
+  }
+  const pending = [...new Map(all.filter(i => i.target).map(i => [i.target, i])).values()];
+  nav.hidden = $('workspace').hidden || $('editor').hidden;
+  nav.querySelector('.completion-count').textContent = pending.length;
+  nav.querySelector('.completion-list').innerHTML = pending.length
+    ? '<p>Klik bagian yang ingin dilengkapi.</p>' + pending.map(i => `<button type="button" data-target="${esc(i.target)}"><small>${['Risiko','Informasi','Konfirmasi'][i.step]}</small>${esc(i.message)}</button>`).join('')
+    : '<div class="completion-done">✓ Semua bagian sudah lengkap</div>';
+  const cur = issuesShown.length ? all.filter(i => issuesShown.includes(i.step) && i.step === step) : [];
+  box.hidden = !cur.length;
+  box.innerHTML = cur.length ? `<strong>Isi dulu sebelum lanjut (${cur.length} hal)</strong><ul>${cur.map(i => `<li>${esc(i.message)}${i.target ? ` <button class="jump-link" type="button" data-action="jump" data-target="${esc(i.target)}">Buka</button>` : ''}</li>`).join('')}</ul>` : '';
+  document.querySelectorAll('#editor .needs-entry').forEach(e => e.classList.remove('needs-entry'));
+  if (issuesShown.length) for (const i of all) if (issuesShown.includes(i.step)) { const t = $(i.target); const tgt = t?.matches?.('details.group') ? t.querySelector('[id^="area-note-"]') : t; (tgt?.closest?.('.field') || tgt)?.classList.add('needs-entry'); }
+}
+function jumpTo(id) {
+  const issue = validationIssues().find(i => i.target === id);
+  if (issue && issue.step !== step) setStep(issue.step, false);
+  const ar = AREAS.find(x => id === 'area-' + x.id || id.endsWith('-' + x.id) || (x.free && /^lain-/.test(id)));
+  if (ar && !openAreas.has(ar.id)) { openAreas.add(ar.id); renderEditor(); }
+  const t = $(id); if (!t) return;
+  const g = t.closest?.('details.group'); if (g) g.open = true;
+  if (t.tagName === 'DETAILS') t.open = true;
+  t.scrollIntoView({behavior:reduced() ? 'auto' : 'smooth', block:'center'});
+  t.focus?.({preventScroll:true});
+}
+function requireCompletion(steps) {
+  const issues = validationIssues().filter(i => steps.includes(i.step));
+  if (!issues.length) { issuesShown = []; renderValidation(); return true; }
+  issuesShown = steps;
+  const first = Math.min(...issues.map(i => i.step));
+  if (step !== first) { step = first; }
+  renderEditor();
+  $('formWarnings').scrollIntoView({behavior:'smooth', block:'start'});
+  return false;
+}
+function navigateStep(t) {
+  const n = Math.max(0, Math.min(2, t));
+  if (n > step && !requireCompletion(Array.from({length:n}, (_, i) => i))) return;
+  issuesShown = []; setStep(n); renderEditor();
+}
+function rerender(ctrl) {
+  const anchor = ctrl?.closest?.('details.group, .card, .inline-check');
+  const aid = anchor?.id, top = anchor?.getBoundingClientRect().top, fid = ctrl?.id;
+  renderEditor();
+  if (fid) $(fid)?.focus({preventScroll:true});
+  const nx = aid ? $(aid) : null;
+  if (nx && Number.isFinite(top)) { const sh = nx.getBoundingClientRect().top - top; if (Math.abs(sh) > 1) window.scrollBy({top:sh, behavior:'instant'}); }
+}
+function sigImage(src) { return typeof src === 'string' && /^data:image\/png;base64,[A-Za-z0-9+/=]+$/.test(src) ? `<img src="${src}" alt="Tanda tangan">` : ''; }
+
+/* ====== INPUT HANDLER ====== */
+function onEdit(e) {
+  const t = e.target;
+  if (t.closest('#consumerLayer')) return consumerEdit(e);
+  if (!workspaceOpen || !$('editor').contains(t)) return;
+  const bind = t.dataset.bind; if (!bind) return;
+  if (e.type === 'input' && (t.type === 'checkbox' || t.type === 'radio' || t.tagName === 'SELECT')) return;
+  let structural = false;
+  const area = t.dataset.area ? A(t.dataset.area) : null;
+  if (bind === 'info') d.info[t.dataset.key] = t.value;
+  else if (bind === 'on') { area.on = t.checked; structural = true; }
+  else if (bind === 'sub') { const sid = t.dataset.sub; area.subs = t.checked ? [...new Set([...area.subs, sid])] : area.subs.filter(x => x !== sid); if (t.checked) area.on = true; structural = true; }
+  else if (bind === 'where') area.where = t.value;
+  else if (bind === 'note') area.note = t.value;
+  else if (bind === 'other') area.other = t.value;
+  else if (bind === 'risk') area.risk = t.value;
+  else if (bind === 'stopfree') { area.stop = t.checked; structural = true; }
+  else if (bind === 'litem') { lainItems()[Number(t.dataset.i)][t.dataset.f] = t.value; syncLain(); }
+  else if (bind === 'litem-stop') { lainItems()[Number(t.dataset.i)].stop = t.checked; syncLain(); structural = true; }
+  else if (bind === 'decision') { d.decision = t.value; structural = true; }
+  else if (bind === 'explained') d.explained = t.checked;
+  else if (bind === 'photo') d.photo = t.checked;
+  else if (bind === 'notes') d.notes = t.value;
+  // keputusan 'lanjut' tidak berlaku bila ada STOP
+  if (hasStop() && d.decision === 'lanjut') { d.decision = ''; structural = true; }
+  if (bind === 'info' && t.dataset.key === 'productType') structural = true;
+  invalidateSignatures(); dirty = true; exported = false; save();
+  if (structural) rerender(t); else renderProgress();
+}
+document.addEventListener('toggle', e => { const g = e.target; if (g?.matches?.('details.group[data-group]')) { g.open ? openAreas.add(g.dataset.group) : openAreas.delete(g.dataset.group); } }, true);
+document.addEventListener('input', onEdit);
+document.addEventListener('change', onEdit);
+
+/* ====== EDUKASI KONSUMEN ====== */
+let eduIdx = 0;
+const eduSlides = () => [{type:'intro'}, ...found().map((a, i) => ({type:'area', a, i})), {type:'end'}];
+function openEdu() {
+  if (!found().length) return;
+  eduIdx = 0; renderEdu();
+  $('eduLayer').hidden = false; document.body.classList.add('locked');
+}
+function closeEdu() {
+  $('eduLayer').hidden = true; document.body.classList.remove('locked');
+  renderEditor();
+}
+function renderEdu() {
+  const slides = eduSlides(), s = slides[eduIdx], n = slides.length, fcount = found().length;
+  let html = '';
+  if (s.type === 'intro') {
+    html = `<div class="edu-slide"><div class="edu-hero"><div class="edu-ico">${ic('ear')}</div><div><h3>Mari kita lihat bersama</h3><p>Teknisi akan menjelaskan apa yang ditemukan di lokasi.</p></div></div>
+      <div class="edu-sec"><h4>Yang akan dijelaskan (${fcount} hal)</h4><ul>${found().map(a => `<li>${esc(a.name)}</li>`).join('')}</ul></div>
+      <div class="edu-sec"><h4>Sebelum mulai</h4><ul><li>Boleh bertanya kapan saja.</li><li>Bapak/Ibu tidak wajib setuju. Ada pilihan lain di akhir.</li><li>Tanda tangan diminta setelah semua dijelaskan.</li></ul></div></div>`;
+  } else if (s.type === 'area') {
+    const a = s.a, st = A(a.id);
+    const items = a.free ? [st.other].filter(Boolean) : st.subs.map(id => subOf(a, id)?.[1]).filter(Boolean);
+    const stopHere = stopList().filter(x => x.area.id === a.id).length > 0;
+    const risks = a.free ? [st.risk || '-'] : a.edu.risiko;
+    const opsi = a.free ? ['Diperbaiki dulu, lalu pemasangan dijadwalkan ulang.', 'Menunggu arahan tim Technical Support.'] : a.edu.opsi;
+    html = `<div class="edu-slide"><div class="edu-hero"><div class="edu-ico">${ic(a.icon)}</div><div><h3>${esc(a.name)}</h3><p>Bagian ${s.i + 1} dari ${fcount}</p></div></div>
+      <div class="edu-sec"><h4>Yang ditemukan</h4><ul>${items.map(x => `<li>${esc(x)}</li>`).join('') || '<li>-</li>'}</ul>${st.where ? `<p class="hint mt-1">Lokasi: ${esc(st.where)}</p>` : ''}${st.note ? `<p class="hint">Catatan teknisi: ${esc(st.note)}</p>` : ''}</div>
+      ${a.free ? '' : `<div class="edu-sec"><h4>Artinya</h4><p class="mb-0">${esc(a.edu.apa)}</p></div>`}
+      <div class="edu-sec risk"><h4>Risiko kalau tetap dipasang</h4><ul>${risks.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+      ${stopHere ? `<div class="edu-sec stop"><h4>Penting untuk keselamatan</h4><p class="mb-0">Ini berbahaya. Pemasangan <strong>tidak bisa dilanjutkan</strong>. Teknisi akan menunda atau meminta arahan tim.</p></div>`
+        : `<div class="edu-sec"><h4>Pilihan Bapak/Ibu</h4><ul>${opsi.map(x => `<li>${esc(x)}</li>`).join('')}<li>Tetap dipasang kalau Bapak/Ibu setuju. Risiko di atas jadi tanggung jawab Bapak/Ibu sesuai pernyataan di form.</li></ul></div>`}</div>`;
+  } else {
+    const dis = hasStop();
+    html = `<div class="edu-slide"><div class="edu-hero"><div class="edu-ico">${ic('clip')}</div><div><h3>Ringkasan dan pilihan</h3><p>Tanyakan kalau ada yang belum jelas.</p></div></div>
+      <div class="edu-sec"><h4>Yang sudah dijelaskan</h4>${summaryList(false)}</div>
+      <div class="edu-sec"><h4>Pilihan Bapak/Ibu</h4><ul>
+        ${dis ? '' : '<li><strong>Dilanjutkan</strong>: tetap dipasang kalau Bapak/Ibu setuju. Bapak/Ibu membaca dan tanda tangan pernyataan.</li>'}
+        <li><strong>Ditunda</strong>: diperbaiki dulu, lalu dijadwalkan ulang.</li>
+        <li><strong>Menunggu arahan</strong>: teknisi tanya tim Technical Support.</li>
+        <li><strong>Dibatalkan</strong>: tidak jadi dipasang.</li></ul></div>
+      ${dis ? '' : `<div class="edu-sec risk"><h4>Kalau Bapak/Ibu memilih lanjut</h4><p class="mb-0">Kerusakan yang langsung disebabkan hal yang sudah dijelaskan jadi tanggung jawab Bapak/Ibu sesuai ketentuan. Hak garansi dan komplain tetap mengikuti ketentuan.</p></div>`}</div>`;
+  }
+  $('eduBody').innerHTML = html + `<div class="edu-dots" aria-hidden="true">${slides.map((_, i) => `<i class="${i === eduIdx ? 'on' : ''}"></i>`).join('')}</div>`;
+  $('eduBody').scrollTop = 0;
+  $('eduFill').style.width = ((eduIdx + 1) / n * 100) + '%';
+  $('eduCount').textContent = `Bagian ${eduIdx + 1} dari ${n}`;
+  $('eduPrev').disabled = eduIdx === 0;
+  $('eduNext').innerHTML = eduIdx === n - 1 ? ic('check', 'me') + 'Selesai' : 'Lanjut' + ic('right', 'ms');
+  if (eduIdx === n - 1) { d.eduKey = eduKeyNow(); save(); }
+}
+
+/* ====== KONFIRMASI KONSUMEN ====== */
+function showConsumerView(v) {
+  $('consumerConfirm').hidden = v !== 'confirm'; $('consumerDocument').hidden = v !== 'document';
+  $('customerReviewButton').hidden = v === 'document'; $('customerBackButton').hidden = v !== 'document';
+  if (v === 'document') $('reviewDocument').innerHTML = renderDocument(warnings());
+}
+function renderConsumerConfirm() {
+  if (!d.signerName) d.signerName = d.info.customer || '';
+  $('consumerConfirm').innerHTML = `<p class="hint"><strong>Bagian konsumen:</strong> baca kondisi yang ditandai teknisi dan pernyataan persetujuan berikut. Anda dapat membuka dokumen lengkap sebelum tanda tangan.</p>
+    <div class="handover"><h3>Kondisi yang ditandai dan risikonya</h3>${summaryList(true)}</div>
+    <h3 style="margin:14px 0 6px">Pernyataan persetujuan</h3><div class="consent-box">${esc(CONSENT_TEXT)}</div>
+    <div class="grid mt-3"><div class="field"><label for="signerName">Nama penandatangan ${reqTag('required')}</label><input id="signerName" data-consumer="signerName" value="${esc(d.signerName)}" placeholder="Nama sesuai identitas"></div>
+      <div class="field"><label for="signerRole">Hubungan dengan pemilik unit ${reqTag('optional')}</label><select id="signerRole" data-consumer="signerRole"><option value="">Pilih</option>${SIGNER_ROLES.map(r => `<option ${d.signerRole === r ? 'selected' : ''}>${esc(r)}</option>`).join('')}</select></div></div>
+    <div class="field mt-2"><label for="consumerObjection">Keberatan / catatan konsumen ${reqTag('optional')}</label><textarea id="consumerObjection" data-consumer="objection" placeholder="Tuliskan bila ada hal yang belum disepakati">${esc(d.objection)}</textarea></div>
+    <p id="consumerError" class="err" role="alert" hidden>Isi nama penandatangan sebelum tanda tangan.</p>
+    <p class="hint mt-2">Konfirmasi di layar tanda tangan tetap diperlukan.</p>`;
+}
+function consumerEdit(e) {
+  const t = e.target, k = t.dataset.consumer; if (!k) return;
+  d[k] = t.value; $('consumerError').hidden = true;
+  invalidateSignatures(); save(); renderProgress();
+}
+function openConsumerFlow() {
+  renderConsumerConfirm(); showConsumerView('confirm');
+  $('consumerLayer').hidden = false; document.body.classList.add('locked');
+}
+function closeConsumerFlow() { $('consumerLayer').hidden = true; document.body.classList.remove('locked'); renderEditor(); }
+function proceedCustomerSignature() {
+  if (!String(d.signerName || '').trim()) { showConsumerView('confirm'); $('consumerError').hidden = false; $('signerName').focus(); return; }
+  openSignature('customer');
+}
+
+/* ====== TANDA TANGAN ====== */
+const canvas = $('signatureCanvas'), ctx = canvas.getContext('2d');
+ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 3; ctx.strokeStyle = '#10283f';
+let signatureRole = '', drawing = false, inked = false, signatureCleared = false;
+async function openSignature(role) {
+  signatureRole = role; inked = false; drawing = false; signatureCleared = false; clearSignature();
+  $('signatureTitle').textContent = 'Tanda tangan ' + (roleNames().find(x => x[0] === role)?.[1] || role);
+  $('consentRow').hidden = role !== 'customer'; $('consent').checked = role === 'customer' && !!d.consent; syncConsent();
+  if (role === 'customer' && !$('consumerLayer').hidden) { $('consumerLayer').inert = true; $('consumerLayer').setAttribute('aria-hidden', 'true'); }
+  $('signatureLayer').hidden = false; document.body.classList.add('locked');
+  const ex = d.signatures[role];
+  if (ex) { const img = new Image(); img.onload = () => { if (signatureRole === role && !inked && !signatureCleared) { ctx.drawImage(img, 0, 0, canvas.width, canvas.height); inked = true; } }; img.src = ex; }
+  try { await $('signatureLayer').requestFullscreen?.(); await screen.orientation?.lock?.('landscape'); } catch (_) { /* fallback CSS landscape */ }
+}
+function clearSignature(user = false) { ctx.clearRect(0, 0, canvas.width, canvas.height); inked = false; if (user) signatureCleared = true; }
+function pt(e) {
+  const r = canvas.getBoundingClientRect();
+  const rot = matchMedia('(orientation: portrait) and (max-width: 760px)').matches;
+  const x = rot ? e.clientY - r.top : e.clientX - r.left;
+  const y = rot ? r.right - e.clientX : e.clientY - r.top;
+  return [x / (rot ? r.height : r.width) * canvas.width, y / (rot ? r.width : r.height) * canvas.height];
+}
+canvas.addEventListener('pointerdown', e => { e.preventDefault(); drawing = true; inked = true; signatureCleared = false; canvas.setPointerCapture(e.pointerId); const [x, y] = pt(e); ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + .2, y + .2); ctx.stroke(); });
+canvas.addEventListener('pointermove', e => { if (!drawing) return; e.preventDefault(); ctx.lineTo(...pt(e)); ctx.stroke(); });
+for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) canvas.addEventListener(ev, () => drawing = false);
+async function closeSignature() {
+  $('signatureLayer').hidden = true;
+  if ($('consumerLayer').hidden && $('eduLayer').hidden) document.body.classList.remove('locked');
+  $('consumerLayer').inert = false; $('consumerLayer').removeAttribute('aria-hidden');
+  try { screen.orientation?.unlock?.(); if (document.fullscreenElement === $('signatureLayer')) await document.exitFullscreen(); } catch (_) {}
+}
+function syncConsent() {
+  const c = $('consent').checked;
+  $('consentRow').classList.toggle('done', c); $('consentRow').classList.remove('attn'); $('consent').removeAttribute('aria-invalid');
+  $('consentHead').textContent = c ? 'Sudah dikonfirmasi' : 'Ketuk untuk konfirmasi';
+}
+$('consent').addEventListener('change', syncConsent);
+function saveSignature() {
+  if (!inked && !signatureCleared) { $('consentHead').textContent = 'Isi tanda tangan atau tekan Batal'; return; }
+  if (signatureRole === 'customer' && inked && !$('consent').checked) {
+    $('consentRow').classList.add('attn'); $('consent').setAttribute('aria-invalid', 'true'); $('consentHead').textContent = 'Centang konfirmasi sebelum menyimpan'; $('consent').focus(); return;
+  }
+  if (inked) d.signatures[signatureRole] = canvas.toDataURL('image/png'); else delete d.signatures[signatureRole];
+  if (signatureRole === 'customer') d.consent = inked;
+  save(); const wasCustomer = signatureRole === 'customer'; closeSignature();
+  if (wasCustomer) closeConsumerFlow(); else renderEditor();
+}
+
+/* ====== DOKUMEN / OUTPUT ====== */
+function reportData() {
+  const f = d.info;
+  return {schema:'risk-consent/1', info:{...f}, areas:found().map(a => { const s = A(a.id); return {id:a.id, subs:[...s.subs].sort(), where:s.where || null, note:s.note || null, other:s.other || null, risk:s.risk || null}; }),
+    stop:stopList().map(x => x.area.id + ':' + x.text), decision:d.decision || null, explained:!!d.explained, photo:!!d.photo, educated:educated(), notes:d.notes || null, objection:d.objection || null,
+    signer:{name:d.signerName || null, role:d.signerRole || null}, consent:!!d.consent, signatures:Object.fromEntries(roleNames().map(([r]) => [r, !!d.signatures[r]])), open_issues:warnings()};
+}
+function reportCode(o) { const t = JSON.stringify(o); let h = 5381; for (let i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) >>> 0; return h.toString(16).toUpperCase().padStart(8, '0'); }
+function validationBlock() {
+  const r = reportData(), code = reportCode(r), f = d.info;
+  const areas = found().map(a => a.id.toUpperCase() + '(' + (a.free ? '1' : A(a.id).subs.length) + ')').join(', ') || '-';
+  return `<div class="validation-block"><b>DATA VALIDASI</b>  KODE: <b>${code}</b>  STATUS: ${r.open_issues.length ? 'DRAFT (' + r.open_issues.length + ' ISIAN BELUM LENGKAP)' : 'LENGKAP'}<br>
+    PERSETUJUAN PEMASANGAN KONDISI BERISIKO | WO: ${esc(f.wo || '-')} | TANGGAL: ${esc(f.date || '-')}<br>
+    AREA DITANDAI: ${esc(areas)} | STOP: ${stopList().length ? 'YA (' + stopList().length + ')' : 'TIDAK'} | KEPUTUSAN: ${esc((d.decision || '-').toUpperCase())}<br>
+    EDUKASI KONSUMEN: ${educated() ? 'DITAMPILKAN' : 'BELUM'} | FOTO: ${d.photo ? 'YA' : 'TIDAK'}</div>`;
+}
+function riskRows() {
+  return AREAS.map(a => {
+    const s = d.areas[a.id], on = !!s?.on;
+    let ind, ris, extra = '';
+    if (a.free) { ind = on ? nl2br(s.other) : ''; ris = on ? nl2br(s.risk) : ''; if (on && s.stop) extra = '<div class="detail"><b>[STOP]</b> Kondisi membahayakan keselamatan.</div>'; }
+    else {
+      ind = esc(a.indikasi); ris = esc(a.risiko);
+      if (on) {
+        const items = s.subs.map(id => { const sub = subOf(a, id); return sub ? esc(sub[1]) + (sub[2] === 's' ? ' <b>[STOP]</b>' : '') : ''; }).filter(Boolean);
+        const bits = [];
+        if (items.length) bits.push('<b>Ditemukan:</b> ' + items.join('; '));
+        if (s.where) bits.push('<b>Titik:</b> ' + esc(s.where));
+        if (s.note) bits.push('<b>Catatan:</b> ' + esc(s.note));
+        if (bits.length) extra = '<div class="detail">' + bits.join('<br>') + '</div>';
+      }
+    }
+    return `<tr><td class="chk">${on ? '✓' : ''}</td><td>${esc(a.name)}</td><td>${ind}${extra}</td><td>${ris}</td></tr>`;
+  }).join('');
+}
+function renderDocument(w) {
+  const f = d.info, prod = PRODUCTS.find(p => p[0] === f.productType)?.[1];
+  const dec = decisionObj(), bl = blocked(), stops = stopList();
+  const signerName = d.signerName || f.customer;
+  const sig = (role, label, name) => `<div class="signature"><div class="role">${label}</div><div>Nama: ${textOrDash(name)}${role === 'customer' && d.signerRole ? ' <small>(' + esc(d.signerRole) + ')</small>' : ''}</div><div>Tanggal: ${fmtDate(f.date)}</div><div>Tanda Tangan:</div>${sigImage(d.signatures[role]) || '<div class="blank"></div>'}<span class="line">( ${esc(name || '__________________________')} )</span></div>`;
+  const status = bl ? `<div class="status-box">STATUS: PEMASANGAN TIDAK DILANJUTKAN${dec ? ' — ' + esc(dec.label.toUpperCase()) : ''}.${stops.length ? '<br>Kondisi STOP: ' + esc(stops.map(x => x.area.name + ' (' + x.text + ')').join('; ')) + '.' : ''}<br>Persetujuan konsumen tidak diminta pada status ini.</div>` : '';
+  const consent = bl ? `<h2>Persetujuan Konsumen</h2><p>Tidak berlaku pada status ini.</p>` : `<h2>Persetujuan Konsumen</h2><p class="consent">${esc(CONSENT_TEXT)}</p>`;
+  const notes = `<p><b>Keputusan:</b> ${dec ? esc(dec.label) : '-'}${d.photo ? ' &nbsp;|&nbsp; <b>Foto kondisi:</b> dilampirkan pada WO / GCCS' : ''}<br><b>Catatan teknisi:</b> ${textOrDash(d.notes)}<br><b>Keberatan / catatan konsumen:</b> ${textOrDash(d.objection)}</p>`;
+  return `<div class="kop"><div class="web">modena.com</div><div class="kop-info">Jl. Prof. Dr. Satrio C-4 No. 13, Jakarta 12950, Indonesia<br><b>Call Center 1500715</b><br>Senin - Jumat: 07.00 - 19.00 WIB<br>Sabtu - Minggu: 07.00 - 17.00 WIB</div></div><div class="kop-rule"></div>
+    <h1>${FORM_TITLE}</h1><p class="sub">${w.length ? '<span class="draft">DRAFT</span>' : '&nbsp;'}</p>
+    <table class="info-table"><thead><tr><th colspan="2">Data Konsumen</th><th colspan="2">Data Produk / Pekerjaan</th></tr></thead><tbody>
+      <tr><td>Nama</td><td>${textOrDash(f.customer)}</td><td>Model</td><td>${textOrDash(f.model)}${prod ? ' <small>(' + esc(prod) + ')</small>' : ''}</td></tr>
+      <tr><td>No. Tlp/HP</td><td>${textOrDash(f.phone)}</td><td>No. Seri</td><td>${textOrDash(f.serial)}</td></tr>
+      <tr><td>Alamat</td><td>${textOrDash(f.address)}${f.landmark ? '<br><small>' + esc(f.landmark) + '</small>' : ''}</td><td>No. Work Order</td><td>${textOrDash(f.wo)}</td></tr></tbody></table>
+    <h2>Panduan Pengisian Teknisi</h2><p class="guide-note">${esc(GUIDE_TEXT)}</p>
+    <table class="risk-table"><thead><tr><th style="width:5%">✓</th><th style="width:15%">Area Pemeriksaan</th><th style="width:44%">Indikasi Kondisi Berisiko</th><th>Risiko / Potensi Akibat</th></tr></thead><tbody>${riskRows()}</tbody></table>
+    ${status}${consent}${notes}
+    <div class="signatures">${sig('technician', 'Teknisi MODENA', f.technician)}${bl ? '' : sig('customer', 'Konsumen', signerName)}</div>
+    <p class="footer">Dokumen dibuat otomatis oleh sistem (Form Persetujuan Pemasangan) · ${esc(new Date().toLocaleString('id-ID', {timeZone:'Asia/Jakarta'}))} WIB. Hak garansi, komplain, dan klaim tetap berlaku menurut ketentuan.</p>`;
+}
+const OUT_W = 1280, OUT_H = 1280;
+let outObs, outputZoom = false;
+function fitFullOutput() {
+  const frame = $('outputFrame'), paper = $('printArea'), content = paper.querySelector('.output-content');
+  if (!frame?.clientWidth || !content) return;
+  const avail = OUT_W - 48;
+  content.style.transform = 'none';
+  const inner = Math.min(1, avail / Math.max(content.offsetHeight, content.scrollHeight), avail / Math.max(content.offsetWidth, content.scrollWidth));
+  content.style.transform = `scale(${inner})`;
+  content.style.left = ((OUT_W - content.offsetWidth * inner) / 2) + 'px';
+  const fit = Math.min(1, frame.clientWidth / OUT_W);
+  const zoomed = outputZoom && fit < 0.8, ps = zoomed ? Math.min(1, Math.max(fit, 0.7)) : fit;
+  paper.style.transform = `scale(${ps})`;
+  frame.style.overflow = zoomed ? 'auto' : 'hidden';
+  let sz = frame.querySelector('.output-sizer');
+  if (zoomed) { if (!sz) { sz = document.createElement('div'); sz.className = 'output-sizer'; frame.appendChild(sz); } sz.style.width = Math.ceil(OUT_W * ps) + 'px'; sz.style.height = Math.ceil(OUT_H * ps) + 'px'; } else sz?.remove();
+  const h = (zoomed ? Math.min(Math.ceil(OUT_H * ps), Math.round(innerHeight * 0.7)) : Math.ceil(OUT_H * ps)) + 'px';
+  if (frame.style.height !== h) frame.style.height = h;
+}
+function renderFullOutput(w) {
+  const prev = $('printArea').querySelector('.output-content'); if (prev) outObs?.unobserve(prev);
+  $('printArea').innerHTML = `<div class="output-content">${renderDocument(w)}</div>`;
+  fitFullOutput(); const c = $('printArea').firstElementChild; outObs?.observe(c);
+}
+if (typeof ResizeObserver === 'function') { outObs = new ResizeObserver(fitFullOutput); outObs.observe($('outputFrame')); } else addEventListener('resize', fitFullOutput);
+function showPreview() {
+  if (!requireCompletion([0, 1, 2])) return;
+  const w = warnings();
+  $('previewWarnings').innerHTML = w.length ? `<div class="warning"><strong>DRAFT</strong><ul>${w.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : '<div class="info">Dokumen siap. <strong>Unduh sekarang.</strong> Form ini tidak menyimpan data, jadi hasilnya hilang kalau tab ditutup.</div>';
+  $('editor').hidden = true; $('previewView').hidden = false; renderFullOutput(w);
+  clearExportLink(); $('exportStatus').hidden = true; window.scrollTo(0, 0);
+  const nav = $('completionNavigator'); if (nav) nav.hidden = true;
+}
+function outputReady() {
+  if (!warnings().length) return true;
+  $('previewView').hidden = true; $('editor').hidden = false; renderEditor(); requireCompletion([0, 1, 2]); return false;
+}
+/* ====== EKSPOR ====== */
+const exportLoads = {}; let exportBusy = false, exportUrl = '';
+function loadScript(src, ready) {
+  if (ready()) return Promise.resolve();
+  if (!exportLoads[src]) exportLoads[src] = new Promise((res, rej) => {
+    const s = document.createElement('script'); s.src = src; s.async = true;
+    s.onload = () => ready() ? res() : rej(new Error('Modul ekspor tidak siap.'));
+    s.onerror = () => { s.remove(); rej(new Error('Modul ekspor gagal dimuat. Periksa koneksi internet.')); };
+    document.head.appendChild(s);
+  }).catch(e => { delete exportLoads[src]; throw e; });
+  return exportLoads[src];
+}
+function outputName() { return ['Form_Persetujuan_Pemasangan', d.info.productType || 'produk', d.info.wo || 'Tanpa_WO'].join('_').replace(/[^A-Za-z0-9._-]+/g, '_').replace(/_+/g, '_').slice(0, 110); }
+function clearExportLink() { if (exportUrl) URL.revokeObjectURL(exportUrl); exportUrl = ''; }
+async function saveFile(blob, name, format) {
+  const status = $('exportStatus');
+  let done = false;
+  try {
+    const dl = typeof claude !== 'undefined' && claude?.use ? await claude.use('downloads') : null;
+    if (dl) { await dl.save({filename:name, data:blob}); status.textContent = `${name} (${Math.ceil(blob.size / 1000)} KB) disimpan.`; done = true; exported = true; }
+  } catch (err) { if (err && err.code === 'declined') { status.textContent = 'Penyimpanan dibatalkan.'; return; } }
+  if (done) return;
+  exported = true;
+  exportUrl = URL.createObjectURL(blob);
+  const link = document.createElement('a'); link.href = exportUrl; link.download = name; link.textContent = 'ketuk di sini untuk menyimpan.';
+  status.textContent = `${name} (${Math.ceil(blob.size / 1000)} KB) siap. Jika unduhan belum mulai, `; status.appendChild(link);
+  if (format === 'jpg') { const img = document.createElement('img'); img.src = exportUrl; img.alt = 'Hasil form'; status.appendChild(img); }
+  try { link.click(); } catch (_) {}
+}
+async function captureFullOutput() {
+  await loadScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js', () => typeof window.html2canvas === 'function');
+  await document.fonts?.ready;
+  await Promise.allSettled(Array.from($('printArea').querySelectorAll('img')).map(i => i.decode?.()));
+  fitFullOutput();
+  const c = await window.html2canvas($('printArea'), {backgroundColor:'#fff', scale:2, windowWidth:1600, width:OUT_W, height:OUT_H, scrollX:0, scrollY:0, useCORS:true, logging:false,
+    onclone(doc) { const p = doc.getElementById('printArea'), fr = doc.getElementById('outputFrame'); p.style.transform = 'none'; p.style.boxShadow = 'none'; fr.style.width = OUT_W + 'px'; fr.style.height = OUT_H + 'px'; }});
+  if (!c.width || c.width !== c.height) throw new Error('Ukuran gambar belum sesuai rasio 1:1.');
+  return c;
+}
+async function squareJpeg(src, max = 950000) {
+  let w = src; const qs = [.97, .92, .86, .80, .74, .66, .58, .50, .42];
+  for (let a = 0; a < 12; a++) {
+    for (const q of qs) { const b = await new Promise(r => w.toBlob(r, 'image/jpeg', q)); if (!b) throw new Error('Gambar JPG tidak dapat dibuat.'); if (b.size <= max) { if (w !== src) { w.width = 1; w.height = 1; } return b; } }
+    const n = document.createElement('canvas'); n.width = n.height = Math.max(128, Math.floor(w.width * .8));
+    const x = n.getContext('2d', {alpha:false}); x.imageSmoothingQuality = 'high'; x.drawImage(w, 0, 0, n.width, n.height);
+    if (w !== src) { w.width = 1; w.height = 1; } w = n;
+  }
+  throw new Error('Gambar belum berhasil dikompres di bawah 1 MB.');
+}
+async function makePdf(jpeg) {
+  const pdf = new window.jspdf.jsPDF({orientation:'portrait', unit:'mm', format:[240, 240], compress:true});
+  pdf.addImage(new Uint8Array(await jpeg.arrayBuffer()), 'JPEG', 0, 0, 240, 240);
+  return pdf.output('blob');
+}
+async function downloadOutput(format) {
+  if (exportBusy || !outputReady()) return;
+  exportBusy = true; clearExportLink();
+  const name = outputName() + '_1x1', status = $('exportStatus');
+  status.hidden = false; status.classList.remove('error'); status.textContent = `Menyiapkan ${format.toUpperCase()} 1:1…`;
+  const btns = document.querySelectorAll('#previewView .preview-toolbar button'); btns.forEach(b => b.disabled = true);
+  let cv;
+  try {
+    if (format === 'pdf') await loadScript('https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js', () => typeof window.jspdf?.jsPDF === 'function');
+    cv = await captureFullOutput();
+    let jpeg = await squareJpeg(cv);
+    if (format === 'jpg') await saveFile(jpeg, name + '.jpg', 'jpg');
+    else {
+      let blob = await makePdf(jpeg);
+      for (let lim = 850000; blob.size >= 1000000 && lim >= 250000; lim -= 100000) { jpeg = await squareJpeg(cv, lim); blob = await makePdf(jpeg); }
+      if (blob.size >= 1000000) throw new Error('PDF belum berhasil dikompres di bawah 1 MB.');
+      await saveFile(blob, name + '.pdf', 'pdf');
+    }
+  } catch (err) { status.classList.add('error'); status.textContent = `Gagal membuat ${format.toUpperCase()}: ${err.message || 'coba lagi.'}`; }
+  finally { if (cv) { cv.width = 1; cv.height = 1; } exportBusy = false; btns.forEach(b => b.disabled = false); }
+}
+
+/* ====== AKSI KLIK ====== */
+function armConfirm(btn, label, fn) {
+  if (btn.dataset.armed) { clearTimeout(Number(btn.dataset.armed)); delete btn.dataset.armed; btn.innerHTML = btn.dataset.orig; fn(); return; }
+  btn.dataset.orig = btn.innerHTML; if (btn.classList.contains('bigcard')) btn.querySelector('.bc-s').textContent = label; else btn.textContent = label;
+  btn.dataset.armed = String(setTimeout(() => { btn.innerHTML = btn.dataset.orig; delete btn.dataset.armed; }, 4000));
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-action]'); if (!b) return;
+  const act = b.dataset.action;
+  if (act === 'start') {
+    const go = () => { d = fresh(); step = 0; issuesShown = []; save(); openWorkspace(); };
+    go();
+  }
+  else if (act === 'resume') openWorkspace();
+  else if (act === 'home') goHome();
+  else if (act === 'step') navigateStep(Number(b.dataset.step));
+  else if (act === 'next') navigateStep(step + 1);
+  else if (act === 'previous') { issuesShown = []; setStep(step - 1); renderEditor(); }
+  else if (act === 'preview') showPreview();
+  else if (act === 'jump') jumpTo(b.dataset.target);
+  else if (act === 'edit') { clearExportLink(); $('previewView').hidden = true; $('editor').hidden = false; renderEditor(); window.scrollTo(0, 0); }
+  else if (act === 'zoom-output') { outputZoom = !outputZoom; b.setAttribute('aria-pressed', String(outputZoom)); b.querySelector('span').textContent = outputZoom ? 'Perkecil' : 'Perbesar'; fitFullOutput(); }
+  else if (act === 'download-jpg') downloadOutput('jpg');
+  else if (act === 'download-pdf') downloadOutput('pdf');
+  else if (act === 'print') { if (outputReady()) { try { window.print(); } catch (_) {} const s = $('exportStatus'); s.hidden = false; s.classList.remove('error'); s.textContent = 'Jika dialog cetak tidak muncul, gunakan Unduh PDF lalu cetak dari berkas tersebut.'; } }
+  else if (act === 'reset') armConfirm(b, 'Klik lagi untuk menghapus semua isi', () => { d = fresh(); step = 0; issuesShown = []; save(); renderEditor(); window.scrollTo(0, 0); });
+  else if (act === 'quick') { const q = AREA_BY.lainnya.quick[Number(b.dataset.q)]; addLain(q); invalidateSignatures(); dirty = true; save(); renderEditor(); setTimeout(() => $('lain-risk-' + (lainItems().length - 1))?.focus(), 0); }
+  else if (act === 'lain-add') { addLain(); invalidateSignatures(); dirty = true; save(); renderEditor(); setTimeout(() => $('lain-text-' + (lainItems().length - 1))?.focus(), 0); }
+  else if (act === 'lain-del') { lainItems().splice(Number(b.dataset.i), 1); syncLain(); invalidateSignatures(); dirty = true; save(); renderEditor(); }
+  else if (act === 'glos') openGlos();
+  else if (act === 'glos-close') closeGlos();
+  else if (act === 'edu-open') openEdu();
+  else if (act === 'edu-close') closeEdu();
+  else if (act === 'edu-prev') { if (eduIdx > 0) { eduIdx--; renderEdu(); } }
+  else if (act === 'edu-next') { if (eduIdx < eduSlides().length - 1) { eduIdx++; renderEdu(); } else closeEdu(); }
+  else if (act === 'signature') { if (b.dataset.role === 'customer') { if (requireCompletion([0, 1]) && !blocked()) openConsumerFlow(); } else if (requireCompletion([0, 1])) openSignature(b.dataset.role); }
+  else if (act === 'customer-review') showConsumerView('document');
+  else if (act === 'customer-back') showConsumerView('confirm');
+  else if (act === 'customer-sign') proceedCustomerSignature();
+  else if (act === 'close-consumer') closeConsumerFlow();
+  else if (act === 'clear-signature') clearSignature(true);
+  else if (act === 'cancel-signature') closeSignature();
+  else if (act === 'save-signature') saveSignature();
+});
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if ($('glosLayer') && !$('glosLayer').hidden) closeGlos();
+  else if (!$('signatureLayer').hidden) closeSignature();
+  else if (!$('eduLayer').hidden) closeEdu();
+  else if (!$('consumerLayer').hidden) closeConsumerFlow();
+});
+initStatic();
+
+addEventListener('beforeunload', e => { if (dirty && !exported) { e.preventDefault(); e.returnValue = ''; } });
+
+/* ====== PANDU (simulasi panduan) ====== */
+(function () {
+  const tm = inner => '<div class="tm tour-dim">' + inner + '</div>';
+  let st = {on:false};
+  const STEPS = [
+    {t:'Halo!', x:'Saya Pandu. Simulasi ini menunjukkan kegunaan form dan cara mengisinya.', h:'', m:'Halo! Saya Pandu. Ini panduan singkat form-nya.',
+     r:() => tm('<div style="text-align:center;padding:28px 8px"><div style="font-size:1.1rem;font-weight:700">Persetujuan Pemasangan</div><div style="color:#667085;margin-top:6px">Kondisi berisiko dicatat, dijelaskan, lalu disetujui</div></div>')},
+    {t:'Kegunaan form', x:'Dipakai bila pemeriksaan lokasi menemukan kondisi berisiko, tetapi konsumen tetap meminta pemasangan.', h:'', m:'Form ini dipakai sebelum pemasangan.',
+     r:() => tm('<ul><li class="y"><i>✓</i>Mencatat kondisi lokasi yang berisiko</li><li class="y"><i>✓</i>Menjelaskan risikonya kepada konsumen</li><li class="y"><i>✓</i>Merekam persetujuan konsumen bila disetujui</li></ul>')},
+    {t:'Kapan tidak boleh dipakai', x:'Kondisi STOP tidak boleh disetujui lewat form. Pemasangan ditunda atau dieskalasi.', h:'', m:'Ada kondisi yang tidak boleh disetujui.',
+     r:() => tm('<ul><li class="n"><i>✕</i>Tercium bau gas</li><li class="n"><i>✕</i>Stop kontak panas atau kabel terkelupas</li><li class="n"><i>✕</i>Kebocoran aktif dekat listrik</li><li class="n"><i>✕</i>Struktur tidak kuat menahan unit</li><li class="y"><i>→</i>Tunda atau eskalasi ke Technical Support</li></ul>')},
+    {t:'1. Pilih risiko yang ditemukan', x:'Buka tiap area, lalu tandai ✓ bila kondisinya ditemukan. Area berlabel prioritas paling relevan untuk produk.', h:'Klik kartu Instalasi Listrik.',
+     r:() => tm('<h4>Pemeriksaan lokasi</h4><div class="tm-grid"><div class="tm-card ' + (st.on ? 'on' : '') + ' tour-keep" data-hl><b>Instalasi Listrik</b>' + (st.on ? '✓ Ditemukan' : 'Prioritas periksa') + '</div><div class="tm-card"><b>Instalasi Air</b>Prioritas periksa</div><div class="tm-card"><b>Instalasi Gas</b>Prioritas periksa</div><div class="tm-card"><b>Dinding / Struktur</b></div></div>')},
+    {t:'2. Pilih yang paling sesuai', x:'Di tiap area ada indikasi sesuai template, temuan tambahan, dan kondisi STOP. Panduan cek, caution, dan tindakan tersedia di bawahnya.', h:'Perhatikan tanda STOP.',
+     r:() => tm('<h4>Instalasi Listrik</h4><ul><li class="y"><i>✓</i>Tidak tersedia grounding</li><li class="y"><i>✓</i>Kapasitas daya tidak memadai</li><li class="n tour-keep" data-hl><i>!</i>Stop kontak panas atau gosong <b style="color:#c4321c">STOP</b></li></ul>')},
+    {t:'3. Isi data konsumen dan produk', x:'Isi nama, telepon, alamat, tipe produk, dan model. Tipe produk menentukan area yang diprioritaskan.', h:'Perhatikan kolom tipe produk yang menyala.',
+     r:() => tm('<h4>Data konsumen dan produk</h4><div class="tm-row"><input class="tm-input" placeholder="Nama konsumen" disabled><input class="tm-input" placeholder="No. Tlp/HP" disabled></div><div class="tm-row tour-keep" data-hl><input class="tm-input" value="Water Heater" disabled></div>')},
+    {t:'4. Edukasi konsumen', x:'Tombol Edukasi konsumen membuka layar berbahasa awam: apa temuannya, risikonya, dan pilihan konsumen. Dokumen output tetap sama.', h:'Klik tombol yang menyala.',
+     r:() => tm('<h4>Edukasi konsumen</h4><div class="tm-card" style="margin-bottom:8px"><b>Instalasi Listrik</b>Risiko: korsleting, panas berlebih, kerusakan komponen.</div><button class="tm-btn tour-keep" data-hl style="background:var(--ac);color:#fff;border-color:var(--ac)">Buka edukasi konsumen</button>')},
+    {t:'5. Pilih keputusan', x:'Dilanjutkan atas persetujuan, ditunda, eskalasi, atau dibatalkan. Bila ada STOP, pilihan dilanjutkan otomatis nonaktif.', h:'',
+     r:() => tm('<h4>Keputusan pemasangan</h4><ul><li class="n"><i>○</i>Dilanjutkan (nonaktif karena ada STOP)</li><li class="y tour-keep" data-hl><i>●</i>Eskalasi ke Technical Support</li><li class="y"><i>○</i>Ditunda</li></ul>')},
+    {t:'6. Konsumen membaca dan tanda tangan', x:'Konsumen membaca pernyataan persetujuan, mengisi nama, mencentang konfirmasi, lalu tanda tangan di layar landscape.', h:'Teknisi juga tanda tangan.',
+     r:() => tm('<div class="tm-row"><div class="tm-sig tour-keep" data-hl style="flex:1">Tanda tangan konsumen</div><div class="tm-sig" style="flex:1">Tanda tangan teknisi</div></div>')},
+    {t:'7. Unduh dan kirim', x:'Tinjau dokumen, unduh JPG atau PDF, lalu unggah ke sistem GCCS atau kirim ke Technical Support.', h:'Selesai. Tutup panduan dan coba form asli.',
+     r:() => tm('<div class="tm-row"><button class="tm-btn">Unduh JPG</button><button class="tm-btn">Unduh PDF</button><button class="tm-btn">Cetak</button></div>')}
+  ];
+  const DD = [
+    ['Ikuti satu per satu, bisa dijeda.', ''],
+    ['Pakai bila konsumen tetap meminta pemasangan.', 'Pakai untuk kasus yang tidak berisiko.'],
+    ['Tunda dan eskalasi bila ada STOP.', 'Meminta konsumen menyetujui kondisi STOP.'],
+    ['Tandai hanya yang benar-benar ditemukan.', 'Menandai semua area tanpa memeriksa.'],
+    ['Pilih indikasi yang spesifik dan tulis titiknya.', 'Mengabaikan tanda STOP.'],
+    ['Pilih tipe produk sesuai WO.', 'Mengosongkan tipe produk.'],
+    ['Baca bersama, beri waktu bertanya.', 'Menekan konsumen untuk menyetujui.'],
+    ['Pilih keputusan sesuai kesepakatan.', 'Memilih lanjut saat ada STOP.'],
+    ['Konsumen baca dulu, baru tanda tangan.', 'Mengisi atau menandatangani atas nama konsumen.'],
+    ['Unduh lalu kirim sesuai alur.', 'Mengubah isi setelah tanda tangan tanpa mengulang.']
+  ];
+  const MS = ['Pilih tipe produk dulu.', 'Klik kartu yang menyala.', 'STOP berarti jangan lanjut.', 'Konsumen baca dulu, ya.', 'Pilih sesuai kesepakatan.', 'Tanda tangan di sini.', 'Unduh lalu kirim.'];
+  const PROPS = {clipboard:['..##..','######','#....#','#.##.#','#....#','#.##.#','######'], wrench:['##..##','#....#','##..##','..##..','..##..','..##..','..##..'], question:['.####.','#....#','....#.','...#..','......','...#..'], shield:['######','#....#','#....#','#....#','.#..#.','..##..'], folder:['###...','######','#....#','#....#','#....#','######'], pin:['.####.','.#..#.','..##..','..##..','..#...','..#...'], magnifier:['.####.','#....#','#....#','.####.','....#.','.....#'], doc:['#####.','#...##','#....#','#.##.#','#....#','######'], rocket:['..##..','.####.','.####.','.####.','#.##.#','..##..']};
+  const VIS = [{pose:'wave'},{pose:'point',prop:'clipboard'},{pose:'warn',prop:'shield'},{pose:'point',prop:'wrench'},{pose:'think',prop:'magnifier'},{pose:'point',prop:'pin'},{pose:'point',prop:'doc'},{pose:'think',prop:'question'},{pose:'point',prop:'pin'},{pose:'cheer',prop:'rocket'}];
+  function grid(pose, fr, prop) {
+    const g = Array.from({length:16}, () => Array(16).fill(0)), P = (x, y) => { if (x >= 0 && x < 16 && y >= 0 && y < 16) g[y][x] = 1; };
+    const oy = (pose === 'cheer' && fr % 2) || (pose === 'wave' && fr % 2) ? -1 : 0, L = pts => pts.forEach(([x, y]) => P(x, y + oy));
+    L([[3,1],[4,1],[5,1],[6,1],[7,1],[2,2],[8,2],[2,3],[8,3],[2,4],[8,4],[3,5],[4,5],[5,5],[6,5],[7,5],[4,3],[6,3]]);
+    if (pose !== 'think') L([[5,4]]);
+    L([[5,6],[5,7],[5,8],[5,9],[5,10],[5,11]]);
+    const f = fr % 2, wide = pose === 'cheer';
+    L(wide ? [[4,12],[3,13],[2,14],[6,12],[7,13],[8,14]] : (pose === 'wave' && f ? [[4,12],[4,13],[3,14],[6,12],[6,13],[6,14]] : [[4,12],[4,13],[3,14],[6,12],[6,13],[7,14]]));
+    const idleL = [[4,8],[3,9]];
+    const A = {wave:[idleL, f ? [[6,6],[7,5],[8,5]] : [[6,6],[7,5],[8,4]]], point:[idleL, f ? [[6,7],[7,7],[8,7]] : [[6,7],[7,7],[8,7],[9,7]]], think:[idleL, f ? [[6,7],[7,7]] : [[6,7],[7,6]]],
+      warn:[f ? [[4,6],[3,6],[2,6]] : [[4,6],[3,5],[2,4]], f ? [[6,6],[7,6],[8,6]] : [[6,6],[7,5],[8,4]]], cheer:[f ? [[4,6],[3,6],[2,6]] : [[4,6],[3,5],[2,4]], f ? [[6,6],[7,6],[8,6]] : [[6,6],[7,5],[8,4]]]}[pose] || [idleL, [[6,8],[7,9]]];
+    A.forEach(L);
+    if (prop && PROPS[prop]) PROPS[prop].forEach((row, y) => [...row].forEach((c, x) => { if (c === '#') P(10 + x, 5 + y - (oy ? 1 : 0)); }));
+    return g;
+  }
+  const paint = g => { let r = ''; for (let y = 0; y < 16; y++) for (let x = 0; x < 16; x++) if (g[y][x]) r += `<rect x="${x}" y="${y}" width="1" height="1"/>`; $('tourFace').innerHTML = `<svg viewBox="0 0 16 16" width="96" height="96" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true">${r}</svg>`; };
+  let faceT = null, faceI = 0, typeT = null;
+  function setFace(v) { clearInterval(faceT); faceI = 0; const tick = () => { paint(grid(v.pose || 'point', faceI, v.prop)); faceI++; }; tick(); if (!reduced()) faceT = setInterval(tick, 320); }
+  function say(t) { clearInterval(typeT); const b = $('tourBubble'); if (reduced()) { b.textContent = t; return; } b.textContent = ''; let n = 0; typeT = setInterval(() => { b.textContent = t.slice(0, ++n); if (n >= t.length) clearInterval(typeT); }, 11); }
+  const CLICKSTEP = 3, STEP_MS = 3800; let i = 0, playing = true, timer = null, clickTimer = null;
+  const clearT = () => { clearTimeout(timer); clearTimeout(clickTimer); };
+  function arm() {
+    clearT(); const bar = $('tourAuto'); bar.style.transition = 'none'; bar.style.width = '0';
+    if (!playing) return;
+    void bar.offsetWidth; bar.style.transition = 'width ' + STEP_MS + 'ms linear'; bar.style.width = '100%';
+    if (i === CLICKSTEP) clickTimer = setTimeout(() => { if (playing && i === CLICKSTEP) { st.on = true; show(true); } }, 1500);
+    timer = setTimeout(() => { if (i < STEPS.length - 1) { i++; show(); } else { playing = false; clearT(); syncPlay(); } }, STEP_MS);
+  }
+  const syncPlay = () => { $('tourPlay').textContent = playing ? 'Jeda' : (i === STEPS.length - 1 ? 'Ulangi' : 'Putar'); };
+  function show(keep) {
+    const s = STEPS[i];
+    $('tourStage').innerHTML = s.r();
+    const hl = $('tourStage').querySelector('[data-hl]');
+    if (hl) { hl.classList.add('tour-hl'); hl.addEventListener('click', () => { if (i === CLICKSTEP) { st.on = true; show(true); } else next(); }); }
+    if (!keep) { setFace(VIS[i] || {pose:'point'}); say(s.m || MS[Math.max(0, i - 3)] || ''); }
+    $('tourTitle').textContent = s.t; $('tourText').textContent = s.x; $('tourHint').textContent = s.h;
+    $('tourCount').textContent = 'Langkah ' + (i + 1) + ' dari ' + STEPS.length;
+    $('tourFill').style.width = ((i + 1) / STEPS.length * 100) + '%';
+    $('tourPrev').disabled = i === 0; $('tourNext').textContent = i === STEPS.length - 1 ? 'Selesai' : 'Lanjut';
+    $('tourDd').innerHTML = '<div class="do"><b>Lakukan</b><span>' + DD[i][0] + '</span></div>' + (DD[i][1] ? '<div class="dont"><b>Hindari</b><span>' + DD[i][1] + '</span></div>' : '');
+    syncPlay(); if (!keep) arm();
+  }
+  function next() { if (i < STEPS.length - 1) { i++; show(); } else close(); }
+  function open() { i = 0; st.on = false; playing = true; $('tour').hidden = false; show(); $('tourNext').focus(); }
+  function close() { clearT(); clearInterval(faceT); clearInterval(typeT); $('tour').hidden = true; $('tourOpen').focus(); }
+  $('tourPlay').addEventListener('click', () => { if (!playing && i === STEPS.length - 1) { i = 0; st.on = false; } playing = !playing; show(); });
+  $('tourOpen').addEventListener('click', open); $('tourClose').addEventListener('click', close);
+  $('tourNext').addEventListener('click', next); $('tourPrev').addEventListener('click', () => { if (i > 0) { i--; show(); } });
+  $('tour').addEventListener('click', e => { if (e.target === $('tour')) close(); });
+  document.addEventListener('keydown', e => { if ($('tour').hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowRight') next(); if (e.key === 'ArrowLeft' && i > 0) { i--; show(); } });
+})();
+
+/* ====== DECISION TREE: bantu tentukan tingkat risiko ====== */
+const LV = {s:['Sangat berisiko (STOP)','stop'], c:['Berisiko','mid'], e:['Waspada','warn']};
+let tr = {screen:'area', area:'', picks:[], draft:{text:'', risk:''}};
+function treeLayer() {
+  let L = $('treeLayer');
+  if (!L) {
+    L = document.createElement('div'); L.id = 'treeLayer'; L.className = 'glos-layer no-print'; L.hidden = true; L.setAttribute('role', 'dialog'); L.setAttribute('aria-modal', 'true'); L.setAttribute('aria-label', 'Decision tree tingkat risiko');
+    L.innerHTML = `<div class="glos-card"><div class="glos-head"><h2>${ic('help','me')}Bantu tentukan tingkat risiko</h2><button class="btn" type="button" data-tree="close">${ic('x','me')}Tutup</button></div><div class="glos-scroll" id="treeBody"></div></div>`;
+    document.body.appendChild(L);
+  }
+  return L;
+}
+function openTree() { tr = {screen:'area', area:'', picks:[], draft:{text:'', risk:''}}; treeLayer().hidden = false; document.body.classList.add('locked'); renderTree(); }
+function closeTree() { const L = $('treeLayer'); if (L) L.hidden = true; document.body.classList.remove('locked'); }
+const opt = (attrs, icon, title, sub, cls = '') => `<button type="button" class="topt ${cls}" ${attrs}>${icon ? `<span class="tile-ico">${ic(icon)}</span>` : ''}<span><b>${title}</b>${sub ? `<small>${sub}</small>` : ''}</span></button>`;
+function treeVerdict() {
+  const p = tr.picks;
+  if (!p.length) return '';
+  if (p.some(x => x.level === 's')) return `<div class="tv stop"><b>Sangat berisiko (STOP)</b><p>Jangan lanjut pasang, meski konsumen setuju. Pilih ditunda, eskalasi, atau batal. Hanya teknisi yang tanda tangan.</p></div>`;
+  return `<div class="tv mid"><b>Berisiko, boleh lanjut kalau konsumen setuju</b><p>Jelaskan semua temuan ke konsumen lewat Edukasi konsumen. Lanjut hanya kalau konsumen setuju dan tanda tangan. Konsumen boleh menunda atau menolak.</p></div>`;
+}
+function renderTree() {
+  const B = $('treeBody'); let h = '';
+  if (tr.screen === 'area') {
+    h = `<p class="hint">Langkah ${tr.picks.length + 1}. Apa yang ditemukan? Pilih areanya. Kalau tidak ada, pilih Lainnya.</p><div class="tlist">${AREAS.map(a => opt(`data-tree="area" data-area="${a.id}"`, a.free ? 'dots' : a.icon, esc(a.free ? 'Lainnya (tidak ada di daftar)' : a.name), a.free ? 'Tulis sendiri' : esc(a.indikasi.split(' / ').slice(0, 2).join(' / ')))).join('')}</div>`;
+    if (tr.picks.length) h += `<p class="mt-2"><button class="btn primary" type="button" data-tree="result">Lihat hasil (${tr.picks.length} temuan)</button></p>`;
+  } else if (tr.screen === 'cond') {
+    const a = AREA_BY[tr.area];
+    h = `<p class="hint"><button class="btn sm" type="button" data-tree="back">${ic('left','me')}Kembali</button> &nbsp;<b>${esc(a.name)}</b>: mana yang paling sesuai?</p><div class="tlist">${a.subs.map(s => opt(`data-tree="cond" data-sub="${s[0]}"`, '', esc(s[1]), `<span class="lv ${LV[s[2]][1]}">${LV[s[2]][0]}</span>`, LV[s[2]][1])).join('')}${opt('data-tree="other-in-area"', 'dots', 'Hal lain di area ini', 'Tulis sendiri kalau tidak ada yang cocok')}</div>`;
+  } else if (tr.screen === 'other') {
+    h = `<p class="hint"><button class="btn sm" type="button" data-tree="back">${ic('left','me')}Kembali</button> &nbsp;<b>Hal lain</b>: tulis yang ditemukan.</p>
+      <div class="field"><label for="tr-text">Yang ditemukan</label><textarea id="tr-text" placeholder="Contoh: pipa gas melewati dekat kabel listrik">${esc(tr.draft.text)}</textarea></div>
+      <div class="field mt-2"><label for="tr-risk">Risikonya</label><textarea id="tr-risk" placeholder="Apa yang bisa terjadi kalau tetap dipasang">${esc(tr.draft.risk)}</textarea></div>
+      <p class="mt-2"><b>Apakah ini langsung membahayakan (api, tersengat, gas, roboh)?</b></p>
+      <div class="tlist two">${opt('data-tree="other-done" data-lv="s"', 'alert', 'Ya, berbahaya', 'Dihitung STOP', 'stop')}${opt('data-tree="other-done" data-lv="c"', 'check', 'Tidak', 'Berisiko, perlu setuju konsumen', 'mid')}</div>`;
+  } else {
+    h = `${treeVerdict()}<div class="tpicks">${tr.picks.map((x, i) => `<div class="tpick ${LV[x.level][1]}"><div><b>${esc(x.area)}</b><br>${esc(x.text)}<br><span class="lv ${LV[x.level][1]}">${LV[x.level][0]}</span>${x.action ? `<small>${esc(x.action)}</small>` : ''}</div><button class="btn sm" type="button" data-tree="del" data-i="${i}" aria-label="Hapus temuan">${ic('x')}</button></div>`).join('') || '<p class="hint">Belum ada temuan.</p>'}</div>
+      <div class="cta-row"><button class="btn" type="button" data-tree="more">Tambah temuan lain</button>${tr.picks.length ? `<button class="btn primary" type="button" data-tree="apply">${ic('check','me')}Terapkan ke form</button>` : ''}</div>`;
+  }
+  B.innerHTML = h; B.scrollTop = 0;
+}
+function pickFrom(areaId, text, level, extra = {}) {
+  const a = AREA_BY[areaId];
+  tr.picks.push({areaId, area: a.name, text, level, sub: extra.sub || '', risk: extra.risk || '', action: level === 's' ? (a.stopAction || 'Hentikan dan eskalasi ke Technical Support.') : ''});
+}
+function applyTree() {
+  if (!workspaceOpen) openWorkspace();
+  for (const p of tr.picks) {
+    const s = A(p.areaId); s.on = true;
+    if (p.sub) s.subs = [...new Set([...s.subs, p.sub])];
+    else if (p.areaId === 'lainnya') addLain(p.text, p.risk, p.level === 's');
+    else { s.note = [s.note.trim(), p.text].filter(Boolean).join('; '); }
+  }
+  tr.picks.forEach(x => openAreas.add(x.areaId)); invalidateSignatures(); save(); closeTree(); step = 0; issuesShown = []; renderEditor(); window.scrollTo(0, 0);
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-tree]'); if (!b) return;
+  const act = b.dataset.tree;
+  if (act === 'open') return openTree();
+  if (act === 'close') return closeTree();
+  if (act === 'area') { tr.area = b.dataset.area; tr.screen = tr.area === 'lainnya' ? 'other' : 'cond'; tr.draft = {text:'', risk:''}; }
+  else if (act === 'cond') { const s = subOf(AREA_BY[tr.area], b.dataset.sub); pickFrom(tr.area, s[1], s[2], {sub: s[0]}); tr.screen = 'result'; }
+  else if (act === 'other-in-area') tr.screen = 'other';
+  else if (act === 'other-done') {
+    const text = ($('tr-text').value || '').trim(), risk = ($('tr-risk').value || '').trim();
+    if (!text) { $('tr-text').focus(); return; }
+    pickFrom(tr.area === 'lainnya' || !tr.area ? 'lainnya' : tr.area, text, b.dataset.lv, {risk});
+    if (tr.area !== 'lainnya') { tr.picks[tr.picks.length - 1].sub = ''; }
+    tr.screen = 'result';
+  }
+  else if (act === 'back') tr.screen = tr.screen === 'other' && tr.area !== 'lainnya' ? 'cond' : 'area';
+  else if (act === 'more') tr.screen = 'area';
+  else if (act === 'result') tr.screen = 'result';
+  else if (act === 'del') tr.picks.splice(Number(b.dataset.i), 1);
+  else if (act === 'apply') return applyTree();
+  if (act !== 'other-done' || tr.screen === 'result') renderTree();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('treeLayer') && !$('treeLayer').hidden) closeTree(); });
+
+</script></body></html>

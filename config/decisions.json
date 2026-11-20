@@ -1,0 +1,6 @@
+[
+  {"id": "lanjut", "label": "Dilanjutkan, konsumen setuju", "consent": true},
+  {"id": "tunda", "label": "Ditunda, konsumen memperbaiki dulu", "consent": false},
+  {"id": "eskalasi", "label": "Eskalasi ke Technical Support dulu", "consent": false},
+  {"id": "batal", "label": "Dibatalkan", "consent": false}
+]

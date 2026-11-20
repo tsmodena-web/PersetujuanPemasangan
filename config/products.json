@@ -1,0 +1,52 @@
+[
+  {
+    "id": "ro",
+    "label": "Reverse Osmosis",
+    "priority": {"listrik": "t", "air": "t", "dinding": "s", "ruang": "s"}
+  },
+  {
+    "id": "water_heater",
+    "label": "Water Heater",
+    "priority": {"listrik": "t", "air": "t", "gas": "t", "dinding": "t", "ventilasi": "t", "ruang": "s"}
+  },
+  {
+    "id": "stove_oven",
+    "label": "Kompor / Oven",
+    "priority": {"gas": "t", "listrik": "s", "ventilasi": "t", "ruang": "t", "dinding": "s"}
+  },
+  {
+    "id": "induction",
+    "label": "Kompor Induksi",
+    "priority": {"listrik": "t", "ventilasi": "s", "ruang": "s"}
+  },
+  {
+    "id": "hood",
+    "label": "Cooker Hood",
+    "priority": {"listrik": "t", "dinding": "t", "ventilasi": "t", "ruang": "t", "gas": "s"}
+  },
+  {
+    "id": "dispenser",
+    "label": "Dispenser",
+    "priority": {"listrik": "t", "air": "t", "ruang": "s"}
+  },
+  {
+    "id": "fridge",
+    "label": "Kulkas / Showcase",
+    "priority": {"listrik": "t", "ventilasi": "t", "ruang": "t"}
+  },
+  {
+    "id": "washer",
+    "label": "Washing / Dryer",
+    "priority": {"listrik": "t", "air": "t", "ruang": "t", "dinding": "s"}
+  },
+  {
+    "id": "ac",
+    "label": "Air Conditioning",
+    "priority": {"listrik": "t", "air": "s", "dinding": "t", "ventilasi": "t", "ruang": "t"}
+  },
+  {
+    "id": "other",
+    "label": "Produk lainnya",
+    "priority": {}
+  }
+]
