@@ -1,0 +1,273 @@
+[
+  {
+    "id": "listrik",
+    "icon": "zap",
+    "name": "Instalasi Listrik",
+    "indikasi": "Tidak tersedia grounding / posisi jalur kabel tidak diketahui / stop kontak atau sambungan listrik tidak sesuai / kapasitas daya tidak memadai",
+    "risiko": "Kabel existing terkena saat pemasangan, korsleting, overheating, kerusakan komponen, gangguan fungsi, atau risiko keselamatan",
+    "subs": [
+      {"id": "l1", "text": "Tidak tersedia grounding", "level": "c", "impact": "Kalau ada arus bocor, orang bisa tersengat. Komponen unit juga mudah rusak."},
+      {"id": "l2", "text": "Posisi jalur kabel tidak diketahui", "level": "c", "impact": "Kabel di dalam dinding bisa tertembus saat memasang, lalu korsleting."},
+      {"id": "l3", "text": "Stop kontak atau sambungan listrik tidak sesuai", "level": "c", "impact": "Colokan longgar dan panas. Bisa korsleting sampai terbakar."},
+      {"id": "l4", "text": "Kapasitas daya tidak memadai", "level": "c", "impact": "MCB sering turun, kabel panas, unit tidak bekerja normal."},
+      {"id": "l5", "text": "Tegangan stop kontak tidak normal (di luar 198 – 242 V)", "level": "e", "impact": "Komponen unit mudah rusak dan unit bisa mati sendiri."},
+      {"id": "l6", "text": "Pakai kabel rol atau colokan bertumpuk", "level": "e", "impact": "Kabel panas berlebih. Risiko korsleting dan kebakaran."},
+      {"id": "l7", "text": "MCB sering turun atau pernah korsleting", "level": "e", "impact": "Ada masalah di instalasi. Unit bisa memicu turun atau korsleting lagi."},
+      {"id": "l8", "text": "Stop kontak longgar, panas, atau gosong", "level": "s", "impact": "Sudah ada panas berlebih di titik ini. Risiko api."},
+      {"id": "l9", "text": "Kabel terkelupas, rapuh, atau disambung seadanya", "level": "s", "impact": "Bisa menyengat orang dan memicu kebakaran."}
+    ],
+    "cek": [
+      "Lihat stop kontak dan kabel: longgar, panas, gosong, atau terkelupas.",
+      "Cek grounding dan tegangan hanya bila teknisi berwenang (normal 198 – 242 V).",
+      "Cocokkan daya produk dengan MCB dan kabel.",
+      "Tanya jalur kabel di dinding atau plafon sebelum mengebor."
+    ],
+    "caution": ["Jangan mengebor atau memaku di jalur yang mungkin ada kabel.","Jangan pakai kabel rol atau colokan bertumpuk.","Jangan sentuh kabel yang terkelupas, basah, atau panas."],
+    "mitigasi": ["Minta konsumen memanggil tukang listrik (grounding, stop kontak, atau tambah daya).","Pilih titik pemasangan yang jalur kabelnya jelas.","Bila ragu, tanya Technical Support dulu."],
+    "stopAction": "Jangan sentuh bagian yang panas atau terkelupas. Matikan MCB bila aman. Jangan lanjut pasang, lalu eskalasi.",
+    "edu": {
+      "apa": "Teknisi memeriksa stop kontak, kabel, dan daya listrik di lokasi. Ada bagian yang belum aman atau belum jelas.",
+      "risiko": ["Kabel di dinding bisa kena bor lalu korsleting.","Kabel atau stop kontak bisa panas dan terbakar.","Produk bisa rusak atau tidak berfungsi.","Ada bahaya tersengat listrik."],
+      "opsi": ["Diperbaiki dulu oleh tukang listrik, lalu pemasangan dijadwalkan ulang.","Dipasang di titik lain yang listriknya lebih jelas."]
+    },
+    "gejala": [
+      "MCB sering turun saat unit menyala",
+      "Lampu redup saat alat lain menyala",
+      "Bau gosong di dekat stop kontak",
+      "Colokan hangat, longgar, atau berubah warna",
+      "Stop kontak hanya 2 lubang (tanpa grounding)",
+      "Pakai colokan bertumpuk untuk alat besar"
+    ],
+    "khusus": [
+      "Apartemen: daya sering dibatasi pengelola. Tanya dulu sebelum menambah beban.",
+      "Rumah lama: kabel tua atau tanpa MCB, jalur kabel tidak jelas.",
+      "Pakai genset atau stabilizer: pastikan cocok dan ada grounding.",
+      "Stop kontak dekat dapur atau kamar mandi: rawan terkena air."
+    ]
+  },
+  {
+    "id": "air",
+    "icon": "droplet",
+    "name": "Instalasi Air",
+    "indikasi": "Posisi/jalur perpipaan existing tidak diketahui / tekanan air tidak sesuai / sambungan inlet-outlet atau drainase tidak memadai",
+    "risiko": "Pipa existing terkena saat pemasangan, kebocoran, kerusakan area sekitar, gangguan fungsi produk, atau kerusakan komponen",
+    "subs": [
+      {"id": "a1", "text": "Posisi/jalur perpipaan existing tidak diketahui", "level": "c", "impact": "Pipa bisa tertembus saat memasang, lalu air bocor."},
+      {"id": "a2", "text": "Tekanan air tidak sesuai", "level": "c", "impact": "Unit tidak bekerja normal. Sambungan bisa bocor atau lepas."},
+      {"id": "a3", "text": "Sambungan inlet-outlet tidak memadai", "level": "c", "impact": "Sambungan bocor dan aliran air tidak sesuai."},
+      {"id": "a4", "text": "Drainase tidak memadai", "level": "c", "impact": "Air buangan meluap. Lantai basah dan licin."},
+      {"id": "a5", "text": "Pipa tua, berkarat, atau rapuh", "level": "e", "impact": "Pipa mudah pecah atau bocor saat disambung."},
+      {"id": "a6", "text": "Pernah atau sudah ada rembesan", "level": "e", "impact": "Air merusak dinding dan lantai, bisa mengenai listrik."},
+      {"id": "a7", "text": "Keran penutup tidak ada atau macet", "level": "e", "impact": "Air tidak bisa dimatikan cepat kalau ada bocor."},
+      {"id": "a8", "text": "Air mati-hidup tidak stabil", "level": "e", "impact": "Unit bisa jalan tanpa air dan cepat rusak."},
+      {"id": "a9", "text": "Ada genangan atau bocor dekat listrik", "level": "s", "impact": "Risiko tersengat listrik."}
+    ],
+    "cek": [
+      "Pastikan letak pipa dan keran penutup sebelum mengebor.",
+      "Cek tekanan dan kestabilan air sesuai petunjuk produk.",
+      "Pastikan sambungan masuk dan keluar cocok dan tidak rembes.",
+      "Pastikan pembuangan air ada dan lancar."
+    ],
+    "caution": ["Pipa tua mudah retak saat disentuh.","Air bocor bisa sampai ke stop kontak, kabinet, dan lantai. Cek di bawah dan sekitar unit.","Jangan mengencangkan sambungan terlalu keras pada pipa tua."],
+    "mitigasi": ["Pakai titik air lain yang lebih baik.","Minta konsumen atau pengelola memperbaiki pipa atau memasang keran penutup dulu.","Catat kondisi awal agar bocor lama tidak dianggap akibat pemasangan."],
+    "stopAction": "Hentikan pekerjaan. Jauhkan unit dan alat listrik dari area basah, lalu eskalasi.",
+    "edu": {
+      "apa": "Teknisi memeriksa pipa, tekanan air, sambungan, dan pembuangan. Ada bagian yang belum baik atau belum jelas.",
+      "risiko": ["Pipa lama bisa retak saat dipasang, lalu bocor.","Bocor bisa merusak lantai, dinding, atau kabinet.","Produk bisa rusak atau tidak berfungsi."],
+      "opsi": ["Pipa diperbaiki dulu oleh tukang, lalu pemasangan dijadwalkan ulang.","Pakai titik air lain yang lebih baik."]
+    },
+    "gejala": [
+      "Air naik turun atau sangat lemah",
+      "Air keruh, bau, atau berkarat",
+      "Dinding atau lantai basah tanpa sebab",
+      "Pipa lama menetes di sambungan",
+      "Tidak ada keran penutup sebelum unit",
+      "Tidak ada saluran buang di dekat unit"
+    ],
+    "khusus": [
+      "Air dari tangki atap: tekanan rendah, mungkin butuh pompa.",
+      "Air sumur: endapan atau kapur bisa merusak unit.",
+      "Pipa PVC lama mudah pecah saat disambung.",
+      "Jalur pipa di dalam dinding tidak jelas: bisa kena bor.",
+      "Unit dekat bak cuci: rawan cipratan ke bagian listrik."
+    ]
+  },
+  {
+    "id": "gas",
+    "icon": "flame",
+    "name": "Instalasi Gas",
+    "indikasi": "Posisi jalur gas tidak diketahui / selang, regulator, sambungan, atau tekanan gas tidak sesuai",
+    "risiko": "Jalur gas terkena saat pemasangan, kebocoran gas, nyala tidak normal, kebakaran, kerusakan produk, atau risiko keselamatan",
+    "subs": [
+      {"id": "g1", "text": "Posisi jalur gas tidak diketahui", "level": "c", "impact": "Pipa gas bisa tertembus saat memasang. Gas bocor."},
+      {"id": "g2", "text": "Selang, regulator, atau sambungan gas tidak sesuai", "level": "c", "impact": "Gas bisa bocor. Risiko terbakar atau meledak."},
+      {"id": "g3", "text": "Tekanan gas tidak sesuai", "level": "c", "impact": "Api tidak stabil, pembakaran tidak sempurna, gas bisa bocor."},
+      {"id": "g4", "text": "Selang gas retak, keras, atau sudah lama", "level": "e", "impact": "Selang mudah bocor gas."},
+      {"id": "g5", "text": "Selang gas tertekuk atau dekat sumber panas", "level": "e", "impact": "Selang bisa bocor atau meleleh."},
+      {"id": "g6", "text": "Tabung gas di ruang tertutup tanpa lubang udara", "level": "e", "impact": "Gas menumpuk. Risiko terbakar atau meledak."},
+      {"id": "g7", "text": "Tercium bau gas", "level": "s", "impact": "Gas sedang bocor. Bisa terbakar atau meledak."}
+    ],
+    "cek": [
+      "Pastikan jalur pipa atau selang gas jelas dan tidak dekat sumber panas.",
+      "Lihat selang, regulator, dan sambungan: retak, keras, longgar.",
+      "Cek kebocoran dengan cara yang diizinkan SOP.",
+      "Pastikan tabung gas ada di tempat yang berlubang udara."
+    ],
+    "caution": [
+      "Kalau bau gas: jangan nyalakan api, saklar, atau alat listrik. Buka jendela dan jauhkan orang.",
+      "Jangan ubah sambungan gas kalau bukan wewenang teknisi.",
+      "Jangan lanjut pasang kalau tekanan atau sambungan gas meragukan."
+    ],
+    "mitigasi": ["Minta konsumen mengganti selang atau regulator lewat pihak berwenang.","Tanya Technical Support sebelum memasang.","Jadwalkan ulang setelah diperbaiki."],
+    "stopAction": "Jangan nyalakan api, saklar, atau alat listrik. Buka jendela, jauhkan orang, tutup gas bila aman, lalu eskalasi.",
+    "edu": {
+      "apa": "Teknisi memeriksa jalur gas, selang, regulator, dan tekanan gas. Ada bagian yang belum sesuai atau belum jelas.",
+      "risiko": ["Jalur gas bisa kena saat pemasangan lalu bocor.","Gas bocor bisa menyebabkan kebakaran atau ledakan.","Api produk bisa tidak normal dan produk bisa rusak.","Membahayakan seluruh penghuni."],
+      "opsi": ["Selang atau regulator diperbaiki dulu oleh pihak berwenang, lalu pemasangan dijadwalkan ulang.","Menunggu arahan Technical Support."]
+    },
+    "gejala": ["Tercium bau gas","Selang retak, keras, atau sudah lama","Regulator berkarat atau longgar","Sambungan tanpa klem","Tabung dekat panas atau api","Tekanan gas tidak cocok dengan jenis unit"],
+    "khusus": [
+      "Ruang tertutup atau kabinet: gas bocor mudah menumpuk.",
+      "Apartemen dengan gas sentral: perlu izin pengelola.",
+      "Selang terlalu panjang atau lewat dekat panas.",
+      "Terlalu dekat dengan kompor atau api."
+    ]
+  },
+  {
+    "id": "dinding",
+    "icon": "wall",
+    "name": "Dinding / Struktur",
+    "indikasi": "Kondisi atau kekuatan struktur tidak diketahui/tidak memadai / permukaan tidak rata / titik pemasangan tidak sesuai",
+    "risiko": "Produk tidak kokoh, bergeser, jatuh, kerusakan produk, dinding, kabinet, atau area sekitar",
+    "subs": [
+      {"id": "d1", "text": "Kondisi atau kekuatan struktur tidak diketahui / tidak memadai", "level": "c", "impact": "Unit bisa jatuh atau dinding rusak."},
+      {"id": "d2", "text": "Permukaan tidak rata", "level": "c", "impact": "Unit miring dan tidak stabil. Bisa bocor atau berisik."},
+      {"id": "d3", "text": "Titik pemasangan tidak sesuai", "level": "c", "impact": "Unit sulit terpasang aman dan bisa lepas."},
+      {"id": "d4", "text": "Dinding berongga, tipis, atau rapuh", "level": "e", "impact": "Pengait tidak kuat menahan. Unit bisa jatuh."},
+      {"id": "d5", "text": "Dinding atau lantai lembap, retak, atau berjamur", "level": "e", "impact": "Dinding lemah, pengait longgar seiring waktu, jamur muncul."},
+      {"id": "d6", "text": "Lantai miring", "level": "e", "impact": "Unit tidak stabil dan air mengalir ke arah salah."},
+      {"id": "d7", "text": "Dinding tidak kuat menahan unit (retak parah atau bergerak)", "level": "s", "impact": "Unit bisa jatuh dan melukai orang."}
+    ],
+    "cek": [
+      "Ketuk dinding: bunyinya kopong atau rapuh?",
+      "Cek jenis dinding (bata, beton, gypsum, kayu) dan apakah kuat menahan unit.",
+      "Cek apakah permukaan dan lantai rata.",
+      "Cek retak, lembap, atau jamur di titik pemasangan."
+    ],
+    "caution": ["Unit yang digantung bisa jatuh kalau dinding tidak kuat.","Jangan pasang di dinding tipis tanpa penguat.","Mengebor dinding lembap atau retak bisa membuat kerusakan makin parah."],
+    "mitigasi": ["Pakai penguat atau braket sesuai petunjuk produk.","Pindah ke titik yang dindingnya lebih kuat.","Tanya Technical Support bila tidak yakin dinding kuat."],
+    "stopAction": "Jangan pasang unit di dinding ini. Eskalasi atau minta konsumen memperbaiki dinding dulu.",
+    "edu": {
+      "apa": "Teknisi memeriksa dinding atau lantai tempat produk dipasang: kuat, rata, dan cocok. Ada bagian yang belum baik atau belum jelas.",
+      "risiko": ["Produk bisa goyang, bergeser, atau jatuh.","Produk, dinding, atau kabinet bisa rusak.","Membahayakan orang bila produk jatuh."],
+      "opsi": ["Dinding atau lantai diperbaiki dulu, lalu pemasangan dijadwalkan ulang.","Dipasang di titik lain yang lebih kuat."]
+    },
+    "gejala": ["Retak, mengelupas, atau berjamur","Dinding berbunyi kopong saat diketuk","Dinding tipis atau sekat ringan","Plester rapuh atau kayu lapuk","Permukaan tidak rata sehingga unit miring"],
+    "khusus": [
+      "Gypsum atau sekat: butuh rangka atau baut khusus.",
+      "Hebel atau bata ringan: butuh plug khusus.",
+      "Keramik atau kaca: mudah retak saat dibor.",
+      "Unit berat (tangki atau galon penuh): cek braketnya kuat.",
+      "Dinding bersama di apartemen: minta izin pengelola sebelum mengebor."
+    ]
+  },
+  {
+    "id": "ventilasi",
+    "icon": "wind",
+    "name": "Ventilasi / Sirkulasi Udara",
+    "indikasi": "Ventilasi tertutup / jalur pembuangan panas terhambat / sirkulasi udara tidak memadai",
+    "risiko": "Overheating, penurunan performa, kerusakan komponen, atau panas berlebih pada area sekitar",
+    "subs": [
+      {"id": "v1", "text": "Ventilasi tertutup", "level": "c", "impact": "Panas menumpuk. Unit cepat rusak dan udara pengap."},
+      {"id": "v2", "text": "Jalur pembuangan panas terhambat", "level": "c", "impact": "Unit terlalu panas dan bisa mati sendiri."},
+      {"id": "v3", "text": "Sirkulasi udara tidak memadai", "level": "c", "impact": "Unit panas berlebih dan kinerja turun."},
+      {"id": "v4", "text": "Unit di kabinet rapat tanpa lubang udara", "level": "e", "impact": "Unit terlalu panas di dalam kabinet."},
+      {
+        "id": "v5",
+        "text": "Saluran buang tidak ada, terlalu panjang, atau banyak belokan",
+        "level": "e",
+        "impact": "Pembuangan tidak lancar. Panas atau asap balik ke ruangan."
+      },
+      {"id": "v6", "text": "Debu atau minyak menumpuk di jalur udara", "level": "e", "impact": "Aliran udara berkurang dan debu atau minyak mudah terbakar."},
+      {"id": "v7", "text": "Unit gas di ruang tertutup tanpa lubang udara", "level": "s", "impact": "Gas buang menumpuk. Bahaya keracunan CO dan kebakaran."}
+    ],
+    "cek": [
+      "Pastikan belakang, samping, dan atas unit tidak tertutup.",
+      "Lihat lubang udara dan jalur buang panas atau asap sesuai petunjuk.",
+      "Untuk unit gas: pastikan ruang berlubang udara dan jalur gas buang jelas.",
+      "Waspadai kabinet rapat atau ruang tanpa lubang udara."
+    ],
+    "caution": ["Panas yang terperangkap bisa merusak produk dan sekitarnya.","Unit gas di ruang tertutup berbahaya karena gas buangnya.","Debu atau minyak di jalur udara membuat unit cepat panas."],
+    "mitigasi": ["Tambah lubang udara atau atur jaraknya sesuai petunjuk.","Pindah ke tempat yang udaranya lebih lancar.","Eskalasi bila unit gas tidak bisa dipasang dengan udara yang cukup."],
+    "stopAction": "Jangan pasang atau nyalakan unit gas di ruang tanpa lubang udara. Eskalasi.",
+    "edu": {
+      "apa": "Teknisi memeriksa apakah udara dan panas bisa keluar dengan baik. Ada bagian yang udaranya kurang lancar.",
+      "risiko": ["Produk jadi terlalu panas dan kinerjanya turun.","Komponen cepat rusak.","Area sekitar ikut menjadi sangat panas."],
+      "opsi": ["Lubang udara ditambah dulu, lalu pemasangan dijadwalkan ulang.","Dipasang di tempat lain yang udaranya lebih lancar."]
+    },
+    "gejala": ["Dapur atau ruang tanpa jendela dan lubang udara","Kipas penyedot tidak jalan","Bau pengap atau ada jelaga","Unit di ruang kecil yang tertutup rapat","Lubang udara tertutup lemari"],
+    "khusus": [
+      "Unit gas di kamar mandi tertutup: wajib ada lubang udara.",
+      "Kabinet bawah meja yang tertutup rapat: panas terperangkap.",
+      "Balkon ditutup kaca: udara kurang lancar.",
+      "Saluran buang tidak ada atau salah arah."
+    ]
+  },
+  {
+    "id": "ruang",
+    "icon": "move",
+    "name": "Ruang / Jarak Pemasangan",
+    "indikasi": "Clearance tidak sesuai / ruang pemasangan terlalu sempit / produk terlalu dekat dengan dinding atau objek lain",
+    "risiko": "Gangguan fungsi, overheating, benturan, kesulitan perawatan, atau kerusakan produk/area sekitar",
+    "subs": [
+      {"id": "r1", "text": "Clearance tidak sesuai", "level": "c", "impact": "Unit terlalu panas dan sulit diservis."},
+      {"id": "r2", "text": "Ruang pemasangan terlalu sempit", "level": "c", "impact": "Pemasangan sulit dan sambungan bisa tertekan."},
+      {"id": "r3", "text": "Produk terlalu dekat dengan dinding atau objek lain", "level": "c", "impact": "Panas atau getaran mengenai benda sekitar."},
+      {"id": "r4", "text": "Dekat sumber panas atau api, atau kena matahari langsung", "level": "e", "impact": "Unit dan benda sekitar bisa rusak atau terbakar."},
+      {"id": "r5", "text": "Sulit dijangkau untuk servis", "level": "e", "impact": "Servis nanti sulit dan lama."},
+      {"id": "r6", "text": "Jarak cooker hood ke kompor bukan 65 – 75 cm", "level": "e", "impact": "Hisapan kurang kuat, atau terlalu dekat panas kompor."},
+      {"id": "r7", "text": "Unit panas atau berapi dekat bahan mudah terbakar", "level": "s", "impact": "Bahan di dekatnya bisa terbakar."}
+    ],
+    "cek": [
+      "Ukur jarak belakang, samping, dan atas unit, lalu cocokkan dengan petunjuk produk (umumnya ≥ 10 cm di samping dan ≥ 25 cm di belakang; RO minimal 25 cm).",
+      "Pastikan ruang cukup untuk buka pintu atau tutup dan untuk servis.",
+      "Lihat apakah dekat sumber panas, api, atau bahan mudah terbakar.",
+      "Cooker hood: jarak ke kompor 65 – 75 cm."
+    ],
+    "caution": ["Ruang kurang bisa membuat unit panas dan terbentur.","Unit panas atau berapi dekat tirai atau kayu bisa terbakar.","Servis yang sulit membuat perawatan dan cek bocor terhambat."],
+    "mitigasi": ["Geser unit atau minta konsumen mengosongkan area.","Pakai lokasi lain yang jaraknya cukup.","Catat ukuran asli di catatan teknisi."],
+    "stopAction": "Jauhkan unit dari bahan mudah terbakar atau pindah lokasi. Kalau tidak bisa, tunda pemasangan dan eskalasi.",
+    "edu": {
+      "apa": "Teknisi mengukur ruang di sekitar produk: jarak ke dinding, benda lain, dan ruang untuk servis. Ada bagian yang kurang luas.",
+      "risiko": ["Produk jadi terlalu panas atau tidak berfungsi baik.","Produk bisa terbentur atau merusak benda di dekatnya.","Servis nanti lebih sulit."],
+      "opsi": ["Posisi produk digeser atau area dikosongkan dulu.","Dipasang di lokasi lain yang lebih luas."]
+    },
+    "gejala": ["Celah sempit antara unit dan dinding","Unit di bawah rak atau kabinet rendah","Dekat tirai, kayu, atau plastik","Dekat kompor atau sumber panas","Tidak ada ruang untuk servis"],
+    "khusus": [
+      "Kabinet sudah jadi tetapi unit tidak muat.",
+      "Langit-langit rendah membatasi posisi unit.",
+      "Dekat bak cuci: area cipratan air.",
+      "Di bawah AC yang menetes: air jatuh ke unit.",
+      "Akses servis terhalang sehingga perawatan sulit."
+    ]
+  },
+  {
+    "id": "lainnya",
+    "icon": "dots",
+    "name": "Lainnya",
+    "free": true,
+    "indikasi": "",
+    "risiko": "",
+    "subs": [],
+    "quick": [
+      "Tempat tinggi atau berbahaya (tangga, atap, plafon)",
+      "Instalasi dikerjakan pihak lain (bukan MODENA)",
+      "Konsumen minta lokasi berbeda dari saran teknisi",
+      "Bahan atau komponen milik konsumen tidak standar",
+      "Bangunan sedang direnovasi"
+    ],
+    "cek": ["Pakai bagian ini hanya untuk kondisi di luar enam area di atas.","Tulis kondisi dan risikonya dengan kata sederhana."],
+    "caution": ["Kondisi yang membahayakan keselamatan tidak boleh disetujui lewat form. Tunda dan eskalasi."],
+    "mitigasi": ["Bila ragu, tanya Technical Support."]
+  }
+]

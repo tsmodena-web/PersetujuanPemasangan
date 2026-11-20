@@ -1,0 +1,39 @@
+{
+  "tools": [
+    "Senter untuk area sempit",
+    "Meteran untuk jarak",
+    "Tester listrik, bila teknisi berwenang",
+    "Alat cek bocor sesuai SOP (gas atau sambungan air)",
+    "Kamera untuk foto kondisi sebelum pemasangan",
+    "Buku petunjuk produk (jarak, daya, tekanan)"
+  ],
+  "signerRoles": ["Pemilik / penghuni","Pengelola / PIC","Perwakilan pemilik","Lainnya"],
+  "terms": [
+    {"term": "Grounding / arde", "desc": "Kabel pengaman yang membuang listrik bocor ke tanah. Tanpa ini, bodi unit bisa menyetrum."},
+    {"term": "MCB", "desc": "Sakelar otomatis di panel listrik. Turun sendiri kalau listrik terlalu besar, supaya kabel tidak panas."},
+    {"term": "Kapasitas daya (VA / Watt)", "desc": "Batas listrik yang tersedia di rumah. Kalau terlalu kecil, MCB sering turun."},
+    {"term": "Stop kontak", "desc": "Lubang colokan di dinding. Kalau longgar atau gosong, bisa memicu kebakaran."},
+    {"term": "Korsleting", "desc": "Listrik nyambung salah jalur. Bisa keluar percikan api dan merusak unit."},
+    {"term": "Panas berlebih", "desc": "Unit atau kabel terlalu panas. Bisa merusak produk dan memicu kebakaran."},
+    {"term": "Tekanan air", "desc": "Kuat lemahnya air mengalir. Terlalu kuat bisa merusak sambungan, terlalu lemah unit tidak jalan."},
+    {"term": "Sambungan masuk / keluar", "desc": "Tempat air masuk dan keluar di unit. Salah sambung bisa bocor."},
+    {"term": "Pembuangan air", "desc": "Saluran untuk membuang air. Kalau mampet, air meluap."},
+    {"term": "Regulator & selang gas", "desc": "Alat pengatur dan selang penyalur gas. Kalau rusak atau longgar, gas bisa bocor."},
+    {"term": "Gas bocor", "desc": "Gas keluar dari sambungan. Sangat berbahaya karena mudah terbakar. Jangan nyalakan api atau saklar."},
+    {"term": "Kekuatan dinding", "desc": "Apakah dinding kuat menahan berat unit. Dinding rapuh atau retak bisa membuat unit jatuh."},
+    {"term": "Braket / plug dinding", "desc": "Penyangga dan pengait unit ke dinding. Harus cocok dengan jenis dinding."},
+    {"term": "Ventilasi", "desc": "Lubang udara supaya udara dan panas bisa keluar."},
+    {"term": "Sirkulasi udara", "desc": "Udara yang mengalir di sekitar unit untuk membuang panas."},
+    {"term": "Jarak aman (clearance)", "desc": "Jarak minimal antara unit dan dinding atau benda lain sesuai petunjuk produk."},
+    {"term": "Nameplate", "desc": "Label di unit berisi model, nomor seri, dan daya. Dipakai untuk mengisi data produk."},
+    {"term": "WO (Work Order)", "desc": "Nomor pekerjaan untuk kunjungan teknisi."},
+    {"term": "GCCS", "desc": "Sistem tempat hasil form diunggah."}
+  ],
+  "buildings": [
+    {"type": "Rumah tapak", "note": "Kabel dan pipa sering tertanam di dinding. Cek jalur sebelum mengebor."},
+    {"type": "Apartemen", "note": "Listrik dan gas diatur pengelola, dinding bersama, udara terbatas. Tanya aturan pengelola."},
+    {"type": "Ruko / kantor", "note": "Listrik dipakai bersama, sekat sering tipis. Cek daya dan kekuatan sekat."},
+    {"type": "Rumah lama / renovasi", "note": "Kabel dan pipa tua, jalurnya tidak jelas, dinding rapuh. Anggap berisiko bila tidak jelas."},
+    {"type": "Dapur luar / semi-terbuka", "note": "Banyak cipratan air, debu, dan lembap. Perhatikan posisi unit."}
+  ]
+}
