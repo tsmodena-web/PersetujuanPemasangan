@@ -599,6 +599,8 @@ input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=range]),
 .step-tab.active{color:var(--ui-primary-d);box-shadow:none}
 .step-tab span{background:#dcdfe8;width:22px;height:22px}
 .step-tab.active span{background:var(--ui-primary);color:#fff}
+/* W48: bilah konteks di HP — tombol Beranda tidak boleh terpotong */
+@media(max-width:600px){.context-bar{gap:6px;padding-right:6px}.context-bar>*{flex-shrink:0}.context-bar .grow{flex:1 1 0;min-width:0;flex-shrink:1}.context-bar .tag{flex:0 100 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}.context-bar strong{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}}
 .wizard-actions{border-radius:var(--ui-r-card)}
 @media(max-width:600px){.wizard-actions{border-radius:var(--ui-r-card) var(--ui-r-card) 0 0}}
 </style>
